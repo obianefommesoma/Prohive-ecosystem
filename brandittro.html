@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandiTPro™ - Media Solutions & Brand Consulting</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .subpage-header {
+            background: linear-gradient(135deg, #3D5C0B 0%, #609120 100%);
+            color: #FDFEFF;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #DEE6A5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #99CC33;
+        }
+
+        .service-section {
+            padding: 4rem 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .service-showcase.reverse {
+            direction: rtl;
+        }
+
+        .service-showcase > * {
+            direction: ltr;
+        }
+
+        .service-text h3 {
+            color: #3D5C0B;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-text p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            padding: 0.7rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #2C2C2C;
+        }
+
+        .service-features li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #99CC33;
+            font-weight: bold;
+        }
+
+        .service-visual {
+            background: linear-gradient(135deg, #DEE6A5, #99CC33);
+            border-radius: 12px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #2C2C2C;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .cta-section {
+            background: #3D5C0B;
+            color: #FDFEFF;
+            padding: 4rem 1rem;
+            text-align: center;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            color: #FDFEFF;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid;
+            cursor: pointer;
+        }
+
+        .cta-btn.primary {
+            background: #99CC33;
+            color: #3D5C0B;
+            border-color: #99CC33;
+        }
+
+        .cta-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(153, 204, 51, 0.4);
+            background: #DEE6A5;
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: #99CC33;
+            border-color: #99CC33;
+        }
+
+        .cta-btn.secondary:hover {
+            background: rgba(153, 204, 51, 0.2);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .process-card {
+            background: #FDFEFF;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .process-number {
+            background: linear-gradient(135deg, #3D5C0B, #609120);
+            color: #FDFEFF;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .process-card h3 {
+            color: #3D5C0B;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .service-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .service-visual {
+                aspect-ratio: auto;
+                min-height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="logo">
+                    <span class="logo-text">ProHive™</span>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#ecosystem">Ecosystem</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="subpage-header">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back to Home</a>
+            <h1>BrandiTPro™</h1>
+            <p>Media Solutions and Brand Consulting Agency</p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(135deg, #609120, #99CC33);">
+        <div class="container">
+            <div class="hero-content">
+                <h2 style="font-size: 2.5rem;">Turn Your Business Ideas Into Structured, Visible & Profitable Brands</h2>
+                <p style="margin-bottom: 2rem;">If you're looking for a results-driven and digital creative agency that will help transform your business ideas into a structured, visible, and profitable brand, you've found your partner.</p>
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;">
+                    <a href="tel:+2334906475928" class="cta-button">📞 Call: +234 490 6475 9285</a>
+                    <a href="https://wa.me/2347049798549" class="cta-button">💬 WhatsApp Us</a>
+                    <a href="mailto:branditprohq@gmail.com" class="cta-button">📧 Email</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services -->
+    <section class="service-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem; color: #3D5C0B; font-size: 2rem;">How We Can Help You</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 3rem; font-size: 1.1rem;">We work with Founders, Startups, Entrepreneurs, Organizations and growing businesses to provide comprehensive solutions</p>
+
+            <!-- Service 1: Brand Consulting -->
+            <div class="service-showcase">
+                <div class="service-text">
+                    <h3>Brand Consulting</h3>
+                    <p>With your long-term growth in view, we provide strategic advisory services for brands to undergo significant transformation and navigate complex markets successfully.</p>
+                    <ul class="service-features">
+                        <li>Strategic Brand Audit & Analysis</li>
+                        <li>Market Positioning Strategy</li>
+                        <li>Competitive Analysis</li>
+                        <li>Brand Transformation Roadmap</li>
+                        <li>Long-term Growth Strategy</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+                <div class="service-visual">
+                    📊 Strategic Brand Consulting
+                </div>
+            </div>
+
+            <!-- Service 2: Graphic & Brand Design -->
+            <div class="service-showcase reverse">
+                <div class="service-text">
+                    <h3>Graphic & Brand Design</h3>
+                    <p>We build strategy-backed strong brand visual identity systems to improve your professional appeal and make your brand irresistible to your target audience.</p>
+                    <ul class="service-features">
+                        <li>Logo Design & Branding</li>
+                        <li>Visual Identity Systems</li>
+                        <li>Brand Guidelines</li>
+                        <li>Packaging Design</li>
+                        <li>Marketing Collaterals</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Explore Our Work</a>
+                </div>
+                <div class="service-visual">
+                    🎨 Professional Brand Design
+                </div>
+            </div>
+
+            <!-- Service 3: Digital Presence -->
+            <div class="service-showcase">
+                <div class="service-text">
+                    <h3>Digital Media & Web Presence</h3>
+                    <p>Manage and optimize your digital presence across all platforms to ensure your brand is visible, professional, and engaging to your target audience.</p>
+                    <ul class="service-features">
+                        <li>Website Development</li>
+                        <li>Social Media Management</li>
+                        <li>Content Strategy & Creation</li>
+                        <li>Digital Marketing</li>
+                        <li>SEO Optimization</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Let's Connect</a>
+                </div>
+                <div class="service-visual">
+                    💻 Digital Presence Management
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Process -->
+    <section style="padding: 4rem 1rem; background: #f9f9f9;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem; color: #3D5C0B;">Our Process</h2>
+            
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="process-number">1</div>
+                    <h3>Discovery</h3>
+                    <p>We listen, analyze, and understand your business, goals, and target market deeply.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-number">2</div>
+                    <h3>Strategy</h3>
+                    <p>We develop a comprehensive strategy tailored to your unique business needs and goals.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-number">3</div>
+                    <h3>Design & Creation</h3>
+                    <p>Our creative team brings your vision to life with professional, compelling designs.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-number">4</div>
+                    <h3>Implementation</h3>
+                    <p>We execute the strategy across all touchpoints ensuring consistency and quality.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-number">5</div>
+                    <h3>Optimization</h3>
+                    <p>Continuous monitoring and optimization to ensure maximum impact and ROI.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-number">6</div>
+                    <h3>Growth</h3>
+                    <p>Long-term partnership and support to sustain and scale your brand success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <div class="cta-section" style="margin: 4rem 1rem;">
+        <div class="container">
+            <h2>Ready to Transform Your Brand?</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.1rem;">Let's work together to turn your business ideas into a structured, visible, and profitable brand.</p>
+            <div class="cta-buttons">
+                <a href="tel:+2334906475928" class="cta-btn primary">📞 Quick Call</a>
+                <a href="https://wa.me/2347049798549" class="cta-btn primary">💬 WhatsApp Now</a>
+                <a href="mailto:branditprohq@gmail.com" class="cta-btn secondary">📧 Send Email</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <h4>BrandiTPro™ Headquarters</h4>
+                            <p>No. 1, Stephenson's Close, Umuojukwu, Umuelele, Irete, Owerri, Imo State, Nigeria</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:branditprohq@gmail.com">branditprohq@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">☎️</span>
+                        <div>
+                            <h4>Call</h4>
+                            <p><a href="tel:+2334906475928">+234 490 6475 9285</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <h4>Connect With Us</h4>
+                    <div class="social-icons">
+                        <a href="https://wa.me/2347049798549" target="_blank" title="WhatsApp">💬</a>
+                        <a href="https://www.instagram.com/prohive_ecosystem?igsh=dXBmNzBwMTQ4MmZ4" target="_blank" title="Instagram">📷</a>
+                        <a href="https://www.facebook.com/share/1DZnvRaVWk/" target="_blank" title="Facebook">👍</a>
+                        <a href="https://www.linkedin.com/company/prohive-global-solutions-ltd/about/?viewAsMember=true" target="_blank" title="LinkedIn">🔗</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About ProHive</a></li>
+                        <li><a href="index.html#ecosystem">Our Ecosystem</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h5>Our Services</h5>
+                    <ul>
+                        <li><a href="#">Brand Consulting</a></li>
+                        <li><a href="#">Graphic Design</a></li>
+                        <li><a href="#">Digital Marketing</a></li>
+                        <li><a href="#">Web Development</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ProHive Global Solutions Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
