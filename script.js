@@ -1,138 +1,67 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//     const canvas = document.getElementById('bg-canvas');
-//     if (!canvas) return;
+document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('bg-canvas');
+    if (!canvas) return;
     
-//     const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
 
-//     // Resize canvas dynamically
-//     function resize() {
-//         canvas.width = window.innerWidth;
-//         canvas.height = window.innerHeight;
-//     }
-//     window.addEventListener('resize', resize);
-//     resize();
+    // Resize canvas dynamically
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
 
-//     // Line configuration using ProHive palette
-//     const lineCount = 25; 
-//     const lines = [];
-//     const colors = ['#3D5E08', '#649120', '#99CC33']; 
+    // Line configuration using ProHive palette
+    const lineCount = 25; 
+    const lines = [];
+    const colors = ['#3D5E08', '#649120', '#99CC33']; 
 
-//     for (let i = 0; i < lineCount; i++) {
-//         lines.push({
-//             x: Math.random() * canvas.width,
-//             y: Math.random() * canvas.height,
-//             length: Math.random() * 150 + 50,
-//             speed: Math.random() * 1.5 + 0.5,
-//             opacity: Math.random() * 0.4 + 0.1,
-//             color: colors[Math.floor(Math.random() * colors.length)],
-//             width: Math.random() * 1.5 + 0.5
-//         });
-//     }
+    for (let i = 0; i < lineCount; i++) {
+        lines.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            length: Math.random() * 150 + 50,
+            speed: Math.random() * 1.5 + 0.5,
+            opacity: Math.random() * 0.4 + 0.1,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            width: Math.random() * 1.5 + 0.5
+        });
+    }
 
-//     // Animation Loop
-//     function animate() {
-//         // Clear canvas with a slight trail effect
-//         ctx.fillStyle = 'rgba(17, 28, 1, 0.08)'; // #111C01 with alpha
-//         ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Animation Loop
+    function animate() {
+        // Clear canvas with a slight trail effect
+        ctx.fillStyle = 'rgba(17, 28, 1, 0.08)'; // #111C01 with alpha
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-//         lines.forEach(line => {
-//             ctx.beginPath();
-//             ctx.strokeStyle = line.color;
-//             ctx.globalAlpha = line.opacity;
-//             ctx.lineWidth = line.width;
+        lines.forEach(line => {
+            ctx.beginPath();
+            ctx.strokeStyle = line.color;
+            ctx.globalAlpha = line.opacity;
+            ctx.lineWidth = line.width;
             
-//             // Draw vertical line segment
-//             ctx.moveTo(line.x, line.y);
-//             ctx.lineTo(line.x, line.y + line.length);
-//             ctx.stroke();
+            // Draw vertical line segment
+            ctx.moveTo(line.x, line.y);
+            ctx.lineTo(line.x, line.y + line.length);
+            ctx.stroke();
 
-//             // Move downward
-//             line.y += line.speed;
+            // Move downward
+            line.y += line.speed;
 
-//             // Reset when line goes off screen
-//             if (line.y > canvas.height) {
-//                 line.y = -line.length;
-//                 line.x = Math.random() * canvas.width;
-//                 line.speed = Math.random() * 1.5 + 0.5;
-//             }
-//         });
+            // Reset when line goes off screen
+            if (line.y > canvas.height) {
+                line.y = -line.length;
+                line.x = Math.random() * canvas.width;
+                line.speed = Math.random() * 1.5 + 0.5;
+            }
+        });
 
-//         requestAnimationFrame(animate);
-//     }
+        requestAnimationFrame(animate);
+    }
 
-//     animate();
-// });
-
-
-
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     // ==========================================
-//     // 1. DYNAMIC 3D TILT EFFECT FOR PILLAR CARDS
-//     // ==========================================
-//     const cards = document.querySelectorAll('.pillar-card');
-    
-//     cards.forEach(card => {
-//         card.addEventListener('mousemove', (e) => {
-//             const rect = card.getBoundingClientRect();
-            
-//             // Calculate mouse position relative to the card center
-//             const cardWidth = rect.width;
-//             const cardHeight = rect.height;
-//             const mouseX = e.clientX - rect.left - (cardWidth / 2);
-//             const mouseY = e.clientY - rect.top - (cardHeight / 2);
-            
-//             // Map movement range (max 12 degrees rotation)
-//             const angleX = (mouseY / (cardHeight / 2)) * -12;
-//             const angleY = (mouseX / (cardWidth / 2)) * 12;
-            
-//             // Apply 3D perspective transform
-//             card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-5px)`;
-//         });
-        
-//         // Reset transform smoothly when mouse leaves the card
-//         card.addEventListener('mouseleave', () => {
-//             card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-//         });
-//     });
-
-//     // ==========================================
-//     // 2. SCROLL REVEAL ANIMATION (INTERSECTION OBSERVER)
-//     // ==========================================
-//     const revealElements = document.querySelectorAll('.section-header, .pillar-card, .evolution-box, .trusted-title');
-    
-//     const revealOptions = {
-//         threshold: 0.1,      // Triggers when 10% of the element is visible
-//         rootMargin: "0px 0px -50px 0px" // Triggers slightly before element enters view entirely
-//     };
-    
-//     const revealObserver = new IntersectionObserver((entries, observer) => {
-//         entries.forEach(entry => {
-//             if (entry.isIntersecting) {
-//                 entry.target.classList.add('revealed');
-//                 observer.unobserve(entry.target); // Stays revealed once looked at
-//             }
-//         });
-//     }, revealOptions);
-    
-//     revealElements.forEach((element, index) => {
-//         // Add default hidden setup class dynamically
-//         element.classList.add('reveal-hidden');
-        
-//         // If it's a pillar card, add a staggered transition delay based on grid index
-//         if (element.classList.contains('pillar-card')) {
-//             const delay = (index % 3) * 150; // Staggers columns by 150ms
-//             element.style.transitionDelay = `${delay}ms`;
-//         }
-        
-//         revealObserver.observe(element);
-//     });
-// });
-
-
-
-
-// // about us page - story section - metrics counter animation
+    animate();
+});
 
 
 
@@ -141,124 +70,7 @@
 
 
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     const liquidCards = document.querySelectorAll('.liquid-card');
 
-//     liquidCards.forEach(card => {
-//         card.addEventListener('mousemove', (e) => {
-//             const rect = card.getBoundingClientRect();
-            
-//             // Map exact local inner positions
-//             const x = e.clientX - rect.left;
-//             const y = e.clientY - rect.top;
-
-//             // Update parameters instantly on the CSS layer to prevent JS execution lag
-//             card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
-//             card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
-
-//             // Apply a minor card hover transform physics lift safely
-//             const rotateX = ((y - (rect.height / 2)) / (rect.height / 2)) * -4; 
-//             const rotateY = ((x - (rect.width / 2)) / (rect.width / 2)) * 4;
-//             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
-//         });
-
-//         card.addEventListener('mouseleave', () => {
-//             card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-//         });
-//     });
-// });
-
-
-
-// /**
-//  * overview of ecosystem section - liquid card hover effect with dynamic CSS variables for the liquid animation
-//  */
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const ecoPods = document.querySelectorAll('.eco-pod');
-
-//     ecoPods.forEach(pod => {
-//         pod.addEventListener('mousemove', (e) => {
-//             const rect = pod.getBoundingClientRect();
-//             const x = e.clientX - rect.left;
-//             const y = e.clientY - rect.top;
-
-//             // Direct light source manipulation without resetting master layouts
-//             pod.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(61, 94, 8, 0.5) 0%, rgba(17, 28, 1, 0.35) 70%)`;
-//         });
-
-//         pod.addEventListener('mouseleave', () => {
-//             pod.style.background = 'rgba(17, 28, 1, 0.35)';
-//         });
-//     });
-// });
-
-
-
-
-
-
-
-
-// document.addEventListener('DOMContentLoaded', () => {
-    
-//     // --- 1. LIGHTSPOT POSITION MAPPING MECHANICS ---
-//     const pods = document.querySelectorAll('.metric-pod-unique');
-    
-//     pods.forEach(pod => {
-//         pod.addEventListener('mousemove', (e) => {
-//             const bounds = pod.getBoundingClientRect();
-//             const x = e.clientX - bounds.left;
-//             const y = e.clientY - bounds.top;
-            
-//             pod.style.setProperty('--mouse-x', `${x}px`);
-//             pod.style.setProperty('--mouse-y', `${y}px`);
-//         });
-//     });
-
-//     // --- 2. ODOMETER COUNTER SYSTEM ---
-//     const metrics = document.querySelectorAll('.counter-unique');
-    
-//     const animateOdometer = (element) => {
-//         const rawString = element.textContent.trim();
-//         const targetedInt = parseInt(rawString.replace(/[^\d]/g, ''), 10);
-//         const syntaxSuffix = rawString.replace(/[0-9]/g, ''); // extracts '+'
-        
-//         let initialProgress = 0;
-//         const speedDuration = 1600; // Animation lifecycle run-time (ms)
-//         const frameStamp = performance.now();
-        
-//         const calculationLoop = (timestamp) => {
-//             const runtime = timestamp - frameStamp;
-//             const linearProgress = Math.min(runtime / speedDuration, 1);
-            
-//             // Cubic ease-out mathematical deceleration curve
-//             const easeCurve = 1 - Math.pow(1 - linearProgress, 3);
-//             const currentMatrixValue = Math.floor(easeCurve * targetedInt);
-            
-//             element.textContent = `${currentMatrixValue}${syntaxSuffix}`;
-            
-//             if (linearProgress < 1) {
-//                 requestAnimationFrame(calculationLoop);
-//             } else {
-//                 element.textContent = rawString; // baseline restoration
-//             }
-//         };
-//         requestAnimationFrame(calculationLoop);
-//     };
-
-//     // Intersection execution trigger setup
-//     const scrollObserver = new IntersectionObserver((entries, observer) => {
-//         entries.forEach(entry => {
-//             if (entry.isIntersecting) {
-//                 animateOdometer(entry.target);
-//                 observer.unobserve(entry.target);
-//             }
-//         });
-//     }, { threshold: 0.3 });
-
-//     metrics.forEach(metric => scrollObserver.observe(metric));
-// });
 
 
 

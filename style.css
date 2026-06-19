@@ -164,7 +164,7 @@ header, .nav-wrapper {
     background-color: #111b05;
     color: #9bd33b;
     border-radius: 50%;
-    font-size: 1.1rem;
+    font-size: 10rem;
     transition: transform 0.3s ease;
 }
 
@@ -197,17 +197,11 @@ nav ul {
 
 nav a {
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 nav a:hover {
     color: var(--accent-primary);
-}
-
-.arrow {
-    font-size: 0.7rem;
-    margin-left: 3px;
-    vertical-align: middle;
 }
 
 .btn-solid-header {
@@ -223,6 +217,15 @@ nav a:hover {
     box-shadow: 0 0 15px rgba(153, 204, 51, 0.5);
     transform: translateY(-2px);
 }
+
+
+
+
+
+/* the hero section */
+
+
+
 
 /* --- The Bounded Hero Section Layout --- */
 .hero {
@@ -241,13 +244,13 @@ nav a:hover {
 }
 
 .hero-content {
-    max-width: 800px;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 25px;
     position: relative;
-    z-index: 5; /* Pushes content stacks perfectly above your background animations */
+    z-index: 5; 
 }
 
 .hero-content h1 {
@@ -259,7 +262,7 @@ nav a:hover {
 }
 
 .hero-content p {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: var(--text-secondary);
     line-height: 1.6;
     max-width: 600px;
@@ -333,7 +336,7 @@ nav a:hover {
 /* --- Responsive Media Viewport Breaks --- */
 @media (max-width: 1024px) {
     header { padding: 15px 25px; }
-    .hero-content h1 { font-size: 2.8rem; }
+    .hero-content h1 { font-size: 2.9rem; }
     .social-sidebar { right: 15px; }
 }
 
@@ -341,7 +344,7 @@ nav a:hover {
     header { flex-direction: column; gap: 15px; padding: 15px; position: absolute;}
     nav ul { gap: 15px; padding: 10px 15px; font-size: 0.8rem;}
     .hero-content h1 { font-size: 2.2rem; }
-    .hero-content p { font-size: 1rem; }
+    .hero-content p { font-size: 1.3rem; }
     .social-sidebar { flex-direction: row; position: static; transform: none; margin-top: 50px; justify-content: center; width: 100%;}
     .hero { flex-direction: column; padding-bottom: 50px;}
 }
@@ -349,25 +352,72 @@ nav a:hover {
 
 
 
+/* the about section */
 
 
 
+/* =========================================================================
+   🌲 FULL UNIFIED ABOUT US SECTION & COMPONENT SUITE WITH FX LAYER
+   ========================================================================= */
 
-
-
-/* --- Safe Stacking Isolation Layer --- */
+/* --- Safe Stacking Isolation Layer & Sliding Background Slider --- */
 .about-section {
     padding: 100px 0;
     position: relative;
     background-color: #111C01;
     overflow: hidden;
-    isolation: isolate; /* Force isolation context so background loops don't touch the Hero */
+    margin: 0; /* Changed from 5px to maintain layout box limits fluidly */
+    width: 100%;
+    box-sizing: border-box;
+    isolation: isolate; 
+}
+
+/* Background Slider Configuration */
+.about-bg-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    animation: slideFadeShow 16s infinite ease-in-out;
+    /* Soft color overlay blend mode with dark green base */
+    mix-blend-mode: overlay; 
+}
+
+/* Place your image background links directly here */
+.bg-slide.slide-1 {
+    background-image: linear-gradient(rgba(17, 28, 1, 0.92), rgba(17, 28, 1, 0.92)), url('path-to-partners-discussing.jpg');
+}
+.bg-slide.slide-2 {
+    background-image: linear-gradient(rgba(17, 28, 1, 0.92), rgba(17, 28, 1, 0.92)), url('path-to-corporate-building.jpg');
+    animation-delay: 8s;
+}
+
+@keyframes slideFadeShow {
+    0%, 100% { opacity: 0; transform: scale(1.02); }
+    12.5%, 37.5% { opacity: 0.15; transform: scale(1.05); } /* Subdued alpha level so body copies remain entirely legible */
+    50% { opacity: 0; transform: scale(1.08); }
 }
 
 .about-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    box-sizing: border-box;
 }
 
 /* --- Section Header --- */
@@ -400,7 +450,7 @@ nav a:hover {
                 inset 0 1px 2px rgba(255, 255, 255, 0.15);
     position: relative;
     overflow: hidden;
-    transform: translateZ(0); /* Natively forces GPU hardware acceleration rendering */
+    transform: translateZ(0); 
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
                 border-color 0.4s ease, 
                 box-shadow 0.4s ease;
@@ -419,14 +469,13 @@ nav a:hover {
     transition: opacity 0.4s ease;
 }
 
-.liquid-card:hover .water-shimmer {
-    opacity: 1;
-}
+.liquid-card:hover .water-shimmer { opacity: 1; }
 
 .liquid-card:hover {
     border-color: rgba(153, 204, 51, 0.35);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
                 0 0 25px rgba(153, 204, 51, 0.1);
+    transform: translateY(-2px);
 }
 
 /* Icons */
@@ -446,8 +495,8 @@ nav a:hover {
 .liquid-card:hover .icon-box { background: #99CC33; }
 .liquid-card:hover .icon-box i { color: #111C01; }
 
-.pillar-card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 12px; color: #FDFFEB; line-height: 1.4; }
-.pillar-card p { font-size: 0.95rem; color: #DEFAA5; line-height: 1.5; opacity: 0.8; }
+.pillar-card h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; color: #FDFFEB; line-height: 1.4; }
+.pillar-card p { font-size: 1rem; color: #DEFAA5; line-height: 1.5; opacity: 0.8; }
 
 /* Evolution Info box mapping styling */
 .evolution-box {
@@ -457,6 +506,7 @@ nav a:hover {
     gap: 40px;
     align-items: center;
     margin-bottom: 80px;
+    box-sizing: border-box;
 }
 .story-text p { font-size: 1.15rem; line-height: 1.6; color: #DEFAA5; }
 .metrics-container { display: flex; justify-content: space-between; gap: 20px; }
@@ -475,30 +525,55 @@ nav a:hover {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 50px;
     padding: 18px 0;
+    box-sizing: border-box;
 }
 
 .marquee-track { display: flex; width: max-content; animation: scrollMarquee 35s linear infinite; align-items: center; }
 .marquee-item { display: flex; align-items: center; gap: 12px; margin-right: 70px; color: #FDFFEB; opacity: 0.45; transition: transform 0.3s ease, opacity 0.3s ease; }
-.brand-logo-img { width: 22px; height: 22px; color: #99CC33; }
+
+/* Raster image clean setup adjustment rules */
+.brand-logo-img { 
+    width: 26px; 
+    height: 26px; 
+    object-fit: contain; 
+    flex-shrink: 0; 
+}
+
 .marquee-item span { font-size: 1.05rem; font-weight: 500; white-space: nowrap; }
 .marquee-item:hover { opacity: 1; transform: scale(1.05); }
+
+/* --- Access Bank Isolation Scale Weights --- */
+.marquee-item.access-bank-logo {
+    opacity: 0.85;
+}
+.marquee-item.access-bank-logo .brand-logo-img {
+    width: 36px;  /* Upscaled from 26px */
+    height: 36px;
+}
+.marquee-item.access-bank-logo span {
+    font-weight: 800; /* Extra prominent weight override */
+    font-size: 1.2rem;
+    color: #FFFFFF;
+}
 
 @keyframes scrollMarquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
-/* Responsiveness metrics */
-@media (max-width: 1024px) { .pillars-grid { grid-template-columns: repeat(2, 1fr); } .evolution-box { grid-template-columns: 1fr; } }
-@media (max-width: 768px) { .pillars-grid { grid-template-columns: 1fr; } .metrics-container { flex-direction: column; gap: 20px; } }
-
-.brand-logo-img {
-    width: 26px; /* Slightly upscaled for crisp vector recognition */
-    height: 26px;
-    color: #99CC33; /* ProHive Signature Lime Brand Color */
-    flex-shrink: 0;
+/* Responsiveness metrics & screen fitting options */
+@media (max-width: 1024px) { 
+    .pillars-grid { grid-template-columns: repeat(2, 1fr); } 
+    .evolution-box { grid-template-columns: 1fr; } 
 }
 
+@media (max-width: 768px) { 
+    .about-section { padding: 60px 0; }
+    .pillars-grid { grid-template-columns: 1fr; } 
+    .metrics-container { flex-direction: column; gap: 20px; } 
+    .marquee-item { margin-right: 45px; }
+    .marquee-item.access-bank-logo .brand-logo-img { width: 30px; height: 30px; }
+}
 
 
 
@@ -570,15 +645,27 @@ nav a:hover {
     margin-bottom: 45px;
 }
 
+
+
 .vision-mission-box {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column; /* Stacks cards cleanly underneath each other */
     gap: 30px;
     background: rgba(255, 255, 255, 0.01);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 30px;
+    padding: 40px;
     border-radius: 24px;
     backdrop-filter: blur(10px);
+    
+    /* Centers the panel and prevents it from stretching too wide on huge screens */
+    max-width: 900px; 
+    margin: 0 auto;
+}
+
+/* Adds a fine visual separation border line between the two sections */
+.vm-card:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding-bottom: 25px;
 }
 
 .vm-card {
@@ -781,8 +868,15 @@ nav a:hover {
     .vision-mission-box { grid-template-columns: 1fr; }
     .ecosystem-grid { grid-template-columns: 1fr; }
     .pod-brandit, .pod-academy, .pod-digital, .pod-agro, .pod-foundation { grid-column: span 1; }
-    .ecosystem-header h2 { font-size: 2.2rem; }
+    .ecosystem-header h2 { font-size: 2.3rem; }
 }
+
+
+
+
+
+
+
 
 
 
