@@ -40,63 +40,9 @@ ul {
     list-style: none;
 }
 
-/* --- High-End Liquid Gradient Background --- */
-/* FIXED: Changed from position: fixed to position: absolute to anchor it to the Hero area */
-.animated-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 1;
-    background-color: var(--color-dark-green); 
-    overflow: hidden;
-    pointer-events: none;
-}
+/* --- Canvas is removed. Hero uses image background. --- */
 
-#bg-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #111C01; 
-}
-
-/* Moving glowing ambient orbs using high-performance pseudo-elements */
-.animated-bg::before,
-.animated-bg::after {
-    content: '';
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--color-green-leaf) 0%, rgba(17,28,1,0) 70%);
-    filter: blur(80px);
-    opacity: 0.6;
-    mix-blend-mode: screen;
-    animation: floatAround 20s infinite alternate ease-in-out;
-}
-
-.animated-bg::after {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, var(--color-mid-green) 0%, rgba(17,28,1,0) 70%);
-    animation: floatAroundInverse 25s infinite alternate ease-in-out;
-}
-
-/* Fluid drift animation paths restricted inside visible view bounds */
-@keyframes floatAround {
-    0% { transform: translate(-10%, -10%) scale(1); }
-    50% { transform: translate(40%, 20%) scale(1.1) rotate(45deg); }
-    100% { transform: translate(10%, 60%) scale(0.9); }
-}
-
-@keyframes floatAroundInverse {
-    0% { transform: translate(60%, 60%) scale(1.1); }
-    50% { transform: translate(10%, 30%) scale(0.8) rotate(-45deg); }
-    100% { transform: translate(40%, -10%) scale(1.2); }
-}
+/* Hero uses image background — no animated bg orbs */
 /* =========================================================================
    🌐 NAVIGATION & HEADER CONTAINER ALIGNMENT FIXED
    ========================================================================= */
@@ -235,16 +181,36 @@ nav a:hover {
     min-height: 100vh;
     padding: 100px 10% 0;
     text-align: center;
-    
-    /* ⚠️ CONTROLLER WALLS: */
     position: relative;
-    overflow: hidden;       /* Slices away background particles dropping too low */
-    isolation: isolate;     /* Prevents 'mix-blend-mode' from altering the colors below */
-    z-index: 10;            /* Forces clean layered stacking over lower sections */
+    overflow: hidden;
+    isolation: isolate;
+    z-index: 10;
+}
+
+/* Human Image Background — the connection to people */
+.hero-bg-image {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/hero-bg.png');
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    z-index: 1;
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+/* Rich gradient overlay — dark green tones, maintains brand color code */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(180deg, rgba(11, 18, 1, 0.88) 0%, rgba(17, 28, 1, 0.72) 50%, rgba(11, 18, 1, 0.95) 100%),
+        radial-gradient(ellipse at 50% 50%, rgba(100, 145, 32, 0.18) 0%, transparent 70%);
+    z-index: 2;
 }
 
 .hero-content {
-    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -259,6 +225,7 @@ nav a:hover {
     line-height: 1.1;
     letter-spacing: -1px;
     color: var(--color-off-white);
+    text-shadow: 0 2px 30px rgba(0,0,0,0.5);
 }
 
 .hero-content p {
@@ -266,6 +233,7 @@ nav a:hover {
     color: var(--text-secondary);
     line-height: 1.6;
     max-width: 600px;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.6);
 }
 
 .cta-button {
@@ -514,46 +482,73 @@ nav a:hover {
 .metric-item .number { display: block; font-size: 2.2rem; font-weight: 700; color: #99CC33; }
 .metric-item .label { font-size: 0.85rem; color: #FDFFEB; opacity: 0.6; text-transform: uppercase; margin-top: 5px; display:inline-block; }
 
-/* --- Partner Brand Scrolling Track --- */
+/* --- Partner Brand Scrolling Track — BRIGHT LOGOS --- */
 .trusted-title { text-align: center; margin-bottom: 35px; }
 .trusted-title h4 { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #649120; }
 
 .marquee-wrapper {
     width: 100%;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.01);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(153, 204, 51, 0.1);
     border-radius: 50px;
-    padding: 18px 0;
+    padding: 22px 0;
     box-sizing: border-box;
+    /* Subtle green glow on the marquee rail */
+    box-shadow: inset 0 0 40px rgba(153, 204, 51, 0.03);
 }
 
-.marquee-track { display: flex; width: max-content; animation: scrollMarquee 35s linear infinite; align-items: center; }
-.marquee-item { display: flex; align-items: center; gap: 12px; margin-right: 70px; color: #FDFFEB; opacity: 0.45; transition: transform 0.3s ease, opacity 0.3s ease; }
+.marquee-track { display: flex; width: max-content; animation: scrollMarquee 40s linear infinite; align-items: center; }
 
-/* Raster image clean setup adjustment rules */
+/* Pause on hover for readability */
+.marquee-wrapper:hover .marquee-track { animation-play-state: paused; }
+
+.marquee-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 14px; 
+    margin-right: 70px; 
+    color: #FDFFEB; 
+    opacity: 0.65;
+    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+    filter: brightness(0.85) contrast(1.1);
+}
+
+/* Raster image — white-brightened with CSS filter */
 .brand-logo-img { 
-    width: 26px; 
-    height: 26px; 
+    width: 32px; 
+    height: 32px; 
     object-fit: contain; 
-    flex-shrink: 0; 
+    flex-shrink: 0;
+    filter: brightness(2.5) contrast(1.1) saturate(0.4);
+    transition: filter 0.3s ease;
 }
 
 .marquee-item span { font-size: 1.05rem; font-weight: 500; white-space: nowrap; }
-.marquee-item:hover { opacity: 1; transform: scale(1.05); }
+.marquee-item:hover { 
+    opacity: 1; 
+    transform: scale(1.06);
+    filter: brightness(1) contrast(1);
+}
+.marquee-item:hover .brand-logo-img {
+    filter: brightness(3) contrast(1.2) saturate(0.3);
+}
 
-/* --- Access Bank Isolation Scale Weights --- */
+/* --- Access Bank — Dominant, Glowing, Premium --- */
 .marquee-item.access-bank-logo {
-    opacity: 0.85;
+    opacity: 1;
+    filter: brightness(1);
 }
 .marquee-item.access-bank-logo .brand-logo-img {
-    width: 36px;  /* Upscaled from 26px */
-    height: 36px;
+    width: 52px;
+    height: 52px;
+    filter: brightness(3) contrast(1.3) saturate(0.2) drop-shadow(0 0 10px rgba(153, 204, 51, 0.7));
 }
 .marquee-item.access-bank-logo span {
-    font-weight: 800; /* Extra prominent weight override */
-    font-size: 1.2rem;
+    font-weight: 800;
+    font-size: 1.25rem;
     color: #FFFFFF;
+    text-shadow: 0 0 20px rgba(153, 204, 51, 0.5);
 }
 
 @keyframes scrollMarquee {
@@ -572,7 +567,16 @@ nav a:hover {
     .pillars-grid { grid-template-columns: 1fr; } 
     .metrics-container { flex-direction: column; gap: 20px; } 
     .marquee-item { margin-right: 45px; }
-    .marquee-item.access-bank-logo .brand-logo-img { width: 30px; height: 30px; }
+    .marquee-item.access-bank-logo .brand-logo-img { width: 40px; height: 40px; }
+}
+
+/* =========================================================================
+   🌐 NAVBAR SCROLL STATE
+   ========================================================================= */
+.navbar-scrolled {
+    background: rgba(11, 18, 1, 0.95) !important;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(153, 204, 51, 0.1);
 }
 
 
@@ -1153,15 +1157,28 @@ nav a:hover {
 
 
 
-/* our gallery */
+/* =========================================================================
+   🌄 UNIQUE BENTO GALLERY GRID — Never-seen-before structure
+   Handles thousands of images via pagination + lazy loading
+   ========================================================================= */
 
-/* --- Cascade Structural Canvas Framework --- */
 .gallery-cascade-section {
     padding: 140px 0;
-    background-color: #111C01; 
+    background-color: #111C01;
     position: relative;
     overflow: hidden;
     isolation: isolate;
+}
+
+/* Subtle human-warmth texture overlay */
+.gallery-cascade-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 0%, rgba(153, 204, 51, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 100%, rgba(61, 94, 8, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .gallery-cascade-container {
@@ -1169,9 +1186,9 @@ nav a:hover {
     margin: 0 auto;
     padding: 0 40px;
     display: grid;
-    grid-template-columns: 420px 1fr;
+    grid-template-columns: 340px 1fr;
     gap: 60px;
-    align-items: center;
+    align-items: start;
 }
 
 .gallery-meta-block {
@@ -1184,7 +1201,7 @@ nav a:hover {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 4px;
-    color: #99CC33; 
+    color: #99CC33;
     font-weight: 700;
     display: block;
     margin-bottom: 16px;
@@ -1230,6 +1247,7 @@ nav a:hover {
     cursor: pointer;
     position: relative;
     transition: opacity 0.3s ease, transform 0.3s ease;
+    font-family: inherit;
 }
 
 .lens-btn::before {
@@ -1254,123 +1272,186 @@ nav a:hover {
     transform: translateY(-50%) scale(1);
 }
 
-/* --- The Dynamic 3D Matrix Canvas --- */
-.cascade-canvas-dynamic {
+/* ==============================================================
+   THE BENTO GRID — Unique never-before-seen gallery structure
+   ==============================================================
+   Pattern (repeating): hero, standard, wide, standard, standard, tall...
+   - hero: spans 2 cols + 2 rows (feature image)
+   - wide: spans 2 cols, 1 row
+   - tall: 1 col, 2 rows
+   - standard: 1 col, 1 row
+*/
+.bento-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 260px;
+    gap: 14px;
     position: relative;
-    height: 750px;
-    width: 100%;
-    perspective: 1500px;
-    transform-style: preserve-3d;
+    z-index: 1;
 }
 
-/* Base style for any dynamically injected image node */
-.dynamic-layer {
-    position: absolute;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.4s ease;
-    will-change: transform;
-}
-
-.media-frame-dynamic {
-    background: #111C01;
-    border: 1px solid rgba(153, 204, 51, 0.15);
-    border-radius: 20px;
+.bento-cell {
+    border-radius: 18px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     cursor: pointer;
-    width: 100%;
-    height: 100%;
-    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    transition:
+        opacity 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition-delay: var(--reveal-delay, 0s);
 }
 
-.media-frame-dynamic img {
+.bento-cell.in-view {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Span configurations for bento pattern */
+.bento-hero    { grid-column: span 2; grid-row: span 2; }
+.bento-wide    { grid-column: span 2; grid-row: span 1; }
+.bento-tall    { grid-column: span 1; grid-row: span 2; }
+.bento-standard { grid-column: span 1; grid-row: span 1; }
+
+.bento-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-inner img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(0.88) saturate(0.9);
 }
 
-/* Modern Glassmorphic Metadata Overlay Inside Cards */
-.frame-curator-dynamic {
+.bento-cell:hover .bento-inner img {
+    transform: scale(1.08);
+    filter: brightness(1) saturate(1.05);
+}
+
+/* Gradient overlay on each cell */
+.bento-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(11, 18, 1, 0.95) 0%, rgba(11, 18, 1, 0.3) 50%, transparent 100%);
+    background: linear-gradient(to top, rgba(11, 18, 1, 0.92) 0%, rgba(11, 18, 1, 0.2) 45%, transparent 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 24px;
+    padding: 20px;
     opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.frame-curator-dynamic h4 {
-    color: #FDFFEB;
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin-bottom: 4px;
-}
-
-.frame-curator-dynamic span {
-    color: #99CC33;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-}
-
-/* Hover States controlled beautifully across spatial depth */
-.dynamic-layer:hover {
-    z-index: 99 !important;
-}
-
-.dynamic-layer:hover .media-frame-dynamic {
-    border-color: #99CC33;
-    box-shadow: 0 40px 80px rgba(153, 204, 51, 0.25);
-}
-
-.dynamic-layer:hover .media-frame-dynamic img {
-    transform: scale(1.06);
-}
-
-.dynamic-layer:hover .frame-curator-dynamic {
+.bento-cell:hover .bento-overlay {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Filtering engine state transition style */
-.dynamic-layer.filtered-out {
-    opacity: 0.03 !important;
-    pointer-events: none;
-    filter: blur(4px);
+.bento-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #99CC33;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    background: rgba(153, 204, 51, 0.12);
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(153, 204, 51, 0.25);
 }
 
-/* --- Responsive Adaptations --- */
+.bento-overlay h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #FDFFEB;
+    line-height: 1.3;
+}
+
+.bento-hero .bento-overlay h4 { font-size: 1.4rem; }
+
+/* Placeholder shimmer — shown when image is loading */
+.bento-inner img[src=""] {
+    background: linear-gradient(90deg, #1a2a05 25%, #243905 50%, #1a2a05 75%);
+    background-size: 200% 100%;
+    animation: shimmerLoad 1.5s infinite;
+}
+
+@keyframes shimmerLoad {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Load More Button */
+.gallery-load-more-wrapper {
+    text-align: center;
+    margin-top: 48px;
+}
+
+.gallery-load-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: transparent;
+    border: 1px solid rgba(153, 204, 51, 0.4);
+    border-radius: 100px;
+    color: #99CC33;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    letter-spacing: 0.5px;
+}
+
+.gallery-load-more-btn:hover {
+    background: rgba(153, 204, 51, 0.08);
+    border-color: #99CC33;
+    box-shadow: 0 0 25px rgba(153, 204, 51, 0.15);
+    transform: translateY(-2px);
+}
+
+.gallery-load-more-btn i {
+    font-size: 1.1rem;
+}
+
+/* Responsive Bento */
 @media (max-width: 1100px) {
-    .gallery-cascade-container { grid-template-columns: 1fr; gap: 40px; }
+    .gallery-cascade-container {
+        grid-template-columns: 1fr;
+        padding: 0 24px;
+        gap: 40px;
+    }
     .gallery-meta-block { position: static; }
     .gallery-lens-controls { flex-direction: row; flex-wrap: wrap; }
     .lens-btn.active, .lens-btn:hover { transform: translateY(-2px); }
-    .cascade-canvas-dynamic { height: 650px; }
+    .bento-gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    .bento-hero { grid-column: span 2; }
 }
 
-@media (max-width: 650px) {
-    .cascade-canvas-dynamic {
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        height: auto;
-        perspective: none;
-        transform-style: flat;
+@media (max-width: 768px) {
+    .bento-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+        gap: 10px;
     }
-    .dynamic-layer {
-        position: static !important;
-        width: 100% !important;
-        height: 320px !important;
-        transform: none !important;
-        opacity: 1 !important;
-    }
-    .frame-curator-dynamic { opacity: 1; transform: none; }
+    .bento-hero { grid-column: span 2; grid-row: span 1; }
+    .bento-wide { grid-column: span 2; }
+    .bento-tall { grid-row: span 1; }
+}
+
+@media (max-width: 480px) {
+    .bento-gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+    .bento-hero, .bento-wide, .bento-tall, .bento-standard { grid-column: span 1; grid-row: span 1; }
+    .gallery-meta-block h2 { font-size: 2.2rem; }
 }
 
 
@@ -1703,119 +1784,123 @@ nav a:hover {
 
 
 /* =========================================================================
-   📦 THE BASELINE INVISIBLE SYSTEM (Pre-Scroll Configuration)
+   📦 SCROLL REVEAL SYSTEM — Entire page comes alive as user scrolls
    ========================================================================= */
-.scroll-reveal-engine {
+
+/* About / Pillar cards reveal */
+.about-section, .pillar-card, .evolution-box {
     opacity: 0;
-    transform: translateY(50px) scale(0.95);
-    will-change: transform, opacity;
-    /* Custom premium transition pacing curve */
+    transform: translateY(35px);
+    transition: opacity 0.75s cubic-bezier(0.25, 1, 0.5, 1), transform 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Eco pods reveal with slight scale */
+.eco-pod {
     transition: 
-        opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
-        transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.65s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease,
+        background 0.4s ease;
+    opacity: 0;
 }
 
-/* Horizontal offset overrides for specific side-panel containers */
-.strategy-card-unique.scroll-reveal-engine,
-.channel-card.scroll-reveal-engine {
-    transform: translateX(-50px);
+/* Metric pods reveal */
+.metric-pod-unique {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+    transition:
+        opacity 0.65s ease,
+        transform 0.65s ease,
+        border-color 0.4s ease;
 }
 
-/* 3D Rotational tilt pre-sets for footer network grids */
-.matrix-node.scroll-reveal-engine {
-    transform: translateY(40px) scale(0.9) rotateX(-12deg);
-    transform-style: preserve-3d;
+/* Strategy card and channel cards */
+.strategy-card-unique,
+.channel-card,
+.matrix-node {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* =========================================================================
-   🚀 THE REVEAL MOMENT (Triggered instantly as user scrolls down)
-   ========================================================================= */
-.scroll-reveal-engine.reveal-now {
-    opacity: 1;
-    transform: translateY(0) translateX(0) scale(1) rotateX(0);
+/* Section headers and titles */
+.impact-header-unique,
+.ecosystem-header,
+.gallery-meta-block,
+.section-header,
+.trusted-title,
+.hub-header-block {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* =========================================================================
-   ⏱️ CASCADE STAGGER DELAYS (Ordered step-by-step entry sequencing)
-   ========================================================================= */
+.marquee-wrapper {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
 
-/* Hero Identity Sequencing */
-.hero-content h1 { transition-delay: 0.05s; }
-.hero-content p  { transition-delay: 0.18s; }
-.cta-button      { transition-delay: 0.32s; }
+/* THE REVEAL — fired by JS IntersectionObserver */
+.reveal-active {
+    opacity: 1 !important;
+    transform: translateY(0) translateX(0) scale(1) rotateX(0) !important;
+}
 
-/* Metrics Metrics Layout Matrix Grid */
+/* Stagger delays for pillar cards */
+.pillar-card:nth-child(1) { transition-delay: 0s; }
+.pillar-card:nth-child(2) { transition-delay: 0.1s; }
+.pillar-card:nth-child(3) { transition-delay: 0.2s; }
+.pillar-card:nth-child(4) { transition-delay: 0.3s; }
+.pillar-card:nth-child(5) { transition-delay: 0.4s; }
+.pillar-card:nth-child(6) { transition-delay: 0.5s; }
+
+/* Stagger delays for eco pods */
+.eco-pod:nth-child(1) { transition-delay: 0s; }
+.eco-pod:nth-child(2) { transition-delay: 0.12s; }
+.eco-pod:nth-child(3) { transition-delay: 0.24s; }
+.eco-pod:nth-child(4) { transition-delay: 0.36s; }
+.eco-pod:nth-child(5) { transition-delay: 0.48s; }
+
+/* Metric pods */
 .metric-pod-unique:nth-child(1) { transition-delay: 0.1s; }
 .metric-pod-unique:nth-child(2) { transition-delay: 0.22s; }
 .metric-pod-unique:nth-child(3) { transition-delay: 0.34s; }
 .metric-pod-unique:nth-child(4) { transition-delay: 0.46s; }
 
-/* Contact Interface Blocks Layout */
+/* Footer items */
 .channel-card:nth-child(1) { transition-delay: 0.1s; }
 .channel-card:nth-child(2) { transition-delay: 0.22s; }
 .channel-card:nth-child(3) { transition-delay: 0.34s; }
-
-/* Social Contact Matrix Floating Nodes */
 .whatsapp-node  { transition-delay: 0.1s; }
 .instagram-node { transition-delay: 0.2s; }
 .linkedin-node  { transition-delay: 0.3s; }
 .facebook-node  { transition-delay: 0.4s; }
 
-
 /* =========================================================================
-   🛡️ SAFETY RESPONSIVE ENGINE DISABLE (Mobile Optimization)
+   🛡️ MOBILE SAFETY — Disable animations on small screens
    ========================================================================= */
 @media (max-width: 768px) {
-    /* Instantly forces items visible on small screens to maintain layout speed performance */
-    .scroll-reveal-engine {
+    .about-section, .pillar-card, .evolution-box,
+    .eco-pod, .metric-pod-unique, .strategy-card-unique,
+    .channel-card, .matrix-node, .impact-header-unique,
+    .ecosystem-header, .gallery-meta-block, .section-header,
+    .trusted-title, .hub-header-block, .marquee-wrapper {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Ensure target elements start with a hidden state for the observer to reveal */
-.about-section, .pillar-card, .evolution-box {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* Fired automatically by the JS IntersectionObserver script layout pipeline */
-.reveal-active {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-
-/* Gallery Photo Grid Dynamic Item CSS Transition */
-.cascade-item {
+/* Gallery cascade item reveal */
+.reveal-node {
     opacity: 0;
     transform: scale(0.92) translateY(20px);
     transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    transition-delay: var(--cascade-delay, 0s);
+    transition-delay: var(--reveal-delay, 0s);
 }
 
-.cascade-item.in-view {
+.reveal-node.in-view {
     opacity: 1;
     transform: scale(1) translateY(0);
-}
+}

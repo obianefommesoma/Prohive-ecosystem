@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Background Canvas Layer -->
-<canvas id="bg-canvas"></canvas>
+<!-- Hero Background Image — Human Connected -->
 
 <!-- Main Header Architecture Layer -->
 <header class="navbar-header">
@@ -32,6 +31,10 @@
     </div>
 </header>
     <main class="hero" id="home-section">
+        <!-- Human Background Image with parallax -->
+        <div class="hero-bg-image"></div>
+        <div class="hero-overlay"></div>
+
         <div class="hero-content">
             <h1>Your Partner In Growth</h1>
             <p>Building Innovative Systems for Growth, Wealth creation, sustainability and Impact</p>
@@ -143,57 +146,104 @@
 
         <div class="marquee-wrapper">
             <div class="marquee-track">
-                
+                <!-- Set 1 -->
                 <div class="marquee-item access-bank-logo">
-                    <img src="/logos/Agoha Nnamdi B_Access bank logo.png" alt="Access Bank" class="brand-logo-img">
+                    <img src="logos/Agoha Nnamdi B_Access bank logo.png" alt="Access Bank" class="brand-logo-img">
                     <span>Access Bank</span>
                 </div>
                 <div class="marquee-item">
-                    <img src="/logos/Eden Associates Logo png7.png" alt="LIFE-ND" class="brand-logo-img">
+                    <img src="logos/Kidpreneurs Academy Brand Logo A.png" alt="Kidpreneurs Academy" class="brand-logo-img">
+                    <span>Kidpreneurs Academy</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/Eden Associates Logo png7.png" alt="Eden Associates" class="brand-logo-img">
                     <span>Eden Associates</span>
                 </div>
                 <div class="marquee-item">
-                    <img src="logos/" alt="NIA Architects" class="brand-logo-img">
-                    <span>NIA Architects</span>
-                </div>
-                <div class="marquee-item">
-                    <img src="path/to/reformers-city.png" alt="Reformers City" class="brand-logo-img">
-                    <span>Reformers City Int’l</span>
-                </div>
-                <div class="marquee-item">
-                    <img src="/logos/Kidpreneurs Academy Brand Logo A.png" alt="Kidpreneurs" class="brand-logo-img">
-                    <span>Kidpreneurs Academy</span>
-                </div>
-                <div class="marquee-item">
-                    <img src="/logos/ClimeSpace Logo 2.png" alt="ClimeSpace" class="brand-logo-img">
+                    <img src="logos/ClimeSpace Logo 2.png" alt="ClimeSpace" class="brand-logo-img">
                     <span>ClimeSpace</span>
                 </div>
-
+                <div class="marquee-item">
+                    <img src="logos/Bulwark Logo png 6.png" alt="Bulwark" class="brand-logo-img">
+                    <span>Bulwark</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/Black Swan logo png.png" alt="Black Swan" class="brand-logo-img">
+                    <span>Black Swan</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/FlyPrivate Logo png.png" alt="FlyPrivate" class="brand-logo-img">
+                    <span>FlyPrivate</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/Iris Studio New logo png3.png" alt="Iris Studio" class="brand-logo-img">
+                    <span>Iris Studio</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/DeFign logo png 1.png" alt="DeFign" class="brand-logo-img">
+                    <span>DeFign</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/KERYGMA Logo WATERMARK 1.png" alt="Kerygma" class="brand-logo-img">
+                    <span>Kerygma</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/ACHUMAX GROUP logo.png" alt="Achumax Group" class="brand-logo-img">
+                    <span>Achumax Group</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/ARCHMANN Logo png.png" alt="Archmann" class="brand-logo-img">
+                    <span>Archmann</span>
+                </div>
+                <!-- Set 2 (duplicate for infinite scroll) -->
                 <div class="marquee-item access-bank-logo">
-                    <img src="path/to/access-bank.png" alt="Access Bank" class="brand-logo-img">
+                    <img src="logos/Agoha Nnamdi B_Access bank logo.png" alt="Access Bank" class="brand-logo-img">
                     <span>Access Bank</span>
                 </div>
                 <div class="marquee-item">
-                    <img src="path/to/life-nd.png" alt="LIFE-ND" class="brand-logo-img">
-                    <span>LIFE-ND</span>
-                </div>
-                <div class="marquee-item">
-                    <img src="path/to/nia-architects.png" alt="NIA Architects" class="brand-logo-img">
-                    <span>NIA Architects</span>
-                </div>
-                <div class="marquee-item">
-                    <img src="path/to/reformers-city.png" alt="Reformers City" class="brand-logo-img">
-                    <span>Reformers City Int’l</span>
-                </div>
-                <div class="marquee-item">
-                    <img src="path/to/kidpreneurs.png" alt="Kidpreneurs" class="brand-logo-img">
+                    <img src="logos/Kidpreneurs Academy Brand Logo A.png" alt="Kidpreneurs Academy" class="brand-logo-img">
                     <span>Kidpreneurs Academy</span>
                 </div>
                 <div class="marquee-item">
-                    <img src="path/to/climespace.png" alt="ClimeSpace" class="brand-logo-img">
+                    <img src="logos/Eden Associates Logo png7.png" alt="Eden Associates" class="brand-logo-img">
+                    <span>Eden Associates</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/ClimeSpace Logo 2.png" alt="ClimeSpace" class="brand-logo-img">
                     <span>ClimeSpace</span>
                 </div>
-
+                <div class="marquee-item">
+                    <img src="logos/Bulwark Logo png 6.png" alt="Bulwark" class="brand-logo-img">
+                    <span>Bulwark</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/Black Swan logo png.png" alt="Black Swan" class="brand-logo-img">
+                    <span>Black Swan</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/FlyPrivate Logo png.png" alt="FlyPrivate" class="brand-logo-img">
+                    <span>FlyPrivate</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/Iris Studio New logo png3.png" alt="Iris Studio" class="brand-logo-img">
+                    <span>Iris Studio</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/DeFign logo png 1.png" alt="DeFign" class="brand-logo-img">
+                    <span>DeFign</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/KERYGMA Logo WATERMARK 1.png" alt="Kerygma" class="brand-logo-img">
+                    <span>Kerygma</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/ACHUMAX GROUP logo.png" alt="Achumax Group" class="brand-logo-img">
+                    <span>Achumax Group</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="logos/ARCHMANN Logo png.png" alt="Archmann" class="brand-logo-img">
+                    <span>Archmann</span>
+                </div>
             </div>
         </div>
 
@@ -469,8 +519,18 @@
             </div>
         </div>
 
-        <!-- The Engine Will Auto-Inject Images Right Here -->
-        <div class="cascade-canvas-dynamic" id="automated-gallery-canvas"></div>
+        <!-- Unique Bento Gallery Grid — Auto-generated -->
+        <div class="gallery-right-panel">
+            <div class="bento-gallery-grid" id="automated-gallery-canvas"></div>
+
+            <!-- Load More for Thousands of Images -->
+            <div class="gallery-load-more-wrapper">
+                <button class="gallery-load-more-btn" id="gallery-load-more">
+                    <i class="fa-solid fa-images"></i>
+                    Load More
+                </button>
+            </div>
+        </div>
 
     </div>
 </section>
