@@ -4,95 +4,6 @@
    ========================================================================= */
 
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const track = document.getElementById("gallerySliderTrack");
-    const prevBtn = document.getElementById("prevSlide");
-    const nextBtn = document.getElementById("nextSlide");
-    const slides = document.querySelectorAll(".gallery-slide");
-    
-    let currentIndex = 0;
-    let autoPlayTimer = null;
-    const slideDelay = 4000; // Time in milliseconds (4 seconds) per slide
-
-    function getSlidesPerView() {
-        return window.innerWidth <= 768 ? 1 : 2;
-    }
-
-    function updateSliderPosition() {
-        const slidesPerView = getSlidesPerView();
-        const maxIndex = slides.length - slidesPerView;
-        
-        // Safeguard ranges
-        if (currentIndex > maxIndex) currentIndex = maxIndex;
-        if (currentIndex < 0) currentIndex = 0;
-        
-        // Calculate translation movement amount
-        const cardWidth = slides[0].getBoundingClientRect().width;
-        const gap = 20; // Matches CSS track gap rule value
-        const translateValue = currentIndex * (cardWidth + gap);
-        
-        track.style.transform = `translateX(-${translateValue}px)`;
-        
-        // Handle control button opacity states based on manual limits
-        prevBtn.style.opacity = currentIndex === 0 ? "0.3" : "1";
-        nextBtn.style.opacity = currentIndex === maxIndex ? "0.3" : "1";
-    }
-
-    // Auto-play Engine logic
-    function startAutoPlay() {
-        stopAutoPlay(); // Clear any existing timers first
-        autoPlayTimer = setInterval(() => {
-            const slidesPerView = getSlidesPerView();
-            const maxIndex = slides.length - slidesPerView;
-
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-            } else {
-                currentIndex = 0; // Seamless reset loop back to the first image
-            }
-            updateSliderPosition();
-        }, slideDelay);
-    }
-
-    function stopAutoPlay() {
-        if (autoPlayTimer) {
-            clearInterval(autoPlayTimer);
-        }
-    }
-
-    // Direction Navigation Events (Resets timer on interaction)
-    nextBtn.addEventListener("click", () => {
-        const maxIndex = slides.length - getSlidesPerView();
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-        } else {
-            currentIndex = 0;
-        }
-        updateSliderPosition();
-        startAutoPlay(); // Restart the timer cycle
-    });
-
-    prevBtn.addEventListener("click", () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-        } else {
-            currentIndex = slides.length - getSlidesPerView(); // Jump to end if clicking back at start
-        }
-        updateSliderPosition();
-        startAutoPlay(); // Restart the timer cycle
-    });
-
-    // Pause autoplay on desktop when hovering over the images
-    track.addEventListener("mouseenter", stopAutoPlay);
-    track.addEventListener("mouseleave", startAutoPlay);
-
-    // Re-adjust slider dimensions safely on window resize
-    window.addEventListener("resize", updateSliderPosition);
-
-    // Initial setup invocation
-    updateSliderPosition();
-    startAutoPlay();
-});
 
     // =========================================================================
     // 🌊 LIQUID SHIMMER MOUSE TRACKING (About Section Cards)
@@ -180,10 +91,54 @@
 
 
     // =========================================================================
+    // 🖼️ HERO SLIDESHOW LOGIC
+    // =========================================================================
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroDots = document.querySelectorAll('.hero-dot');
+    let currentHeroSlide = 0;
+    const heroSlideDuration = 6000; // 6 seconds per slide
+
+    if (heroSlides.length > 0) {
+        function switchHeroSlide(index) {
+            heroSlides[currentHeroSlide].classList.remove('active');
+            heroSlides[currentHeroSlide].classList.add('prev');
+            if (heroDots[currentHeroSlide]) heroDots[currentHeroSlide].classList.remove('active');
+
+            const prevSlideIndex = currentHeroSlide;
+            currentHeroSlide = index;
+
+            heroSlides[currentHeroSlide].classList.add('active');
+            heroSlides[currentHeroSlide].classList.remove('prev');
+            if (heroDots[currentHeroSlide]) heroDots[currentHeroSlide].classList.add('active');
+            
+            setTimeout(() => {
+                heroSlides[prevSlideIndex].classList.remove('prev');
+            }, 1500); 
+        }
+
+        function nextHeroSlide() {
+            let nextIndex = currentHeroSlide + 1;
+            if (nextIndex >= heroSlides.length) nextIndex = 0;
+            switchHeroSlide(nextIndex);
+        }
+
+        let heroSlideTimer = setInterval(nextHeroSlide, heroSlideDuration);
+
+        heroDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                if (currentHeroSlide === index) return;
+                clearInterval(heroSlideTimer);
+                switchHeroSlide(index);
+                heroSlideTimer = setInterval(nextHeroSlide, heroSlideDuration);
+            });
+        });
+    }
+
+    // =========================================================================
     // 🎞️ HERO PARALLAX — Subtle depth shift on scroll
     // =========================================================================
     const heroSection = document.querySelector('.hero');
-    const heroBg = document.querySelector('.hero-bg-image');
+    const heroBg = document.querySelector('.hero-slideshow');
     if (heroSection && heroBg) {
         window.addEventListener('scroll', () => {
             const scrolled = window.scrollY;

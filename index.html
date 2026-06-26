@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ProHive - Your Partner in Growth. We provide comprehensive branding, active community drives, and sustainable infrastructure developments to elevate your business globally.">
+    <meta name="keywords" content="ProHive, Branding, Community, Impact, Infrastructure, Business Growth">
+    <meta name="author" content="ProHive">
     <title>ProHive - Your Partner in Growth</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -30,8 +37,17 @@
     </div>
 </header>
     <main class="hero" id="home-section">
-        <!-- Human Background Image with parallax -->
-        <div class="hero-bg-image"></div>
+        <!-- 7-Image Auto Sliding Hero Background -->
+        <div class="hero-slideshow">
+            <div class="hero-slide active" style="background-image: url('images/hero-bg.png')"></div>
+            <div class="hero-slide" style="background-image: url('images/hero-slide-2.png')"></div>
+            <div class="hero-slide" style="background-image: url('images/hero-slide-3.png')"></div>
+            <div class="hero-slide" style="background-image: url('images/hero-slide-4.png')"></div>
+            <div class="hero-slide" style="background-image: url('images/hero-slide-5.png')"></div>
+            <div class="hero-slide" style="background-image: url('images/hero-slide-6.png')"></div>
+            <div class="hero-slide" style="background-image: url('images/hero-slide-7.png')"></div>
+        </div>
+        <!-- Multi-layer overlay: dark green brand tones -->
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
@@ -41,6 +57,17 @@
     Explore our Ecosystem 
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
 </a>
+        </div>
+
+        <!-- Slide indicator dots -->
+        <div class="hero-dots">
+            <span class="hero-dot active"></span>
+            <span class="hero-dot"></span>
+            <span class="hero-dot"></span>
+            <span class="hero-dot"></span>
+            <span class="hero-dot"></span>
+            <span class="hero-dot"></span>
+            <span class="hero-dot"></span>
         </div>
 
         <aside class="social-sidebar">
@@ -239,11 +266,13 @@
 <!-- ecosystem overview -->
 
 <section class="ecosystem-section" id="services-section">
+    <!-- Background image layer -->
+    <div class="section-bg-img ecosystem-bg-img"></div>
     <div class="hive-node glow-1"></div>
     <div class="hive-node glow-2"></div>
 
     <div class="ecosystem-container">
-        
+
         <div class="ecosystem-header">
             <span class="sub-tag">The Architecture of Impact</span>
             <h2>ProHive Ecosystem Overview</h2>
@@ -380,6 +409,8 @@
 
 
 <section class="impact-section-unique">
+    <!-- Background image layer -->
+    <div class="section-bg-img impact-bg-img"></div>
     <div class="impact-bg-overlay-unique"></div>
     
     <div class="impact-container-unique">
@@ -492,79 +523,49 @@
             <span class="gallery-pre-title">Curated Ecosystem</span>
             <h2>Captured<br><span class="gradient-accent">Moments.</span></h2>
             <p>Explore real-time visual touchpoints across our global branding assets, active community drives, and sustainable infrastructure developments.</p>
-            
-            <div class="gallery-slider-controls">
-                <button class="slider-arrow-btn" id="prevSlide" aria-label="Previous image">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <button class="slider-arrow-btn" id="nextSlide" aria-label="Next image">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-            </div>
         </aside>
 
-        <div class="gallery-workspace-wrapper">
+        <div class="gallery-right-panel">
             
-            <div class="gallery-slider-viewport">
-                <div class="gallery-slider-track" id="gallerySliderTrack">
-                    
-                    <div class="gallery-slide" data-category="branding">
-                        <div class="bento-inner">
-                            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80" alt="Brand Identity Workshop" loading="lazy">
-                            <div class="bento-overlay">
-                                <div class="bento-tag">Branding</div>
-                                <h4>Brand Identity Workshop</h4>
-                            </div>
+            <!-- Modern Bento Preview Grid -->
+            <div class="bento-gallery-grid preview-grid">
+                
+                <div class="bento-cell bento-hero scroll-reveal-engine">
+                    <div class="bento-inner">
+                        <img src="images/hero-slide-3.png" alt="Creative Team Strategy" loading="lazy">
+                        <div class="bento-overlay">
+                            <div class="bento-tag">Community</div>
+                            <h4>Creative Team Strategy</h4>
                         </div>
                     </div>
-
-                    <div class="gallery-slide" data-category="community">
-                        <div class="bento-inner">
-                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt="Creative Team Strategy" loading="lazy">
-                            <div class="bento-overlay">
-                                <div class="bento-tag">Community</div>
-                                <h4>Creative Team Strategy</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="gallery-slide" data-category="impact">
-                        <div class="bento-inner">
-                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80" alt="Industry Partnership Summit" loading="lazy">
-                            <div class="bento-overlay">
-                                <div class="bento-tag">Impact</div>
-                                <h4>Partnership Summit</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="gallery-slide" data-category="branding">
-                        <div class="bento-inner">
-                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Corporate Systems Design" loading="lazy">
-                            <div class="bento-overlay">
-                                <div class="bento-tag">Branding</div>
-                                <h4>Corporate Systems Design</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="gallery-slide" data-category="community">
-                        <div class="bento-inner">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="SkillD'Teen Initiative" loading="lazy">
-                            <div class="bento-overlay">
-                                <div class="bento-tag">Community</div>
-                                <h4>SkillD'Teen Initiative</h4>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
+
+                <div class="bento-cell bento-standard scroll-reveal-engine">
+                    <div class="bento-inner">
+                        <img src="images/hero-slide-4.png" alt="Brand Identity Workshop" loading="lazy">
+                        <div class="bento-overlay">
+                            <div class="bento-tag">Branding</div>
+                            <h4>Brand Identity</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-cell bento-standard scroll-reveal-engine">
+                    <div class="bento-inner">
+                        <img src="images/hero-slide-5.png" alt="Industry Partnership Summit" loading="lazy">
+                        <div class="bento-overlay">
+                            <div class="bento-tag">Impact</div>
+                            <h4>Partnership Summit</h4>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="gallery-load-more-wrapper">
-                <a href="/gallery.html" class="gallery-view-main-btn">
+            <div class="gallery-load-more-wrapper scroll-reveal-engine">
+                <a href="gallery.html" class="action-btn-unique">
                     <span>Access Master Archive</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <div class="btn-icon-unique"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                 </a>
             </div>
 
@@ -680,6 +681,7 @@
 
     </div>
 </footer>
-    <script src="script.js"></script>
+    <!-- Essential Scripts for Animations -->
+<script src="script.js" defer></script>
 </body>
 </html>

@@ -187,27 +187,122 @@ nav a:hover {
     z-index: 10;
 }
 
-/* Human Image Background — the connection to people */
-.hero-bg-image {
+/* =========================================================================
+   🌄 HERO SLIDESHOW — 7 Slides, Auto Cross-fade + Ken Burns Zoom
+   ========================================================================= */
+
+/* Slideshow container fills entire hero */
+.hero-slideshow {
     position: absolute;
     inset: 0;
-    background-image: url('images/hero-bg.png');
-    background-size: cover;
-    background-position: center 30%;
-    background-repeat: no-repeat;
     z-index: 1;
-    will-change: transform;
-    transition: transform 0.1s linear;
+    overflow: hidden;
+}
+
+/* Each slide */
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transform: scale(1.08);
+    transition:
+        opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 8s ease-out;
+    will-change: opacity, transform;
+}
+
+/* Active slide is fully visible + zooms gently in */
+.hero-slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Fade-out slide (previous one) stays visible a moment during cross-fade */
+.hero-slide.prev {
+    opacity: 0;
+    transform: scale(1.04);
 }
 
 /* Rich gradient overlay — dark green tones, maintains brand color code */
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: 
-        linear-gradient(180deg, rgba(11, 18, 1, 0.88) 0%, rgba(17, 28, 1, 0.72) 50%, rgba(11, 18, 1, 0.95) 100%),
-        radial-gradient(ellipse at 50% 50%, rgba(100, 145, 32, 0.18) 0%, transparent 70%);
+    background:
+        linear-gradient(180deg, rgba(11, 18, 1, 0.82) 0%, rgba(17, 28, 1, 0.6) 40%, rgba(11, 18, 1, 0.92) 100%),
+        radial-gradient(ellipse at 50% 50%, rgba(100, 145, 32, 0.15) 0%, transparent 70%);
     z-index: 2;
+}
+
+/* Slide progress indicator dots */
+.hero-dots {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: block;
+}
+
+.hero-dot.active {
+    background: #99CC33;
+    border-color: #99CC33;
+    width: 24px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(153, 204, 51, 0.7);
+}
+
+/* =========================================================================
+   🖼️ SECTION BACKGROUND IMAGES — Other sections beyond hero
+   ========================================================================= */
+
+/* Shared base for all section bg images */
+.section-bg-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.07;
+    z-index: 0;
+    pointer-events: none;
+    mix-blend-mode: luminosity;
+}
+
+/* Ecosystem section — use the city/tech slide */
+.ecosystem-bg-img {
+    background-image: url('images/hero-slide-7.png');
+    opacity: 0.06;
+}
+
+/* Impact/metrics section — use the partnership slide */
+.impact-bg-img {
+    background-image: url('images/hero-slide-5.png');
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+}
+
+/* About section bg slides already use overlay — ensure they show */
+.bg-slide.slide-1 {
+    background-image: url('images/hero-slide-3.png');
+}
+.bg-slide.slide-2 {
+    background-image: url('images/hero-slide-4.png');
+    animation-delay: 8s;
 }
 
 .hero-content {
@@ -1273,58 +1368,30 @@ nav a:hover {
     margin-bottom: 40px;
 }
 
-/* Slider Controls Configuration */
-.gallery-slider-controls {
-    display: flex;
-    gap: 16px;
-    margin-top: 20px;
+/* Bento Grid Container */
+.bento-gallery-grid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    auto-rows: 200px;
 }
 
-.slider-arrow-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: transparent;
-    border: 1px solid rgba(153, 204, 51, 0.4);
-    color: #99CC33;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.1rem;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.bento-gallery-grid.preview-grid {
+    grid-template-columns: repeat(2, 1fr);
 }
 
-.slider-arrow-btn:hover {
-    background: #99CC33;
-    color: #111C01;
-    border-color: #99CC33;
-    box-shadow: 0 0 15px rgba(153, 204, 51, 0.3);
-}
-
-/* Slider Mask and Strip Containers */
-.gallery-slider-viewport {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    border-radius: 24px;
-}
-
-.gallery-slider-track {
-    display: flex;
-    gap: 20px;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    will-change: transform;
-}
-
-/* Individual Slide Cards */
-.gallery-slide {
-    flex: 0 0 calc(50% - 10px); /* Shows exactly 2 cards perfectly inside the viewport */
-    min-width: calc(50% - 10px);
-    height: 400px; /* Fixed proportional height for slides */
+/* Individual Cell Styling */
+.bento-cell {
     border-radius: 20px;
     overflow: hidden;
     position: relative;
+    height: 100%;
+    min-height: 200px;
+}
+
+.bento-hero {
+    grid-column: span 2;
+    height: 300px;
 }
 
 .bento-inner {
@@ -1342,7 +1409,7 @@ nav a:hover {
     filter: brightness(0.85);
 }
 
-.gallery-slide:hover .bento-inner img {
+.bento-cell:hover .bento-inner img {
     transform: scale(1.05);
 }
 
@@ -1385,29 +1452,6 @@ nav a:hover {
     margin-top: 40px;
 }
 
-.gallery-view-main-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 16px;
-    padding: 18px 44px;
-    background: #99CC33;
-    border: 1px solid #99CC33;
-    border-radius: 100px;
-    color: #111C01;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 30px rgba(153, 204, 51, 0.2);
-}
-
-.gallery-view-main-btn:hover {
-    background: #FDFFEB;
-    border-color: #FDFFEB;
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(153, 204, 51, 0.4);
-}
-
 /* Screen Size Media Adaptations */
 @media (max-width: 1100px) {
     .gallery-cascade-container {
@@ -1416,14 +1460,14 @@ nav a:hover {
         gap: 40px;
     }
     .gallery-load-more-wrapper { text-align: center; }
-    .gallery-slider-controls { justify-content: center; }
 }
 
 @media (max-width: 768px) {
-    .gallery-slide {
-        flex: 0 0 100%; /* Shows 1 card fully per view on smartphones */
-        min-width: 100%;
-        height: 320px;
+    .bento-gallery-grid.preview-grid {
+        grid-template-columns: 1fr;
+    }
+    .bento-hero {
+        grid-column: span 1;
     }
 }
 

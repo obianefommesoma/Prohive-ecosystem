@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ProHive Master Archive - Explore our curated visual ecosystem of corporate events, community drives, and branding impact.">
+    <meta name="keywords" content="ProHive Archive, Gallery, Corporate Events, Community Strategy, Tech Connectivity">
+    <meta name="author" content="ProHive">
+    <title>Master Archive | Prohive</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Gallery Page Specific Styles */
+        body {
+            background-color: #111C01;
+            color: #FDFFEB;
+        }
+
+        .gallery-header {
+            padding: 40px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(153, 204, 51, 0.1);
+        }
+
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: #99CC33;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-home-btn:hover {
+            color: #FDFFEB;
+            transform: translateX(-5px);
+        }
+
+        .gallery-header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: #FDFFEB;
+        }
+
+        .gallery-header h1 span {
+            color: #99CC33;
+        }
+
+        .master-archive-container {
+            padding: 80px 10%;
+        }
+
+        /* We reuse the bento grid system from style.css */
+        .master-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            auto-rows: 300px;
+        }
+
+        .master-grid .bento-cell {
+            height: 300px; /* Base height */
+        }
+        
+        .master-grid .span-2-cols { grid-column: span 2; }
+        .master-grid .span-2-rows { grid-row: span 2; height: calc(600px + 20px); }
+
+        @media (max-width: 1024px) {
+            .master-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .master-grid .span-2-cols { grid-column: span 1; }
+        }
+
+        @media (max-width: 768px) {
+            .master-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="gallery-header">
+        <a href="index.html" class="back-home-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Main Site
+        </a>
+        <h1>Master <span class="gradient-accent">Archive</span></h1>
+    </header>
+
+    <!-- Master Archive Gallery -->
+    <main class="master-archive-container">
+        
+        <div class="bento-gallery-grid master-grid">
+            
+            <!-- Item 1 (Large) -->
+            <div class="bento-cell span-2-cols span-2-rows scroll-reveal-engine">
+                <div class="bento-inner">
+                    <img src="images/hero-slide-2.png" alt="Corporate Event" loading="lazy">
+                    <div class="bento-overlay">
+                        <div class="bento-tag">Corporate</div>
+                        <h4>Executive Seminar</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="bento-cell scroll-reveal-engine">
+                <div class="bento-inner">
+                    <img src="images/hero-slide-3.png" alt="Community Event" loading="lazy">
+                    <div class="bento-overlay">
+                        <div class="bento-tag">Community</div>
+                        <h4>Creative Team Strategy</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="bento-cell scroll-reveal-engine">
+                <div class="bento-inner">
+                    <img src="images/hero-slide-4.png" alt="Branding Event" loading="lazy">
+                    <div class="bento-overlay">
+                        <div class="bento-tag">Branding</div>
+                        <h4>Brand Identity Workshop</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 (Wide) -->
+            <div class="bento-cell span-2-cols scroll-reveal-engine">
+                <div class="bento-inner">
+                    <img src="images/hero-slide-5.png" alt="Impact Event" loading="lazy">
+                    <div class="bento-overlay">
+                        <div class="bento-tag">Impact</div>
+                        <h4>Partnership Summit</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="bento-cell scroll-reveal-engine">
+                <div class="bento-inner">
+                    <img src="images/hero-slide-6.png" alt="Technology" loading="lazy">
+                    <div class="bento-overlay">
+                        <div class="bento-tag">Tech</div>
+                        <h4>System Architecture</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 6 (Tall) -->
+            <div class="bento-cell span-2-rows scroll-reveal-engine">
+                <div class="bento-inner">
+                    <img src="images/hero-slide-7.png" alt="Ecosystem" loading="lazy">
+                    <div class="bento-overlay">
+                        <div class="bento-tag">Ecosystem</div>
+                        <h4>Global Connectivity</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholders for more images -->
+            <div class="bento-cell scroll-reveal-engine">
+                <div class="bento-inner">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Placeholder" loading="lazy">
+                    <div class="bento-overlay">
+                        <div class="bento-tag">Archive</div>
+                        <h4>Placeholder 01</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-cell scroll-reveal-engine">
+                <div class="bento-inner">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Placeholder" loading="lazy">
+                    <div class="bento-overlay">
+                        <div class="bento-tag">Archive</div>
+                        <h4>Placeholder 02</h4>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bento-cell span-2-cols scroll-reveal-engine">
+                <div class="bento-inner">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" alt="Placeholder" loading="lazy">
+                    <div class="bento-overlay">
+                        <div class="bento-tag">Archive</div>
+                        <h4>Placeholder 03</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Essential Scripts for Animations -->
+    <script src="script.js" defer></script>
+</body>
+</html>
