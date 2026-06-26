@@ -320,7 +320,20 @@ nav a:hover {
 
 
 
-/* the about section */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -334,7 +347,7 @@ nav a:hover {
     position: relative;
     background-color: #111C01;
     overflow: hidden;
-    margin: 0; /* Changed from 5px to maintain layout box limits fluidly */
+    margin: 0; 
     width: 100%;
     box-sizing: border-box;
     isolation: isolate; 
@@ -362,11 +375,9 @@ nav a:hover {
     background-repeat: no-repeat;
     opacity: 0;
     animation: slideFadeShow 16s infinite ease-in-out;
-    /* Soft color overlay blend mode with dark green base */
     mix-blend-mode: overlay; 
 }
 
-/* Place your image background links directly here */
 .bg-slide.slide-1 {
     background-image: linear-gradient(rgba(17, 28, 1, 0.92), rgba(17, 28, 1, 0.92)), url('path-to-partners-discussing.jpg');
 }
@@ -377,7 +388,7 @@ nav a:hover {
 
 @keyframes slideFadeShow {
     0%, 100% { opacity: 0; transform: scale(1.02); }
-    12.5%, 37.5% { opacity: 0.15; transform: scale(1.05); } /* Subdued alpha level so body copies remain entirely legible */
+    12.5%, 37.5% { opacity: 0.15; transform: scale(1.05); } 
     50% { opacity: 0; transform: scale(1.08); }
 }
 
@@ -405,7 +416,6 @@ nav a:hover {
     padding: 35px 25px;
 }
 
-/* Water glass element construction */
 .liquid-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -424,7 +434,6 @@ nav a:hover {
                 box-shadow 0.4s ease;
 }
 
-/* Inner liquid shimmer layer */
 .water-shimmer {
     position: absolute;
     top: 0;
@@ -446,7 +455,6 @@ nav a:hover {
     transform: translateY(-2px);
 }
 
-/* Icons */
 .icon-box {
     width: 50px;
     height: 50px;
@@ -482,73 +490,77 @@ nav a:hover {
 .metric-item .number { display: block; font-size: 2.2rem; font-weight: 700; color: #99CC33; }
 .metric-item .label { font-size: 0.85rem; color: #FDFFEB; opacity: 0.6; text-transform: uppercase; margin-top: 5px; display:inline-block; }
 
-/* --- Partner Brand Scrolling Track — BRIGHT LOGOS --- */
-.trusted-title { text-align: center; margin-bottom: 35px; }
-.trusted-title h4 { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #649120; }
+
+/* =========================================================================
+   💎 MONUMENTAL BRAND SCROLL TRACK (WHITE/GREEN HIGH-CONTRAST MIX)
+   ========================================================================= */
+.trusted-title { text-align: center; margin-bottom: 45px; }
+.trusted-title h4 { font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; color: #99CC33; }
 
 .marquee-wrapper {
-    width: 100%;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(153, 204, 51, 0.1);
-    border-radius: 50px;
-    padding: 22px 0;
+    
+    /* Clean solid white background connected with top/bottom brand-green glowing glass lines */
+    background: #FFFFFF;
+    border-top: 4px solid #99CC33;
+    border-bottom: 4px solid #99CC33;
+    
+    padding: 60px 0; 
     box-sizing: border-box;
-    /* Subtle green glow on the marquee rail */
-    box-shadow: inset 0 0 40px rgba(153, 204, 51, 0.03);
+    /* Soft green shadow bleeding inwards on the white bar for seamless contrast connection */
+    box-shadow: inset 0 0 30px rgba(153, 204, 51, 0.15), 
+                0 0 40px rgba(153, 204, 51, 0.1);
 }
 
-.marquee-track { display: flex; width: max-content; animation: scrollMarquee 40s linear infinite; align-items: center; }
+.marquee-track { 
+    display: flex; 
+    width: max-content; 
+    animation: scrollMarquee 35s linear infinite; 
+    align-items: center; 
+}
 
-/* Pause on hover for readability */
 .marquee-wrapper:hover .marquee-track { animation-play-state: paused; }
 
 .marquee-item { 
     display: flex; 
     align-items: center; 
-    gap: 14px; 
-    margin-right: 70px; 
-    color: #FDFFEB; 
-    opacity: 0.65;
-    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
-    filter: brightness(0.85) contrast(1.1);
+    justify-content: center;
+    margin-right: 120px; 
+    opacity: 0.8; /* Higher initial visibility since background is clear white */
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease, filter 0.4s ease;
 }
 
-/* Raster image — white-brightened with CSS filter */
+/* MONUMENTAL RASTER IMAGES — Configured safely for standard visibility over white */
 .brand-logo-img { 
-    width: 32px; 
-    height: 32px; 
+    height: 110px; 
+    width: auto;
+    max-width: 260px; 
     object-fit: contain; 
     flex-shrink: 0;
-    filter: brightness(2.5) contrast(1.1) saturate(0.4);
-    transition: filter 0.3s ease;
+    /* CSS filter optimized to display normal/true logo asset colors perfectly over white */
+    filter: brightness(1) contrast(1) saturate(1);
+    transition: filter 0.4s ease;
 }
 
-.marquee-item span { font-size: 1.05rem; font-weight: 500; white-space: nowrap; }
 .marquee-item:hover { 
     opacity: 1; 
-    transform: scale(1.06);
-    filter: brightness(1) contrast(1);
-}
-.marquee-item:hover .brand-logo-img {
-    filter: brightness(3) contrast(1.2) saturate(0.3);
+    transform: scale(1.08);
 }
 
-/* --- Access Bank — Dominant, Glowing, Premium --- */
+/* Access Bank — Hero Balance over White Canvas */
 .marquee-item.access-bank-logo {
     opacity: 1;
-    filter: brightness(1);
 }
 .marquee-item.access-bank-logo .brand-logo-img {
-    width: 52px;
-    height: 52px;
-    filter: brightness(3) contrast(1.3) saturate(0.2) drop-shadow(0 0 10px rgba(153, 204, 51, 0.7));
-}
-.marquee-item.access-bank-logo span {
-    font-weight: 800;
-    font-size: 1.25rem;
-    color: #FFFFFF;
-    text-shadow: 0 0 20px rgba(153, 204, 51, 0.5);
+    height: 140px; 
+    /* Subtle premium neon green drop shadow that links it safely to the structural layout themes */
+    filter: drop-shadow(0 4px 15px rgba(153, 204, 51, 0.4));
 }
 
 @keyframes scrollMarquee {
@@ -556,18 +568,22 @@ nav a:hover {
     100% { transform: translateX(-50%); }
 }
 
-/* Responsiveness metrics & screen fitting options */
+/* --- Responsiveness Layout Adjustments --- */
 @media (max-width: 1024px) { 
     .pillars-grid { grid-template-columns: repeat(2, 1fr); } 
     .evolution-box { grid-template-columns: 1fr; } 
+    .brand-logo-img { height: 85px; }
+    .marquee-item.access-bank-logo .brand-logo-img { height: 110px; }
 }
 
 @media (max-width: 768px) { 
     .about-section { padding: 60px 0; }
     .pillars-grid { grid-template-columns: 1fr; } 
     .metrics-container { flex-direction: column; gap: 20px; } 
-    .marquee-item { margin-right: 45px; }
-    .marquee-item.access-bank-logo .brand-logo-img { width: 40px; height: 40px; }
+    .marquee-wrapper { padding: 40px 0; }
+    .brand-logo-img { height: 65px; }
+    .marquee-item.access-bank-logo .brand-logo-img { height: 85px; }
+    .marquee-item { margin-right: 70px; }
 }
 
 /* =========================================================================
@@ -578,8 +594,6 @@ nav a:hover {
     box-shadow: 0 2px 20px rgba(0,0,0,0.4);
     border-bottom: 1px solid rgba(153, 204, 51, 0.1);
 }
-
-
 
 
 
@@ -884,24 +898,44 @@ nav a:hover {
 
 
 
-
-
-
-
-
-
-
-/* --- Unique Section Context Blueprint --- */
+/* =========================================================================
+   1. MAIN SECTION CANVAS (Deep, Fathoming Ecosystem Theme)
+   ========================================================================= */
 .impact-section-unique {
     padding: 120px 0;
     position: relative;
-    /* Custom Asymmetric Wallpaper: Distinct from standard dark sections */
-    background-color: #0b1201;
-    background-image: 
-        linear-gradient(135deg, #111C01 0%, #070d01 100%),
-        radial-gradient(circle at 80% 20%, rgba(153, 204, 51, 0.05) 0%, transparent 50%);
+    /* An ultra-dark charcoal-olive base that makes lime green textures pop */
+    background-color: #0B1104; 
     overflow: hidden;
     isolation: isolate;
+}
+
+/* Updated abstract digital-network image layered subtly over the dark base */
+.impact-bg-overlay-unique {
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/Navigating\ the\ World\ of\ Trading_\ Tips\ for\ New\ Investors.jpg');
+    background-size: cover;
+    background-position: center;
+    /* Kept at 0.08 opacity to serve as a deep, mysterious texture without distracting */
+    opacity: 0.4; 
+    z-index: -2;
+    pointer-events: none;
+    mix-blend-mode: luminosity; /* Fuses the image smoothly into the dark theme */
+} 
+
+/* Secondary procedural background styling: Ambient Neon-Green Backlight */
+.impact-section-unique::after {
+    content: '';
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(153, 204, 51, 0.14) 0%, transparent 70%);
+    bottom: -200px;
+    right: -100px;
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(30px);
 }
 
 .impact-container-unique {
@@ -910,38 +944,43 @@ nav a:hover {
     padding: 0 24px;
 }
 
-/* Section Header Typography */
+/* =========================================================================
+   2. TYPOGRAPHY & HEADERS (Calibrated for Dark Background Contrast)
+   ========================================================================= */
 .impact-header-unique {
     text-align: center;
     margin-bottom: 60px;
 }
 
 .impact-sub-unique {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: var(--color-lime-bright, #99CC33);
-    font-weight: 600;
+    color: #99CC33; /* Vibrant lime accent color */
+    font-weight: 700;
     display: inline-block;
     margin-bottom: 12px;
+    text-shadow: 0 0 10px rgba(153, 204, 51, 0.3);
 }
 
 .impact-header-unique h2 {
-    font-size: 2.5rem;
-    color: var(--color-off-white, #FDFFEB);
-    font-weight: 700;
+    font-size: 2.6rem;
+    color: #FDFFEB; /* Radiant light contrast color for readability */
+    font-weight: 800;
     letter-spacing: -1px;
 }
 
-/* Flexible Dashboard Wrapper */
+/* Flexible Grid Dashboard Layout */
 .impact-wrapper-unique {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 40px;
-    align-items: stretch;
+    align-items: start;
 }
 
-/* --- Left Side: Metric Dashboards --- */
+/* =========================================================================
+   3. LEFT SIDE: TRANSLUCENT FROSTED DARK PODS
+   ========================================================================= */
 .metrics-grid-unique {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -949,26 +988,31 @@ nav a:hover {
 }
 
 .metric-pod-unique {
-    background: rgba(17, 28, 1, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-top: 1px solid rgba(153, 204, 51, 0.15);
+    /* Premium dark frosted-glass overlay */
+    background: rgba(255, 255, 255, 0.03); 
+    border: 1px solid rgba(153, 204, 51, 0.12);
+    border-top: 3px solid #99CC33; /* Strong top lime border anchor */
     padding: 40px 30px;
     border-radius: 24px;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .full-width-pod-unique {
-    grid-column: span 2;
+    grid-column: 1 / span 2;
+    width: 100%;
 }
 
 .pod-glow-unique {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(153, 204, 51, 0.08) 0%, transparent 60%);
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(153, 204, 51, 0.15) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
@@ -979,123 +1023,133 @@ nav a:hover {
 }
 
 .metric-pod-unique:hover {
-    transform: translateY(-4px);
-    border-color: rgba(153, 204, 51, 0.3);
+    transform: translateY(-5px);
+    border-color: #99CC33;
+    box-shadow: 0 20px 40px rgba(153, 204, 51, 0.2);
 }
 
 .metric-info-unique .counter-unique {
     display: block;
-    font-size: 3.2rem;
-    font-weight: 700;
-    color: var(--color-off-white, #FDFFEB);
-    letter-spacing: -1px;
+    font-size: 3.4rem;
+    font-weight: 800;
+    color: #FDFFEB; /* Crisp white-lime numbers */
+    letter-spacing: -1.5px;
     line-height: 1;
     margin-bottom: 8px;
 }
 
 .metric-info-unique .label-unique {
-    font-size: 0.95rem;
-    color: var(--color-lime-pale, #DEFAA5);
-    opacity: 0.8;
+    font-size: 1rem;
+    color: #A3B899; /* Muted pastel green text for secondary label reading */
+    font-weight: 500;
     line-height: 1.4;
 }
 
-/* --- Right Side: High-Impact Strategy Card --- */
+/* =========================================================================
+   4. RIGHT SIDE: EMERALD CORE STRATEGY CARD
+   ========================================================================= */
 .strategy-card-unique {
-    background: linear-gradient(145deg, #121f02 0%, #080d01 100%);
-    border: 1px solid rgba(153, 204, 51, 0.2);
+    background: linear-gradient(145deg, #142205 0%, #070d01 100%);
+    border: 1px solid rgba(153, 204, 51, 0.3);
     border-radius: 32px;
     position: relative;
     overflow: hidden;
     padding: 50px;
     display: flex;
     align-items: center;
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* Micro-grid overlay pattern */
 .card-bg-grid-unique {
     position: absolute;
     inset: 0;
     background-image: 
-        linear-gradient(rgba(153, 204, 51, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(153, 204, 51, 0.03) 1px, transparent 1px);
-    background-size: 24px 24px;
-    mask-image: linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0.1));
-    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0.1));
+        linear-gradient(rgba(153, 204, 51, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(153, 204, 51, 0.05) 1px, transparent 1px),
+        url("https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1000&q=80");
+    background-size: 24px 24px, cover;
+    background-position: center, center;
+    opacity: 0.15;
+    
+    mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0.1));
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0.1));
     z-index: 1;
+    pointer-events: none; 
 }
 
 .card-radial-glow-unique {
     position: absolute;
     width: 350px;
     height: 350px;
-    background: radial-gradient(circle, rgba(153, 204, 51, 0.2) 0%, transparent 75%);
+    background: radial-gradient(circle, rgba(153, 204, 51, 0.25) 0%, transparent 75%);
     bottom: -100px;
     right: -100px;
-    filter: blur(50px);
+    filter: blur(40px);
     pointer-events: none;
     z-index: 2;
 }
 
-/* Embedded Vector Artwork Positioning Layout */
 .card-graphic-wrapper-unique {
     position: absolute;
-    right: -40px;
+    right: -30px;
     top: 50%;
     transform: translateY(-50%);
     width: 320px;
     height: 320px;
-    opacity: 0.8;
+    opacity: 0.85;
     pointer-events: none;
     z-index: 3;
 }
 
 .card-content-unique {
     position: relative;
-    z-index: 4;
-    max-width: 380px;
+    z-index: 4; 
+    max-width: 390px;
 }
 
 .card-content-unique h3 {
-    font-size: 2.4rem;
+    font-size: 2.5rem;
     font-weight: 700;
     line-height: 1.2;
-    color: var(--color-off-white, #FDFFEB);
+    color: #FDFFEB;
     letter-spacing: -1px;
     margin-bottom: 16px;
 }
 
 .card-content-unique .accent-text-unique {
-    color: var(--color-lime-bright, #99CC33);
+    color: #99CC33;
+    text-shadow: 0 0 20px rgba(153, 204, 51, 0.2);
 }
 
 .card-content-unique p {
-    font-size: 1rem;
-    color: var(--color-lime-pale, #DEFAA5);
+    font-size: 1.05rem;
+    color: #DEFAA5;
     line-height: 1.6;
-    opacity: 0.85;
+    opacity: 0.9;
     margin-bottom: 35px;
 }
 
-/* CTA Design Alignment */
+/* =========================================================================
+   5. INTERACTIVE CTA BUTTONS
+   ========================================================================= */
 .action-btn-unique {
     display: inline-flex;
     align-items: center;
     gap: 20px;
-    padding: 15px 32px;
-    background: var(--color-lime-bright, #99CC33);
+    padding: 16px 32px;
+    background: #99CC33;
     color: #111C01;
+    text-decoration: none;
     border-radius: 100px;
     font-weight: 600;
     font-size: 1rem;
-    box-shadow: 0 15px 35px rgba(153, 204, 51, 0.25);
+    box-shadow: 0 12px 30px rgba(153, 204, 51, 0.3);
     transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-icon-unique {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     background: #111C01;
     border-radius: 50%;
     display: flex;
@@ -1105,22 +1159,23 @@ nav a:hover {
 }
 
 .btn-icon-unique i {
-    color: var(--color-lime-bright, #99CC33);
-    font-size: 0.75rem;
+    color: #99CC33;
+    font-size: 0.8rem;
 }
 
-/* Interactive Hover Reactions */
 .action-btn-unique:hover {
-    background: var(--color-off-white, #FDFFEB);
+    background: #FDFFEB;
     transform: translateY(-3px);
-    box-shadow: 0 20px 40px rgba(153, 204, 51, 0.35);
+    box-shadow: 0 20px 40px rgba(153, 204, 51, 0.4);
 }
 
 .action-btn-unique:hover .btn-icon-unique {
     transform: scale(1.1) rotate(-45deg);
 }
 
-/* --- Responsive Adaptations --- */
+/* =========================================================================
+   6. RESPONSIVE ADAPTATIONS
+   ========================================================================= */
 @media (max-width: 1024px) {
     .impact-wrapper-unique {
         grid-template-columns: 1fr;
@@ -1129,7 +1184,7 @@ nav a:hover {
         padding: 50px 40px;
     }
     .card-graphic-wrapper-unique {
-        opacity: 0.25;
+        opacity: 0.2;
         right: 10px;
     }
 }
@@ -1142,10 +1197,10 @@ nav a:hover {
         grid-column: span 1;
     }
     .card-content-unique h3 {
-        font-size: 2rem;
+        font-size: 2.1rem;
     }
     .impact-header-unique h2 {
-        font-size: 1.9rem;
+        font-size: 2rem;
     }
 }
 
@@ -1156,10 +1211,12 @@ nav a:hover {
 
 
 
+/* =========================================================================
+   🌄 UNIQUE BENTO GALLERY GRID — Core Structural Layouts
+   ========================================================================= */
 
 /* =========================================================================
-   🌄 UNIQUE BENTO GALLERY GRID — Never-seen-before structure
-   Handles thousands of images via pagination + lazy loading
+   🌅 CAROUSEL SYSTEM LAYOUTS
    ========================================================================= */
 
 .gallery-cascade-section {
@@ -1170,17 +1227,6 @@ nav a:hover {
     isolation: isolate;
 }
 
-/* Subtle human-warmth texture overlay */
-.gallery-cascade-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 30% 0%, rgba(153, 204, 51, 0.06) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 100%, rgba(61, 94, 8, 0.08) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-}
-
 .gallery-cascade-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -1188,12 +1234,11 @@ nav a:hover {
     display: grid;
     grid-template-columns: 340px 1fr;
     gap: 60px;
-    align-items: start;
+    align-items: center;
 }
 
 .gallery-meta-block {
-    position: sticky;
-    top: 120px;
+    position: relative;
     z-index: 10;
 }
 
@@ -1228,97 +1273,64 @@ nav a:hover {
     margin-bottom: 40px;
 }
 
-/* Category Filter Buttons */
-.gallery-lens-controls {
+/* Slider Controls Configuration */
+.gallery-slider-controls {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-start;
+    gap: 16px;
+    margin-top: 20px;
 }
 
-.lens-btn {
-    background: transparent;
-    border: none;
-    color: #DEFAA5;
-    opacity: 0.5;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 6px 0;
-    cursor: pointer;
-    position: relative;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    font-family: inherit;
-}
-
-.lens-btn::before {
-    content: '';
-    position: absolute;
-    left: -15px;
-    top: 50%;
-    transform: translateY(-50%) scale(0);
-    width: 6px;
-    height: 6px;
-    background-color: #99CC33;
+.slider-arrow-btn {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    transition: transform 0.3s ease;
+    background: transparent;
+    border: 1px solid rgba(153, 204, 51, 0.4);
+    color: #99CC33;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.lens-btn.active, .lens-btn:hover {
-    opacity: 1;
-    transform: translateX(15px);
+.slider-arrow-btn:hover {
+    background: #99CC33;
+    color: #111C01;
+    border-color: #99CC33;
+    box-shadow: 0 0 15px rgba(153, 204, 51, 0.3);
 }
 
-.lens-btn.active::before {
-    transform: translateY(-50%) scale(1);
-}
-
-/* ==============================================================
-   THE BENTO GRID — Unique never-before-seen gallery structure
-   ==============================================================
-   Pattern (repeating): hero, standard, wide, standard, standard, tall...
-   - hero: spans 2 cols + 2 rows (feature image)
-   - wide: spans 2 cols, 1 row
-   - tall: 1 col, 2 rows
-   - standard: 1 col, 1 row
-*/
-.bento-gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 260px;
-    gap: 14px;
-    position: relative;
-    z-index: 1;
-}
-
-.bento-cell {
-    border-radius: 18px;
+/* Slider Mask and Strip Containers */
+.gallery-slider-viewport {
+    width: 100%;
     overflow: hidden;
     position: relative;
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(24px) scale(0.97);
-    transition:
-        opacity 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
-        transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
-    transition-delay: var(--reveal-delay, 0s);
+    border-radius: 24px;
 }
 
-.bento-cell.in-view {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+.gallery-slider-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
 }
 
-/* Span configurations for bento pattern */
-.bento-hero    { grid-column: span 2; grid-row: span 2; }
-.bento-wide    { grid-column: span 2; grid-row: span 1; }
-.bento-tall    { grid-column: span 1; grid-row: span 2; }
-.bento-standard { grid-column: span 1; grid-row: span 1; }
+/* Individual Slide Cards */
+.gallery-slide {
+    flex: 0 0 calc(50% - 10px); /* Shows exactly 2 cards perfectly inside the viewport */
+    min-width: calc(50% - 10px);
+    height: 400px; /* Fixed proportional height for slides */
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
 
 .bento-inner {
     width: 100%;
     height: 100%;
     position: relative;
-    overflow: hidden;
 }
 
 .bento-inner img {
@@ -1326,32 +1338,24 @@ nav a:hover {
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    filter: brightness(0.88) saturate(0.9);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(0.85);
 }
 
-.bento-cell:hover .bento-inner img {
-    transform: scale(1.08);
-    filter: brightness(1) saturate(1.05);
+.gallery-slide:hover .bento-inner img {
+    transform: scale(1.05);
 }
 
-/* Gradient overlay on each cell */
+/* Dynamic Hover Overlay */
 .bento-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(11, 18, 1, 0.92) 0%, rgba(11, 18, 1, 0.2) 45%, transparent 100%);
+    background: linear-gradient(to top, rgba(11, 18, 1, 0.95) 0%, rgba(11, 18, 1, 0.2) 60%, transparent 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 20px;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-}
-
-.bento-cell:hover .bento-overlay {
-    opacity: 1;
-    transform: translateY(0);
+    padding: 30px;
+    opacity: 1; /* Keep visible on slide panels for better design readability */
 }
 
 .bento-tag {
@@ -1360,99 +1364,74 @@ nav a:hover {
     letter-spacing: 1.5px;
     color: #99CC33;
     text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     background: rgba(153, 204, 51, 0.12);
     display: inline-block;
-    padding: 3px 10px;
+    padding: 3px 12px;
     border-radius: 20px;
     border: 1px solid rgba(153, 204, 51, 0.25);
 }
 
 .bento-overlay h4 {
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: #FDFFEB;
     line-height: 1.3;
 }
 
-.bento-hero .bento-overlay h4 { font-size: 1.4rem; }
-
-/* Placeholder shimmer — shown when image is loading */
-.bento-inner img[src=""] {
-    background: linear-gradient(90deg, #1a2a05 25%, #243905 50%, #1a2a05 75%);
-    background-size: 200% 100%;
-    animation: shimmerLoad 1.5s infinite;
-}
-
-@keyframes shimmerLoad {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-}
-
-/* Load More Button */
+/* Redirection Button Styles */
 .gallery-load-more-wrapper {
-    text-align: center;
-    margin-top: 48px;
+    text-align: left;
+    margin-top: 40px;
 }
 
-.gallery-load-more-btn {
+.gallery-view-main-btn {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    padding: 16px 40px;
-    background: transparent;
-    border: 1px solid rgba(153, 204, 51, 0.4);
+    gap: 16px;
+    padding: 18px 44px;
+    background: #99CC33;
+    border: 1px solid #99CC33;
     border-radius: 100px;
-    color: #99CC33;
-    font-family: inherit;
+    color: #111C01;
+    text-decoration: none;
     font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.35s ease;
-    letter-spacing: 0.5px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(153, 204, 51, 0.2);
 }
 
-.gallery-load-more-btn:hover {
-    background: rgba(153, 204, 51, 0.08);
-    border-color: #99CC33;
-    box-shadow: 0 0 25px rgba(153, 204, 51, 0.15);
-    transform: translateY(-2px);
+.gallery-view-main-btn:hover {
+    background: #FDFFEB;
+    border-color: #FDFFEB;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(153, 204, 51, 0.4);
 }
 
-.gallery-load-more-btn i {
-    font-size: 1.1rem;
-}
-
-/* Responsive Bento */
+/* Screen Size Media Adaptations */
 @media (max-width: 1100px) {
     .gallery-cascade-container {
         grid-template-columns: 1fr;
         padding: 0 24px;
         gap: 40px;
     }
-    .gallery-meta-block { position: static; }
-    .gallery-lens-controls { flex-direction: row; flex-wrap: wrap; }
-    .lens-btn.active, .lens-btn:hover { transform: translateY(-2px); }
-    .bento-gallery-grid { grid-template-columns: repeat(3, 1fr); }
-    .bento-hero { grid-column: span 2; }
+    .gallery-load-more-wrapper { text-align: center; }
+    .gallery-slider-controls { justify-content: center; }
 }
 
 @media (max-width: 768px) {
-    .bento-gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 200px;
-        gap: 10px;
+    .gallery-slide {
+        flex: 0 0 100%; /* Shows 1 card fully per view on smartphones */
+        min-width: 100%;
+        height: 320px;
     }
-    .bento-hero { grid-column: span 2; grid-row: span 1; }
-    .bento-wide { grid-column: span 2; }
-    .bento-tall { grid-row: span 1; }
 }
 
-@media (max-width: 480px) {
-    .bento-gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
-    .bento-hero, .bento-wide, .bento-tall, .bento-standard { grid-column: span 1; grid-row: span 1; }
-    .gallery-meta-block h2 { font-size: 2.2rem; }
-}
+
+
+
+
+
 
 
 
@@ -1903,4 +1882,4 @@ nav a:hover {
 .reveal-node.in-view {
     opacity: 1;
     transform: scale(1) translateY(0);
-}
+}
