@@ -6,212 +6,186 @@
     <meta name="description" content="ProHive Master Archive - Explore our curated visual ecosystem of corporate events, community drives, and branding impact.">
     <meta name="keywords" content="ProHive Archive, Gallery, Corporate Events, Community Strategy, Tech Connectivity">
     <meta name="author" content="ProHive">
-    <title>Master Archive | Prohive</title>
+    <title>Master Archive | ProHive</title>
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Main Stylesheet -->
+    <!-- Connect to global light theme styles -->
     <link rel="stylesheet" href="style.css">
-    
+
     <style>
-        /* Gallery Page Specific Styles */
+        /* Specific Gallery Page Overrides */
         body {
-            background-color: #111C01;
-            color: #FDFFEB;
+            background-color: var(--color-light-bg);
+            color: var(--color-dark-green);
         }
 
-        .gallery-header {
-            padding: 40px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(153, 204, 51, 0.1);
+        .archive-header-wrapper {
+            padding: 120px 5% 60px;
+            text-align: center;
+            background: var(--color-white);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 50px;
         }
 
-        .back-home-btn {
+        .back-btn {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            color: #99CC33;
-            text-decoration: none;
-            font-family: 'Outfit', sans-serif;
+            gap: 10px;
+            color: var(--color-gray-text);
             font-weight: 600;
-            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            transition: color 0.3s ease;
         }
 
-        .back-home-btn:hover {
-            color: #FDFFEB;
-            transform: translateX(-5px);
+        .back-btn:hover {
+            color: var(--accent-primary);
         }
 
-        .gallery-header h1 {
-            font-size: 2.5rem;
-            margin: 0;
-            color: #FDFFEB;
+        .archive-header-wrapper h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--color-dark-green);
+            letter-spacing: -1px;
+            margin-bottom: 15px;
         }
 
-        .gallery-header h1 span {
-            color: #99CC33;
+        .archive-header-wrapper p {
+            font-size: 1.1rem;
+            color: var(--color-gray-text);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .master-archive-container {
-            padding: 80px 10%;
-        }
-
-        /* We reuse the bento grid system from style.css */
-        .master-grid {
+        /* Pamtech-style clean masonry grid */
+        .archive-grid {
+            max-width: 1400px;
+            margin: 0 auto 100px;
+            padding: 0 4%;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            auto-rows: 300px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
         }
 
-        .master-grid .bento-cell {
-            height: 300px; /* Base height */
-        }
-        
-        .master-grid .span-2-cols { grid-column: span 2; }
-        .master-grid .span-2-rows { grid-row: span 2; height: calc(600px + 20px); }
-
-        @media (max-width: 1024px) {
-            .master-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .master-grid .span-2-cols { grid-column: span 1; }
+        .archive-card {
+            background: var(--color-white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
         }
 
-        @media (max-width: 768px) {
-            .master-grid {
-                grid-template-columns: 1fr;
-            }
-            .gallery-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
+        .archive-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .archive-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            transition: transform 0.6s ease;
+        }
+
+        .archive-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .archive-card-content {
+            padding: 24px;
+        }
+
+        .archive-card-content h3 {
+            font-size: 1.25rem;
+            color: var(--color-dark-green);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .archive-card-content p {
+            font-size: 0.95rem;
+            color: var(--color-gray-text);
+        }
+
+        .image-wrapper {
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
-    <header class="gallery-header">
-        <a href="index.html" class="back-home-btn">
-            <i class="fa-solid fa-arrow-left"></i> Back to Main Site
-        </a>
-        <h1>Master <span class="gradient-accent">Archive</span></h1>
+    <!-- Simple Header Navbar -->
+    <header class="navbar-header" style="background: rgba(255,255,255,0.9); border-bottom: 1px solid rgba(0,0,0,0.05);">
+        <div class="logo" style="color: var(--color-dark-green);">ProHive</div>
+        <a href="index.html" class="btn-primary" style="padding: 10px 25px; font-size: 0.9rem;">Return Home</a>
     </header>
 
-    <!-- Master Archive Gallery -->
-    <main class="master-archive-container">
-        
-        <div class="bento-gallery-grid master-grid">
-            
-            <!-- Item 1 (Large) -->
-            <div class="bento-cell span-2-cols span-2-rows scroll-reveal-engine">
-                <div class="bento-inner">
-                    <img src="images/hero-slide-2.png" alt="Corporate Event" loading="lazy">
-                    <div class="bento-overlay">
-                        <div class="bento-tag">Corporate</div>
-                        <h4>Executive Seminar</h4>
-                    </div>
+    <main>
+        <section class="archive-header-wrapper">
+            <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Main Site</a>
+            <h1>The Master Archive</h1>
+            <p>Explore thousands of moments captured across our ecosystem, from corporate events to branding impacts and community infrastructure drives.</p>
+        </section>
+
+        <section class="archive-grid">
+            <!-- Generate multiple archive cards as placeholders for thousands of images -->
+            <div class="archive-card scroll-reveal-engine">
+                <div class="image-wrapper"><img src="images/hero-slide-4.png" alt="Corporate Strategy" loading="lazy"></div>
+                <div class="archive-card-content">
+                    <h3>Corporate Strategy Summit</h3>
+                    <p>Annual gathering of industry leaders discussing sustainable tech.</p>
                 </div>
             </div>
 
-            <!-- Item 2 -->
-            <div class="bento-cell scroll-reveal-engine">
-                <div class="bento-inner">
-                    <img src="images/hero-slide-3.png" alt="Community Event" loading="lazy">
-                    <div class="bento-overlay">
-                        <div class="bento-tag">Community</div>
-                        <h4>Creative Team Strategy</h4>
-                    </div>
+            <div class="archive-card scroll-reveal-engine">
+                <div class="image-wrapper"><img src="images/hero-slide-5.png" alt="Community Drive" loading="lazy"></div>
+                <div class="archive-card-content">
+                    <h3>Community Empowerment Drive</h3>
+                    <p>Providing essential tech infrastructure to local schools.</p>
                 </div>
             </div>
 
-            <!-- Item 3 -->
-            <div class="bento-cell scroll-reveal-engine">
-                <div class="bento-inner">
-                    <img src="images/hero-slide-4.png" alt="Branding Event" loading="lazy">
-                    <div class="bento-overlay">
-                        <div class="bento-tag">Branding</div>
-                        <h4>Brand Identity Workshop</h4>
-                    </div>
+            <div class="archive-card scroll-reveal-engine">
+                <div class="image-wrapper"><img src="images/hero-slide-3.png" alt="Brand Activation" loading="lazy"></div>
+                <div class="archive-card-content">
+                    <h3>Global Brand Activation</h3>
+                    <p>Launching our new visual identity in major tech hubs.</p>
                 </div>
             </div>
 
-            <!-- Item 4 (Wide) -->
-            <div class="bento-cell span-2-cols scroll-reveal-engine">
-                <div class="bento-inner">
-                    <img src="images/hero-slide-5.png" alt="Impact Event" loading="lazy">
-                    <div class="bento-overlay">
-                        <div class="bento-tag">Impact</div>
-                        <h4>Partnership Summit</h4>
-                    </div>
+            <div class="archive-card scroll-reveal-engine">
+                <div class="image-wrapper"><img src="images/hero-slide-6.png" alt="Infrastructure" loading="lazy"></div>
+                <div class="archive-card-content">
+                    <h3>Digital Infrastructure Reveal</h3>
+                    <p>Touring the newly built server facilities.</p>
                 </div>
             </div>
 
-            <!-- Item 5 -->
-            <div class="bento-cell scroll-reveal-engine">
-                <div class="bento-inner">
-                    <img src="images/hero-slide-6.png" alt="Technology" loading="lazy">
-                    <div class="bento-overlay">
-                        <div class="bento-tag">Tech</div>
-                        <h4>System Architecture</h4>
-                    </div>
+            <div class="archive-card scroll-reveal-engine">
+                <div class="image-wrapper"><img src="images/hero-slide-7.png" alt="Team Building" loading="lazy"></div>
+                <div class="archive-card-content">
+                    <h3>Quarterly Team Integration</h3>
+                    <p>Building culture and connections across our departments.</p>
                 </div>
             </div>
 
-            <!-- Item 6 (Tall) -->
-            <div class="bento-cell span-2-rows scroll-reveal-engine">
-                <div class="bento-inner">
-                    <img src="images/hero-slide-7.png" alt="Ecosystem" loading="lazy">
-                    <div class="bento-overlay">
-                        <div class="bento-tag">Ecosystem</div>
-                        <h4>Global Connectivity</h4>
-                    </div>
+            <div class="archive-card scroll-reveal-engine">
+                <div class="image-wrapper"><img src="images/hero-slide-4.png" alt="Tech Conference" loading="lazy"></div>
+                <div class="archive-card-content">
+                    <h3>Future of Web Conference</h3>
+                    <p>Keynote speeches on the next generation of digital tools.</p>
                 </div>
             </div>
 
-            <!-- Placeholders for more images -->
-            <div class="bento-cell scroll-reveal-engine">
-                <div class="bento-inner">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Placeholder" loading="lazy">
-                    <div class="bento-overlay">
-                        <div class="bento-tag">Archive</div>
-                        <h4>Placeholder 01</h4>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-cell scroll-reveal-engine">
-                <div class="bento-inner">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Placeholder" loading="lazy">
-                    <div class="bento-overlay">
-                        <div class="bento-tag">Archive</div>
-                        <h4>Placeholder 02</h4>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bento-cell span-2-cols scroll-reveal-engine">
-                <div class="bento-inner">
-                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" alt="Placeholder" loading="lazy">
-                    <div class="bento-overlay">
-                        <div class="bento-tag">Archive</div>
-                        <h4>Placeholder 03</h4>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
+            <!-- More placeholders can be dynamically added here -->
+        </section>
     </main>
 
     <!-- Essential Scripts for Animations -->

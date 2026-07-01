@@ -7,9 +7,14 @@
     --color-lime-pale: #DEFAA5;
     --color-off-white: #FDFFEB;
     
-    --bg-primary: var(--color-dark-green);
-    --text-primary: var(--color-off-white);
-    --text-secondary: var(--color-lime-pale);
+    --color-light-bg: #F3F4F6;
+    --color-white: #FFFFFF;
+    --color-gray-text: #4B5563;
+    
+    /* FLIPPED TO LIGHT MODE */
+    --bg-primary: var(--color-light-bg);
+    --text-primary: var(--color-dark-green);
+    --text-secondary: var(--color-gray-text);
     --accent-primary: var(--color-lime-bright);
     
     --font-family-main: 'General Sans', sans-serif;
@@ -50,24 +55,24 @@ header, .nav-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 4%;
+    padding: 1.5rem 6%;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
-    backdrop-filter: blur(8px);
+    transition: all 0.35s ease;
+    background: transparent;
 }
 
 /* Ensure the floating nav pill menu links blend cleanly */
+/* Clean transparent header menu container */
 .nav-pill-menu {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    background: rgba(25, 33, 14, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 0.5rem 1.5rem;
-    border-radius: 100px;
+    background: transparent;
+    padding: 0;
 }
 
 
@@ -129,21 +134,26 @@ html {
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: -0.5px;
+    color: #FFFFFF;
+    transition: color 0.3s ease;
 }
 
 nav ul {
     display: flex;
     gap: 30px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 10px 25px;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
 }
 
 nav a {
     font-size: 0.95rem;
     font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.3s ease;
 }
 
 nav a:hover {
@@ -155,11 +165,13 @@ nav a:hover {
     color: var(--color-dark-green);
     padding: 10px 25px;
     border-radius: 25px;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.95rem;
+    transition: all 0.3s ease;
 }
 
 .btn-solid-header:hover {
+    background-color: #aae04a;
     box-shadow: 0 0 15px rgba(153, 204, 51, 0.5);
     transform: translateY(-2px);
 }
@@ -199,7 +211,7 @@ nav a:hover {
     overflow: hidden;
 }
 
-/* Each slide */
+/* Each slide - modified to slide instead of zooming */
 .hero-slide {
     position: absolute;
     inset: 0;
@@ -207,32 +219,30 @@ nav a:hover {
     background-position: center center;
     background-repeat: no-repeat;
     opacity: 0;
-    transform: scale(1.08);
-    transition:
-        opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 8s ease-out;
-    will-change: opacity, transform;
+    transform: translateX(100%);
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease-in-out;
+    will-change: transform, opacity;
 }
 
-/* Active slide is fully visible + zooms gently in */
+/* Active slide is fully visible + slides into center */
 .hero-slide.active {
     opacity: 1;
-    transform: scale(1);
+    transform: translateX(0);
 }
 
 /* Fade-out slide (previous one) stays visible a moment during cross-fade */
 .hero-slide.prev {
+    transform: translateX(-100%);
     opacity: 0;
-    transform: scale(1.04);
 }
 
-/* Rich gradient overlay — dark green tones, maintains brand color code */
+/* Rich gradient overlay — darkened slightly to make subtitle text stand out clearly */
 .hero-overlay {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(180deg, rgba(11, 18, 1, 0.82) 0%, rgba(17, 28, 1, 0.6) 40%, rgba(11, 18, 1, 0.92) 100%),
-        radial-gradient(ellipse at 50% 50%, rgba(100, 145, 32, 0.15) 0%, transparent 70%);
+        linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.25) 40%, rgba(0, 0, 0, 0.65) 100%),
+        radial-gradient(ellipse at 50% 50%, rgba(153, 204, 51, 0.1) 0%, transparent 70%);
     z-index: 2;
 }
 
@@ -286,7 +296,8 @@ nav a:hover {
 /* Ecosystem section — use the city/tech slide */
 .ecosystem-bg-img {
     background-image: url('images/hero-slide-7.png');
-    opacity: 0.06;
+    opacity: 0.12;
+    mix-blend-mode: overlay;
 }
 
 /* Impact/metrics section — use the partnership slide */
@@ -324,11 +335,12 @@ nav a:hover {
 }
 
 .hero-content p {
-    font-size: 1.3rem;
-    color: var(--text-secondary);
+    font-size: 1.4rem;
+    color: #FFFFFF;
+    font-weight: 500;
     line-height: 1.6;
-    max-width: 600px;
-    text-shadow: 0 1px 10px rgba(0,0,0,0.6);
+    max-width: 650px;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .cta-button {
@@ -372,28 +384,32 @@ nav a:hover {
 .social-icon {
     width: 45px;
     height: 45px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.92); /* Solid frosted white background to blend perfectly on light and dark sections */
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
 }
 
 .social-icon i {
     font-size: 1.2rem;
-    color: var(--text-primary);
-    transition: color 0.3s ease;
+    color: #111C01;
+    transition: all 0.3s ease;
 }
 
 .social-icon:hover {
     border-color: var(--accent-primary);
-    background-color: rgba(153, 204, 51, 0.1);
+    background-color: var(--accent-primary);
+    transform: translateX(-4px);
+    box-shadow: 0 6px 20px rgba(153, 204, 51, 0.3);
 }
 
 .social-icon:hover i {
-    color: var(--accent-primary);
+    color: #111C01;
 }
 
 /* --- Responsive Media Viewport Breaks --- */
@@ -440,7 +456,7 @@ nav a:hover {
 .about-section {
     padding: 100px 0;
     position: relative;
-    background-color: #111C01;
+    background-color: var(--color-white);
     overflow: hidden;
     margin: 0; 
     width: 100%;
@@ -474,10 +490,10 @@ nav a:hover {
 }
 
 .bg-slide.slide-1 {
-    background-image: linear-gradient(rgba(17, 28, 1, 0.92), rgba(17, 28, 1, 0.92)), url('path-to-partners-discussing.jpg');
+    background-image: linear-gradient(rgba(243, 244, 246, 0.92), rgba(243, 244, 246, 0.92)), url('path-to-partners-discussing.jpg');
 }
 .bg-slide.slide-2 {
-    background-image: linear-gradient(rgba(17, 28, 1, 0.92), rgba(17, 28, 1, 0.92)), url('path-to-corporate-building.jpg');
+    background-image: linear-gradient(rgba(243, 244, 246, 0.92), rgba(243, 244, 246, 0.92)), url('path-to-corporate-building.jpg');
     animation-delay: 8s;
 }
 
@@ -496,8 +512,8 @@ nav a:hover {
 
 /* --- Section Header --- */
 .section-header { text-align: center; max-width: 750px; margin: 0 auto 60px; }
-.section-header h2 { font-size: 2.5rem; font-weight: 700; color: #FDFFEB; margin-bottom: 20px; }
-.section-header p { font-size: 1.05rem; color: #DEFAA5; line-height: 1.6; }
+.section-header h2 { font-size: 2.5rem; font-weight: 700; color: var(--color-dark-green); margin-bottom: 20px; }
+.section-header p { font-size: 1.05rem; color: var(--color-gray-text); line-height: 1.6; }
 
 /* --- Safe Liquid Glass Grid System --- */
 .pillars-grid {
@@ -512,15 +528,15 @@ nav a:hover {
 }
 
 .liquid-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-top: 1.5px solid rgba(255, 255, 255, 0.2);
-    border-left: 1.5px solid rgba(255, 255, 255, 0.2);
+    background: var(--color-white);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.8);
+    border-left: 1.5px solid rgba(255, 255, 255, 0.8);
     border-radius: 24px;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3),
-                inset 0 1px 2px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05),
+                inset 0 1px 2px rgba(255, 255, 255, 0.8);
     position: relative;
     overflow: hidden;
     transform: translateZ(0); 
@@ -545,7 +561,7 @@ nav a:hover {
 
 .liquid-card:hover {
     border-color: rgba(153, 204, 51, 0.35);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08),
                 0 0 25px rgba(153, 204, 51, 0.1);
     transform: translateY(-2px);
 }
@@ -566,8 +582,8 @@ nav a:hover {
 .liquid-card:hover .icon-box { background: #99CC33; }
 .liquid-card:hover .icon-box i { color: #111C01; }
 
-.pillar-card h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; color: #FDFFEB; line-height: 1.4; }
-.pillar-card p { font-size: 1rem; color: #DEFAA5; line-height: 1.5; opacity: 0.8; }
+.pillar-card h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; color: var(--color-dark-green); line-height: 1.4; }
+.pillar-card p { font-size: 1rem; color: var(--color-gray-text); line-height: 1.5; opacity: 0.9; }
 
 /* Evolution Info box mapping styling */
 .evolution-box {
@@ -579,11 +595,11 @@ nav a:hover {
     margin-bottom: 80px;
     box-sizing: border-box;
 }
-.story-text p { font-size: 1.15rem; line-height: 1.6; color: #DEFAA5; }
+.story-text p { font-size: 1.15rem; line-height: 1.6; color: var(--color-gray-text); }
 .metrics-container { display: flex; justify-content: space-between; gap: 20px; }
 .metric-item { text-align: center; flex: 1; }
 .metric-item .number { display: block; font-size: 2.2rem; font-weight: 700; color: #99CC33; }
-.metric-item .label { font-size: 0.85rem; color: #FDFFEB; opacity: 0.6; text-transform: uppercase; margin-top: 5px; display:inline-block; }
+.metric-item .label { font-size: 0.85rem; color: var(--color-dark-green); font-weight: 600; text-transform: uppercase; margin-top: 5px; display:inline-block; }
 
 
 /* =========================================================================
@@ -616,7 +632,7 @@ nav a:hover {
 .marquee-track { 
     display: flex; 
     width: max-content; 
-    animation: scrollMarquee 35s linear infinite; 
+    animation: scrollMarquee 60s linear infinite; /* Slowed down animation speed as requested */
     align-items: center; 
 }
 
@@ -685,9 +701,24 @@ nav a:hover {
    🌐 NAVBAR SCROLL STATE
    ========================================================================= */
 .navbar-scrolled {
-    background: rgba(11, 18, 1, 0.95) !important;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
-    border-bottom: 1px solid rgba(153, 204, 51, 0.1);
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 1.1rem 6% !important;
+}
+
+.navbar-scrolled .logo {
+    color: var(--color-dark-green) !important;
+}
+
+.navbar-scrolled nav a {
+    color: var(--color-gray-text) !important;
+}
+
+.navbar-scrolled nav a:hover {
+    color: var(--accent-primary) !important;
 }
 
 
@@ -702,15 +733,9 @@ nav a:hover {
 
 /* --- Ecosystem Core Variables & Isolation --- */
 .ecosystem-section {
-    padding: 120px 0;
+    padding: 100px 0;
     position: relative;
-    /* Brand New Base Layer Pattern: Deep Bio-Cell Charcoal Green */
-    background-color: #070D01;
-    background-image: 
-        radial-gradient(rgba(153, 204, 51, 0.04) 1px, transparent 0),
-        radial-gradient(rgba(255, 255, 255, 0.01) 1.5px, transparent 0);
-    background-size: 32px 32px, 64px 64px;
-    background-position: 0 0, 16px 16px;
+    background-color: var(--color-dark-green); /* Reverted to green dark background */
     overflow: hidden;
     isolation: isolate;
 }
@@ -730,8 +755,8 @@ nav a:hover {
     opacity: 0.25;
     pointer-events: none;
 }
-.glow-1 { width: 500px; height: 500px; top: -5%; right: -10%; background: #99CC33; }
-.glow-2 { width: 400px; height: 400px; bottom: 10%; left: -5%; background: #3D5E08; }
+.glow-1 { width: 500px; height: 500px; top: -5%; right: -10%; background: rgba(153, 204, 51, 0.2); }
+.glow-2 { width: 400px; height: 400px; bottom: 10%; left: -5%; background: rgba(153, 204, 51, 0.1); }
 
 /* --- Header & Mission Panel --- */
 .ecosystem-header {
@@ -752,7 +777,7 @@ nav a:hover {
 .ecosystem-header h2 {
     font-size: 2.8rem;
     font-weight: 700;
-    color: #FDFFEB;
+    color: #FDFFEB; /* Reverted to light color */
     letter-spacing: -1.5px;
     text-align: center;
     margin-bottom: 45px;
@@ -764,11 +789,11 @@ nav a:hover {
     display: flex;
     flex-direction: column; /* Stacks cards cleanly underneath each other */
     gap: 30px;
-    background: rgba(255, 255, 255, 0.01);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03); /* Glass style */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     padding: 40px;
     border-radius: 24px;
-    backdrop-filter: blur(10px);
     
     /* Centers the panel and prevents it from stretching too wide on huge screens */
     max-width: 900px; 
@@ -777,7 +802,7 @@ nav a:hover {
 
 /* Adds a fine visual separation border line between the two sections */
 .vm-card:not(:last-child) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     padding-bottom: 25px;
 }
 
@@ -818,7 +843,7 @@ nav a:hover {
 
 /* Pure Glass Pod Architecture */
 .eco-pod {
-    background: rgba(17, 28, 1, 0.35);
+    background: rgba(17, 28, 1, 0.35); /* Reverted to glassmorphism */
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 28px;
     padding: 40px 35px;
@@ -827,7 +852,7 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -842,13 +867,12 @@ nav a:hover {
     transform: translateY(-5px);
     background: rgba(17, 28, 1, 0.5);
     border-color: rgba(153, 204, 51, 0.3);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(153, 204, 51, 0.05);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 30px rgba(153, 204, 51, 0.05);
 }
 
 /* Card Elements styling */
 .pod-badge {
     display: inline-block;
-    padding: 6px 14px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 30px;
@@ -948,9 +972,9 @@ nav a:hover {
 }
 
 .eco-cta:hover {
-    background: rgba(153, 204, 51, 0.1);
-    border-color: #99CC33;
-    color: #99CC33;
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: #111C01;
 }
 
 .eco-cta:hover i {
@@ -997,10 +1021,9 @@ nav a:hover {
    1. MAIN SECTION CANVAS (Deep, Fathoming Ecosystem Theme)
    ========================================================================= */
 .impact-section-unique {
-    padding: 120px 0;
+    padding: 100px 0;
     position: relative;
-    /* An ultra-dark charcoal-olive base that makes lime green textures pop */
-    background-color: #0B1104; 
+    background-color: var(--color-white); 
     overflow: hidden;
     isolation: isolate;
 }
@@ -1012,11 +1035,9 @@ nav a:hover {
     background-image: url('/images/Navigating\ the\ World\ of\ Trading_\ Tips\ for\ New\ Investors.jpg');
     background-size: cover;
     background-position: center;
-    /* Kept at 0.08 opacity to serve as a deep, mysterious texture without distracting */
-    opacity: 0.4; 
+    opacity: 0.05; 
     z-index: -2;
     pointer-events: none;
-    mix-blend-mode: luminosity; /* Fuses the image smoothly into the dark theme */
 } 
 
 /* Secondary procedural background styling: Ambient Neon-Green Backlight */
@@ -1060,7 +1081,7 @@ nav a:hover {
 
 .impact-header-unique h2 {
     font-size: 2.6rem;
-    color: #FDFFEB; /* Radiant light contrast color for readability */
+    color: var(--color-dark-green); /* Radiant light contrast color for readability */
     font-weight: 800;
     letter-spacing: -1px;
 }
@@ -1084,19 +1105,14 @@ nav a:hover {
 
 .metric-pod-unique {
     /* Premium dark frosted-glass overlay */
-    background: rgba(255, 255, 255, 0.03); 
-    border: 1px solid rgba(153, 204, 51, 0.12);
+    background: var(--color-white); 
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-top: 3px solid #99CC33; /* Strong top lime border anchor */
     padding: 40px 30px;
     border-radius: 24px;
     position: relative;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .full-width-pod-unique {
@@ -1120,14 +1136,14 @@ nav a:hover {
 .metric-pod-unique:hover {
     transform: translateY(-5px);
     border-color: #99CC33;
-    box-shadow: 0 20px 40px rgba(153, 204, 51, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
 .metric-info-unique .counter-unique {
     display: block;
     font-size: 3.4rem;
     font-weight: 800;
-    color: #FDFFEB; /* Crisp white-lime numbers */
+    color: var(--color-dark-green);
     letter-spacing: -1.5px;
     line-height: 1;
     margin-bottom: 8px;
@@ -1135,7 +1151,7 @@ nav a:hover {
 
 .metric-info-unique .label-unique {
     font-size: 1rem;
-    color: #A3B899; /* Muted pastel green text for secondary label reading */
+    color: var(--color-gray-text); 
     font-weight: 500;
     line-height: 1.4;
 }
@@ -1301,178 +1317,161 @@ nav a:hover {
 
 
 
-
-
-
+/*the gallery section  */
 
 
 /* =========================================================================
    🌄 UNIQUE BENTO GALLERY GRID — Core Structural Layouts
    ========================================================================= */
 
-/* =========================================================================
-   🌅 CAROUSEL SYSTEM LAYOUTS
-   ========================================================================= */
-
-.gallery-cascade-section {
-    padding: 140px 0;
-    background-color: #111C01;
+.gallery-slider-section {
+    padding: 100px 0;
+    background-color: var(--color-light-bg);
     position: relative;
     overflow: hidden;
     isolation: isolate;
 }
 
-.gallery-cascade-container {
+.gallery-slider-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 40px;
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 60px;
-    align-items: center;
 }
 
-.gallery-meta-block {
-    position: relative;
-    z-index: 10;
+.gallery-slider-header {
+    text-align: center;
+    margin-bottom: 60px;
 }
 
-.gallery-pre-title {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    color: #99CC33;
-    font-weight: 700;
-    display: block;
-    margin-bottom: 16px;
-}
-
-.gallery-meta-block h2 {
+.gallery-slider-header h2 {
     font-size: 3rem;
     font-weight: 700;
-    color: #FDFFEB;
-    line-height: 1.1;
-    letter-spacing: -1.5px;
-    margin-bottom: 24px;
+    color: var(--color-dark-green);
+    line-height: 1.2;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
 }
 
-.gallery-meta-block .gradient-accent {
-    color: #99CC33;
+.red-accent {
+    color: #99CC33; /* Corporate Lime Green */
 }
 
-.gallery-meta-block p {
-    font-size: 1.05rem;
-    color: #DEFAA5;
-    opacity: 0.8;
+.gallery-slider-header p {
+    font-size: 1.1rem;
+    color: var(--color-gray-text);
     line-height: 1.6;
-    margin-bottom: 40px;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
-/* Bento Grid Container */
-.bento-gallery-grid {
-    display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(2, 1fr);
-    auto-rows: 200px;
+.gallery-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-.bento-gallery-grid.preview-grid {
-    grid-template-columns: repeat(2, 1fr);
+.slider-arrow {
+    background: var(--color-white);
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-dark-green);
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+    z-index: 10;
+    flex-shrink: 0;
 }
 
-/* Individual Cell Styling */
-.bento-cell {
+.slider-arrow:hover {
+    background: #99CC33;
+    color: var(--color-white);
+    transform: scale(1.1);
+}
+
+.gallery-slider-grid {
+    display: flex;
+    gap: 25px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.gallery-slider-grid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+.gallery-slider-card {
+    flex: 0 0 calc(33.333% - 17px);
+    scroll-snap-align: start;
+    position: relative;
     border-radius: 20px;
     overflow: hidden;
-    position: relative;
-    height: 100%;
-    min-height: 200px;
+    height: 400px;
+    background: #000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.bento-hero {
-    grid-column: span 2;
-    height: 300px;
-}
-
-.bento-inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.bento-inner img {
+.gallery-slider-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    filter: brightness(0.85);
+    transition: transform 0.8s ease;
 }
 
-.bento-cell:hover .bento-inner img {
+.gallery-slider-card:hover img {
     transform: scale(1.05);
 }
 
-/* Dynamic Hover Overlay */
-.bento-overlay {
+.gallery-slider-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-pill-tag {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(11, 18, 1, 0.95) 0%, rgba(11, 18, 1, 0.2) 60%, transparent 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 30px;
-    opacity: 1; /* Keep visible on slide panels for better design readability */
-}
-
-.bento-tag {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
+    top: 25px;
+    left: 25px;
+    background: var(--color-white);
     color: #99CC33;
+    font-size: 0.75rem;
+    font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 8px;
-    background: rgba(153, 204, 51, 0.12);
-    display: inline-block;
-    padding: 3px 12px;
+    letter-spacing: 1px;
+    padding: 6px 16px;
     border-radius: 20px;
-    border: 1px solid rgba(153, 204, 51, 0.25);
-}
-
-.bento-overlay h4 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #FDFFEB;
-    line-height: 1.3;
-}
-
-/* Redirection Button Styles */
-.gallery-load-more-wrapper {
-    text-align: left;
-    margin-top: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 5;
 }
 
 /* Screen Size Media Adaptations */
 @media (max-width: 1100px) {
-    .gallery-cascade-container {
-        grid-template-columns: 1fr;
-        padding: 0 24px;
-        gap: 40px;
+    .gallery-slider-card {
+        flex: 0 0 calc(50% - 12.5px);
     }
-    .gallery-load-more-wrapper { text-align: center; }
 }
 
 @media (max-width: 768px) {
-    .bento-gallery-grid.preview-grid {
-        grid-template-columns: 1fr;
+    .gallery-slider-card {
+        flex: 0 0 100%;
     }
-    .bento-hero {
-        grid-column: span 1;
+    .slider-arrow {
+        display: none; /* Hide arrows on mobile, rely on swipe (if implemented) */
     }
 }
 
 
-/* THS*/
+/* THIS IS the footer section*/
 
 /* --- High-End Terminal Footer Base Structure --- */
 .terminal-footer {
@@ -1515,26 +1514,26 @@ nav a:hover {
     padding-bottom: 80px;
 }
 
-/* --- Left Side: Contact Channels Typography & Assets --- */
+
 .footer-brand-zone {
     margin-bottom: 45px;
 }
 
 .footer-logo {
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
     color: #FDFFEB;
-    letter-spacing: -1.5px;
-    display: block;
     margin-bottom: 15px;
+    display: inline-block;
 }
 
 .brand-tagline {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: #DEFAA5;
-    opacity: 0.75;
-    line-height: 1.5;
-    max-width: 440px;
+    line-height: 1.6;
+    max-width: 350px;
+    opacity: 0.9;
 }
 
 .contact-channels {
@@ -1545,49 +1544,45 @@ nav a:hover {
 
 /* Channel Row Configuration Items */
 .channel-card {
-    background: rgba(13, 22, 1, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: 20px;
-    padding: 24px;
     display: flex;
     align-items: center;
-    gap: 20px;
-    position: relative;
-    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
 }
 
 .channel-icon-box {
-    width: 48px;
-    height: 48px;
+    width: 45px;
+    height: 45px;
     background: rgba(153, 204, 51, 0.08);
-    border: 1px solid rgba(153, 204, 51, 0.15);
-    border-radius: 14px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.channel-icon-box i {
-    color: #99CC33; /* Accent Bright Lime */
-    font-size: 1.1rem;
+    color: #99CC33;
+    font-size: 1.2rem;
 }
 
 .channel-details span {
-    display: block;
     font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #99CC33;
+    letter-spacing: 1px;
+    color: #DEFAA5;
     font-weight: 600;
+    display: block;
     margin-bottom: 4px;
 }
 
 .channel-details p {
+    font-size: 1rem;
     color: #FDFFEB;
-    font-size: 0.95rem;
-    line-height: 1.4;
     font-weight: 500;
+    margin: 0;
 }
 
 .channel-arrow {
@@ -1605,6 +1600,12 @@ nav a:hover {
     background: rgba(153, 204, 51, 0.04);
     border-color: rgba(153, 204, 51, 0.25);
     transform: translateY(-2px);
+}
+
+.eco-cta:hover {
+    background: rgba(153, 204, 51, 0.08);
+    border-color: rgba(153, 204, 51, 0.3);
+    color: var(--color-dark-green);
 }
 
 .interactive-channel:hover .channel-icon-box {
@@ -1627,16 +1628,14 @@ nav a:hover {
 
 .hub-header-block h3 {
     font-size: 1.8rem;
-    font-weight: 700;
     color: #FDFFEB;
-    letter-spacing: -0.5px;
     margin-bottom: 10px;
 }
 
 .hub-header-block p {
     color: #DEFAA5;
-    opacity: 0.75;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 /* Grid Layout for Social Matrix Network Nodes */
@@ -1649,12 +1648,13 @@ nav a:hover {
 .matrix-node {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 22px;
+    padding: 20px;
+    border-radius: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .node-inner {
@@ -1664,15 +1664,14 @@ nav a:hover {
 }
 
 .node-inner i {
-    font-size: 1.4rem;
-    color: #FDFFEB;
-    transition: transform 0.3s ease;
+    font-size: 1.5rem;
+    color: #99CC33;
 }
 
 .node-inner span {
-    font-weight: 600;
-    font-size: 1rem;
     color: #FDFFEB;
+    font-weight: 600;
+    font-size: 1.1rem;
 }
 
 /* Secondary status tag designs inside cards */
@@ -1785,17 +1784,7 @@ nav a:hover {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
+/*the About section for prohive
 
 /* =========================================================================
    📦 SCROLL REVEAL SYSTEM — Entire page comes alive as user scrolls

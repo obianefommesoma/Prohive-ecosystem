@@ -1,9 +1,8 @@
 /* =========================================================================
-   ✨ PROHIVE INTERACTION & ANIMATION ENGINE — CLEANED & ENHANCED
-   Canvas background animation REMOVED. Scroll animations ADDED.
+   ✨ PROHIVE INTERACTION & ANIMATION ENGINE — FULLY FIXED
    ========================================================================= */
 
-
+document.addEventListener('DOMContentLoaded', () => {
 
     // =========================================================================
     // 🌊 LIQUID SHIMMER MOUSE TRACKING (About Section Cards)
@@ -96,7 +95,7 @@
     const heroSlides = document.querySelectorAll('.hero-slide');
     const heroDots = document.querySelectorAll('.hero-dot');
     let currentHeroSlide = 0;
-    const heroSlideDuration = 6000; // 6 seconds per slide
+    const heroSlideDuration = 4500; // Speed up auto slideshow slightly as requested
 
     if (heroSlides.length > 0) {
         function switchHeroSlide(index) {
@@ -161,3 +160,81 @@
             }
         });
     });
+
+    // =========================================================================
+    // 📸 GALLERY SLIDER — Arrow navigation (FIXED: runs after DOM ready)
+    // =========================================================================
+    const galleryGrid = document.querySelector('.gallery-slider-grid');
+    const leftArrow = document.querySelector('.left-arrow');
+    const rightArrow = document.querySelector('.right-arrow');
+
+    if (galleryGrid && leftArrow && rightArrow) {
+        let isSliding = false;
+
+        function slideGallery(direction) {
+            if (isSliding) return;
+            const firstCard = galleryGrid.querySelector('.gallery-slider-card');
+            if (!firstCard) return;
+
+            isSliding = true;
+            const cardWidth = firstCard.offsetWidth + 25;
+            const startScroll = galleryGrid.scrollLeft;
+            let targetScroll = startScroll + (direction === 'left' ? -cardWidth : cardWidth);
+            
+            const maxScroll = galleryGrid.scrollWidth - galleryGrid.clientWidth;
+            if (targetScroll > maxScroll + 10) {
+                targetScroll = 0;
+            } else if (targetScroll < -10) {
+                targetScroll = maxScroll;
+            }
+            
+            // Temporarily disable standard scroll behavior and scroll snap
+            galleryGrid.style.scrollSnapType = 'none';
+            galleryGrid.style.scrollBehavior = 'auto';
+
+            const duration = 1200; // Slowed down gallery transition time (1.2 seconds) as requested
+            const startTime = performance.now();
+
+            function easeInOutQuad(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            function step(timestamp) {
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed, duration);
+                galleryGrid.scrollLeft = easeInOutQuad(progress, startScroll, targetScroll - startScroll, duration);
+
+                if (elapsed < duration) {
+                    requestAnimationFrame(step);
+                } else {
+                    galleryGrid.scrollLeft = targetScroll;
+                    galleryGrid.style.scrollSnapType = 'x mandatory';
+                    isSliding = false;
+                }
+            }
+
+            requestAnimationFrame(step);
+        }
+
+        // Auto slide gallery every 4.5 seconds (sliding on its own)
+        let galleryAutoplay = setInterval(() => {
+            slideGallery('right');
+        }, 4500);
+
+        leftArrow.addEventListener('click', () => {
+            clearInterval(galleryAutoplay);
+            slideGallery('left');
+            galleryAutoplay = setInterval(() => slideGallery('right'), 4500);
+        });
+        
+        rightArrow.addEventListener('click', () => {
+            clearInterval(galleryAutoplay);
+            slideGallery('right');
+            galleryAutoplay = setInterval(() => slideGallery('right'), 4500);
+        });
+    }
+
+}); // END DOMContentLoaded
