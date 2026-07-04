@@ -61,8 +61,42 @@ header, .nav-wrapper {
     top: 0;
     left: 0;
     z-index: 1000;
-    transition: all 0.35s ease;
+    /* Smooth slide up/down + style transition */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                padding 0.35s ease,
+                background 0.35s ease,
+                box-shadow 0.35s ease;
     background: transparent;
+}
+
+/* ── Scrolled state: white glass pill bar ── */
+.navbar-scrolled {
+    padding: 0.85rem 6%;
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(153, 204, 51, 0.15);
+}
+
+/* When scrolled, switch logo & links to dark green so they read on white */
+.navbar-scrolled .logo {
+    color: var(--color-dark-green);
+}
+
+.navbar-scrolled nav a {
+    color: var(--color-dark-green);
+    opacity: 0.85;
+}
+
+.navbar-scrolled nav a:hover {
+    color: var(--color-green-leaf);
+    opacity: 1;
+}
+
+/* ── Hide on scroll-down, reveal on scroll-up ── */
+.navbar-hidden {
+    transform: translateY(-110%) !important;
 }
 
 /* Ensure the floating nav pill menu links blend cleanly */
@@ -135,7 +169,7 @@ html {
     font-weight: 700;
     letter-spacing: -0.5px;
     color: #FFFFFF;
-    transition: color 0.3s ease;
+    transition: color 0.35s ease;
 }
 
 nav ul {
@@ -152,7 +186,7 @@ nav ul {
 nav a {
     font-size: 0.95rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.9);
     transition: color 0.3s ease;
 }
 
@@ -382,34 +416,36 @@ nav a:hover {
 }
 
 .social-icon {
-    width: 45px;
-    height: 45px;
-    background-color: rgba(255, 255, 255, 0.92); /* Solid frosted white background to blend perfectly on light and dark sections */
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    width: 46px;
+    height: 46px;
+    /* Fully transparent — works on any section background */
+    background-color: transparent;
+    border: 1.5px solid rgba(153, 204, 51, 0.5);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: none;
+    transition: all 0.32s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .social-icon i {
-    font-size: 1.2rem;
-    color: #111C01;
+    font-size: 1.1rem;
+    color: #99CC33; /* Lime green icons — visible on both light and dark */
     transition: all 0.3s ease;
 }
 
 .social-icon:hover {
     border-color: var(--accent-primary);
-    background-color: var(--accent-primary);
-    transform: translateX(-4px);
-    box-shadow: 0 6px 20px rgba(153, 204, 51, 0.3);
+    background-color: rgba(153, 204, 51, 0.15);
+    transform: translateX(-5px) scale(1.08);
+    box-shadow: 0 0 20px rgba(153, 204, 51, 0.3);
 }
 
 .social-icon:hover i {
-    color: #111C01;
+    color: #DEFAA5;
 }
 
 /* --- Responsive Media Viewport Breaks --- */
@@ -489,11 +525,12 @@ nav a:hover {
     mix-blend-mode: overlay; 
 }
 
+/* bg slides — subtle overlay, no external images needed */
 .bg-slide.slide-1 {
-    background-image: linear-gradient(rgba(243, 244, 246, 0.92), rgba(243, 244, 246, 0.92)), url('path-to-partners-discussing.jpg');
+    background: linear-gradient(135deg, rgba(153, 204, 51, 0.05), rgba(17, 28, 1, 0.04));
 }
 .bg-slide.slide-2 {
-    background-image: linear-gradient(rgba(243, 244, 246, 0.92), rgba(243, 244, 246, 0.92)), url('path-to-corporate-building.jpg');
+    background: linear-gradient(225deg, rgba(100, 145, 32, 0.06), transparent);
     animation-delay: 8s;
 }
 
@@ -701,20 +738,20 @@ nav a:hover {
    🌐 NAVBAR SCROLL STATE
    ========================================================================= */
 .navbar-scrolled {
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    padding: 1.1rem 6% !important;
+    background: rgba(17, 28, 1, 0.45) !important; /* Dark green transparent glassmorphism */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(153, 204, 51, 0.2);
+    padding: 1rem 6% !important; /* Animates spacing smoothly on scroll */
 }
 
 .navbar-scrolled .logo {
-    color: var(--color-dark-green) !important;
+    color: #FFFFFF !important;
 }
 
 .navbar-scrolled nav a {
-    color: var(--color-gray-text) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .navbar-scrolled nav a:hover {
@@ -881,6 +918,7 @@ nav a:hover {
     color: #DEFAA5;
     text-transform: uppercase;
     letter-spacing: 1px;
+    padding: 8px 18px;
     margin-bottom: 20px;
 }
 
@@ -1321,8 +1359,15 @@ nav a:hover {
 
 
 /* =========================================================================
-   🌄 UNIQUE BENTO GALLERY GRID — Core Structural Layouts
+   🌄 INFINITE MARQUEE GALLERY
    ========================================================================= */
+
+/* — CONFIGURABLE SPEED — change --marquee-duration to adjust scroll speed — */
+:root {
+    --marquee-duration: 38s;   /* lower = faster */
+    --card-width: 340px;
+    --card-gap: 24px;
+}
 
 .gallery-slider-section {
     padding: 100px 0;
@@ -1333,14 +1378,15 @@ nav a:hover {
 }
 
 .gallery-slider-container {
-    max-width: 1400px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 0 0 0;
 }
 
 .gallery-slider-header {
     text-align: center;
     margin-bottom: 60px;
+    padding: 0 40px;
 }
 
 .gallery-slider-header h2 {
@@ -1353,7 +1399,7 @@ nav a:hover {
 }
 
 .red-accent {
-    color: #99CC33; /* Corporate Lime Green */
+    color: #99CC33;
 }
 
 .gallery-slider-header p {
@@ -1364,109 +1410,165 @@ nav a:hover {
     margin: 0 auto;
 }
 
-.gallery-slider-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 20px;
+/* Outer container: fade edges + hide overflow */
+.gallery-marquee-outer {
+    width: 100%;
+    overflow: hidden;
+    /* soft fade-out on left and right edges */
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
-.slider-arrow {
-    background: var(--color-white);
-    border: 1px solid rgba(0,0,0,0.08);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    width: 45px;
-    height: 45px;
+/* Manual scroll overrides for the main gallery */
+#galleryMarquee {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    mask-image: none;
+    -webkit-mask-image: none;
+    padding-bottom: 20px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+#galleryMarquee::-webkit-scrollbar {
+    display: none;
+}
+#galleryTrack {
+    animation: none !important;
+    padding: 0 5%;
+}
+
+.gallery-controls-header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 0 5% 20px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gallery-scroll-btn {
+    background: rgba(153, 204, 51, 0.1);
+    color: #99CC33;
+    border: 1px solid rgba(153, 204, 51, 0.3);
     border-radius: 50%;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: var(--color-dark-green);
-    font-size: 1.1rem;
-    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
-    z-index: 10;
-    flex-shrink: 0;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
 }
 
-.slider-arrow:hover {
+.gallery-scroll-btn:hover {
     background: #99CC33;
-    color: var(--color-white);
-    transform: scale(1.1);
+    color: #111C01;
 }
 
-.gallery-slider-grid {
+.gallery-marquee-outer:hover .gallery-marquee-track {
+    animation-play-state: paused;
+}
+
+/* The scrolling track — JS will clone the cards to create seamless loop */
+.gallery-marquee-track {
     display: flex;
-    gap: 25px;
-    width: 100%;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    gap: var(--card-gap);
+    width: max-content;
+    animation: marqueeScroll var(--marquee-duration) linear infinite;
+    will-change: transform;
 }
 
-.gallery-slider-grid::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+@keyframes marqueeScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }  /* JS doubles the track, so -50% = one full loop */
 }
 
-.gallery-slider-card {
-    flex: 0 0 calc(33.333% - 17px);
-    scroll-snap-align: start;
-    position: relative;
+/* Individual card */
+.gallery-marquee-card {
+    flex: 0 0 var(--card-width);
+    width: var(--card-width);
+    height: 400px;
     border-radius: 20px;
     overflow: hidden;
-    height: 400px;
+    position: relative;
     background: #000;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.gallery-slider-card img {
+.gallery-marquee-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.8s ease;
+    transition: transform 0.7s ease;
+    display: block;
 }
 
-.gallery-slider-card:hover img {
-    transform: scale(1.05);
+.gallery-marquee-card:hover img {
+    transform: scale(1.06);
 }
 
-.gallery-slider-card:hover {
+.gallery-marquee-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.14);
 }
 
+/* Category tag */
 .card-pill-tag {
     position: absolute;
-    top: 25px;
-    left: 25px;
-    background: var(--color-white);
-    color: #99CC33;
-    font-size: 0.75rem;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #649120;
+    font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 6px 16px;
+    letter-spacing: 1.5px;
+    padding: 5px 14px;
     border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     z-index: 5;
+    backdrop-filter: blur(6px);
 }
 
-/* Screen Size Media Adaptations */
-@media (max-width: 1100px) {
-    .gallery-slider-card {
-        flex: 0 0 calc(50% - 12.5px);
-    }
+/* ProHive Ecosystem branding label at the bottom of each card */
+.card-brand-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(17, 28, 1, 0.88) 0%, transparent 100%);
+    color: #DEFAA5;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 28px 20px 16px;
+    text-align: left;
+    z-index: 5;
+    text-transform: uppercase;
 }
 
+/* Pause hint */
+.gallery-hint {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--color-gray-text);
+    margin-top: 28px;
+    opacity: 0.65;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .gallery-slider-card {
-        flex: 0 0 100%;
+    :root {
+        --card-width: 280px;
+        --marquee-duration: 28s;
     }
-    .slider-arrow {
-        display: none; /* Hide arrows on mobile, rely on swipe (if implemented) */
+    .gallery-marquee-card {
+        height: 320px;
     }
 }
 
@@ -1600,12 +1702,6 @@ nav a:hover {
     background: rgba(153, 204, 51, 0.04);
     border-color: rgba(153, 204, 51, 0.25);
     transform: translateY(-2px);
-}
-
-.eco-cta:hover {
-    background: rgba(153, 204, 51, 0.08);
-    border-color: rgba(153, 204, 51, 0.3);
-    color: var(--color-dark-green);
 }
 
 .interactive-channel:hover .channel-icon-box {
@@ -1906,4 +2002,659 @@ nav a:hover {
 .reveal-node.in-view {
     opacity: 1;
     transform: scale(1) translateY(0);
+}
+
+/* ==========================================================================
+   BRANDITPRO PAGE SPECIFIC STYLES
+   ========================================================================== */
+
+/* --- BrandiTPro Hero Section --- */
+.brandit-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 5% 60px;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+.hero-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    /* Dark gradient overlay to ensure text readability while maintaining brand colors */
+    background: linear-gradient(135deg, rgba(8, 12, 4, 0.95) 0%, rgba(17, 28, 1, 0.8) 50%, rgba(8, 12, 4, 0.95) 100%);
+    z-index: 1;
+}
+
+.brandit-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-sub-badge {
+    display: inline-block;
+    background: rgba(153, 204, 51, 0.15);
+    border: 1px solid rgba(153, 204, 51, 0.3);
+    color: #99CC33;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.hero-headline {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.2;
+    margin-bottom: 30px;
+}
+
+/* Dynamic Typing Text */
+.dynamic-text-wrapper {
+    display: inline-block;
+    color: #99CC33;
+    position: relative;
+    border-bottom: 3px solid #99CC33;
+}
+.dynamic-text {
+    border-right: 3px solid transparent; /* Cursor effect handled in JS */
+}
+.dynamic-text.typing {
+    border-right-color: #99CC33;
+    animation: blink-cursor 0.75s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    from, to { border-right-color: transparent; }
+    50% { border-right-color: #99CC33; }
+}
+
+.hero-subtext {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 800px;
+    line-height: 1.6;
+    margin-bottom: 50px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Contact Dropdown */
+.contact-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.contact-dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: rgba(17, 28, 1, 0.95);
+    border: 1px solid rgba(153, 204, 51, 0.3);
+    min-width: 250px;
+    border-radius: 16px;
+    padding: 15px 0;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+}
+
+/* Arrow for dropdown */
+.contact-dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background: rgba(17, 28, 1, 0.95);
+    border-top: 1px solid rgba(153, 204, 51, 0.3);
+    border-left: 1px solid rgba(153, 204, 51, 0.3);
+}
+
+.contact-dropdown-wrapper:hover .contact-dropdown-content,
+.contact-dropdown-wrapper:focus-within .contact-dropdown-content {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #DEFAA5;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.contact-item:hover {
+    background: rgba(153, 204, 51, 0.1);
+    color: #FFF;
+}
+
+.contact-item i {
+    color: #99CC33;
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+
+/* --- BrandiT Marquee Section --- */
+.client-marquee-section {
+    padding: 60px 0;
+    background: var(--bg-deep-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.marquee-label {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+}
+
+/* Reusing gallery marquee structure from index, but adjust sizing */
+#branditMarquee .gallery-marquee-card {
+    height: 100px;
+    width: 250px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: grayscale(100%) opacity(0.6);
+    transition: all 0.3s ease;
+}
+
+#branditMarquee .gallery-marquee-card:hover {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05);
+}
+#branditMarquee img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+#branditMarquee .card-brand-label, 
+#branditMarquee .card-pill-tag {
+    display: none;
+}
+
+/* --- BrandiT Services Bento Grid --- */
+.brandit-services {
+    padding: 120px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bento-services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 60px;
+}
+
+.bento-card {
+    background: rgba(17, 28, 1, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 28px;
+    padding: 45px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover {
+    transform: translateY(-5px);
+    background: rgba(17, 28, 1, 0.6);
+    border-color: rgba(153, 204, 51, 0.3);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 30px rgba(153, 204, 51, 0.05);
+}
+
+.bento-span-2 {
+    grid-column: span 2;
+}
+
+.bento-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(153, 204, 51, 0.1);
+    border: 1px solid rgba(153, 204, 51, 0.2);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.bento-icon i {
+    font-size: 1.5rem;
+    color: #99CC33;
+}
+
+.bento-card h3 {
+    position: relative;
+    border-bottom: 3px solid #99CC33;
+}
+.dynamic-text {
+    border-right: 3px solid transparent; /* Cursor effect handled in JS */
+}
+.dynamic-text.typing {
+    border-right-color: #99CC33;
+    animation: blink-cursor 0.75s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    from, to { border-right-color: transparent; }
+    50% { border-right-color: #99CC33; }
+}
+
+.hero-subtext {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 800px;
+    line-height: 1.6;
+    margin-bottom: 50px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Contact Dropdown */
+.contact-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.contact-dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: rgba(17, 28, 1, 0.95);
+    border: 1px solid rgba(153, 204, 51, 0.3);
+    min-width: 250px;
+    border-radius: 16px;
+    padding: 15px 0;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+}
+
+/* Arrow for dropdown */
+.contact-dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background: rgba(17, 28, 1, 0.95);
+    border-top: 1px solid rgba(153, 204, 51, 0.3);
+    border-left: 1px solid rgba(153, 204, 51, 0.3);
+}
+
+.contact-dropdown-wrapper:hover .contact-dropdown-content,
+.contact-dropdown-wrapper:focus-within .contact-dropdown-content {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #DEFAA5;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.contact-item:hover {
+    background: rgba(153, 204, 51, 0.1);
+    color: #FFF;
+}
+
+.contact-item i {
+    color: #99CC33;
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+
+/* --- BrandiT Marquee Section --- */
+.client-marquee-section {
+    padding: 60px 0;
+    background: var(--bg-deep-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.marquee-label {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+}
+
+/* Reusing gallery marquee structure from index, but adjust sizing */
+#branditMarquee .gallery-marquee-card {
+    height: 100px;
+    width: 250px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: grayscale(100%) opacity(0.6);
+    transition: all 0.3s ease;
+}
+
+#branditMarquee .gallery-marquee-card:hover {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05);
+}
+#branditMarquee img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+#branditMarquee .card-brand-label, 
+#branditMarquee .card-pill-tag {
+    display: none;
+}
+
+/* --- BrandiT Services Bento Grid --- */
+.brandit-services {
+    padding: 120px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bento-services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 60px;
+}
+
+.bento-card {
+    background: rgba(17, 28, 1, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 28px;
+    padding: 45px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover {
+    transform: translateY(-5px);
+    background: rgba(17, 28, 1, 0.6);
+    border-color: rgba(153, 204, 51, 0.3);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 30px rgba(153, 204, 51, 0.05);
+}
+
+.bento-span-2 {
+    grid-column: span 2;
+}
+
+.bento-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(153, 204, 51, 0.1);
+    border: 1px solid rgba(153, 204, 51, 0.2);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.bento-icon i {
+    font-size: 1.5rem;
+    color: #99CC33;
+}
+
+.bento-card h3 {
+    font-size: 1.6rem;
+    color: #FFF;
+    margin-bottom: 15px;
+}
+
+.bento-card p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* --- BrandiT Simplified Header --- */
+.brandit-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8, 12, 4, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 1000;
+}
+
+.brandit-header .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #FFF;
+    letter-spacing: -1px;
+}
+
+.header-sub-brand {
+    color: #99CC33;
+    font-weight: 400;
+}
+
+/* --- BrandiT Actual Logos --- */
+.brandit-logo-card {
+    height: 100px;
+    width: 280px;
+    padding: 15px 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px;
+    filter: grayscale(100%) brightness(2) opacity(0.6);
+    transition: all 0.3s ease;
+}
+
+.brandit-logo-card:hover {
+    filter: grayscale(0%) brightness(1) opacity(1);
+    transform: scale(1.05);
+    background: transparent; /* Ensure no hover background covers it */
+}
+
+.brandit-logo-card img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* --- Expertise Showcase Detailed Cards --- */
+.expertise-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 60px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.expertise-detailed-card {
+    position: relative;
+    background: #A3B19B; /* Sage Green background from screenshot */
+    border: none;
+    border-radius: 24px;
+    padding: 50px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.expertise-detailed-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.card-glass-bg {
+    display: none; /* Removed to match flat design */
+}
+
+.expertise-detailed-card .card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.expertise-detailed-card .bento-icon {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+}
+
+.expertise-detailed-card .bento-icon i {
+    color: #8DC63F;
+}
+
+.card-text-body {
+    flex: 1;
+}
+
+.card-text-body h3 {
+    font-size: 2rem;
+    color: #FFF;
+    margin-bottom: 20px;
+}
+
+.card-text-body p {
+    font-size: 1.15rem;
+    color: #FFF;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.expertise-focus {
+    font-size: 0.85rem !important;
+    color: #8DC63F !important; /* Brighter green */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.expertise-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    background: transparent;
+    color: #8DC63F;
+    border: 1px solid #8DC63F;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.expertise-cta:hover {
+    background: rgba(141, 198, 63, 0.1);
+    color: #8DC63F;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .bento-services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .bento-span-2 {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .brandit-header .logo {
+        font-size: 1.2rem;
+    }
+    .brandit-header .btn-solid-header {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    .expertise-detailed-card .card-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .bento-services-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-headline {
+        font-size: 2.5rem;
+    }
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    .hero-actions .btn-primary, .hero-actions .btn-secondary {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
 }

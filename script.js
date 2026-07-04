@@ -1,5 +1,5 @@
 /* =========================================================================
-   ✨ PROHIVE INTERACTION & ANIMATION ENGINE — FULLY FIXED
+   ✨ PROHIVE INTERACTION & ANIMATION ENGINE — CLEANED & AUDITED v1.6
    ========================================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,34 +11,30 @@ document.addEventListener('DOMContentLoaded', () => {
     liquidCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
             const shimmer = card.querySelector('.water-shimmer');
             if (shimmer) {
-                shimmer.style.setProperty('--mouse-x', `${x}px`);
-                shimmer.style.setProperty('--mouse-y', `${y}px`);
+                shimmer.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                shimmer.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
             }
         });
     });
 
 
     // =========================================================================
-    // 🚀 MASTER SCROLL REVEAL SYSTEM — Page comes alive on scroll
+    // 🚀 MASTER SCROLL REVEAL SYSTEM
     // =========================================================================
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('reveal-active');
             } else {
-                // Allow re-animation when scrolling back up
                 entry.target.classList.remove('reveal-active');
             }
         });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    // Track all scrollable sections and block elements
     const scrollTargets = document.querySelectorAll(
-        '.about-section, .pillar-card, .evolution-box, .eco-pod, .metric-pod-unique, .strategy-card-unique, .channel-card, .matrix-node, .hub-header-block, .impact-header-unique, .ecosystem-header, .gallery-meta-block, .section-header, .evolution-box, .trusted-title, .marquee-wrapper'
+        '.about-section, .pillar-card, .evolution-box, .eco-pod, .metric-pod-unique, .strategy-card-unique, .channel-card, .matrix-node, .hub-header-block, .impact-header-unique, .ecosystem-header, .gallery-meta-block, .section-header, .trusted-title, .marquee-wrapper'
     );
     scrollTargets.forEach(el => revealObserver.observe(el));
 
@@ -49,27 +45,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const counters = document.querySelectorAll('.counter-unique');
     const counterObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-                const rawText = el.textContent.trim();
-                const targetVal = parseInt(rawText.replace(/[^\d]/g, ''), 10);
-                const suffix = rawText.replace(/[0-9]/g, '');
-                let startTime = null;
-                const duration = 1800;
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const rawText = el.textContent.trim();
+            const targetVal = parseInt(rawText.replace(/[^\d]/g, ''), 10);
+            const suffix = rawText.replace(/[0-9]/g, '');
+            let startTime = null;
+            const duration = 1800;
 
-                const runCount = (timestamp) => {
-                    if (!startTime) startTime = timestamp;
-                    const elapsed = timestamp - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const easeOut = 1 - Math.pow(1 - progress, 3);
-                    el.textContent = `${Math.floor(easeOut * targetVal)}${suffix}`;
-                    if (progress < 1) requestAnimationFrame(runCount);
-                    else el.textContent = rawText;
-                };
+            const runCount = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                el.textContent = `${Math.floor(easeOut * targetVal)}${suffix}`;
+                if (progress < 1) requestAnimationFrame(runCount);
+                else el.textContent = rawText;
+            };
 
-                requestAnimationFrame(runCount);
-                observer.unobserve(el);
-            }
+            requestAnimationFrame(runCount);
+            observer.unobserve(el);
         });
     }, { threshold: 0.5 });
 
@@ -77,25 +72,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 🧭 NAVBAR SCROLL STATE — Adds glass blur on scroll
+    // 🧭 NAVBAR — Glass blur on scroll + HIDE on scroll-down / SHOW on scroll-up
     // =========================================================================
     const navbar = document.querySelector('.navbar-header');
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 60) {
-            navbar?.classList.add('navbar-scrolled');
-        } else {
-            navbar?.classList.remove('navbar-scrolled');
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const currentY = window.scrollY;
+
+                // Apply / remove scrolled glass style
+                if (currentY > 60) {
+                    navbar?.classList.add('navbar-scrolled');
+                } else {
+                    navbar?.classList.remove('navbar-scrolled');
+                    navbar?.classList.remove('navbar-hidden'); // always show at top
+                }
+
+                // Hide on scroll-down, show on scroll-up (only past 150px)
+                if (currentY > 150) {
+                    if (currentY > lastScrollY) {
+                        navbar?.classList.add('navbar-hidden');
+                    } else {
+                        navbar?.classList.remove('navbar-hidden');
+                    }
+                }
+
+                lastScrollY = currentY;
+                ticking = false;
+            });
+            ticking = true;
         }
     }, { passive: true });
 
 
     // =========================================================================
-    // 🖼️ HERO SLIDESHOW LOGIC
+    // 🖼️ HERO SLIDESHOW LOGIC — horizontal slide transition
     // =========================================================================
     const heroSlides = document.querySelectorAll('.hero-slide');
     const heroDots = document.querySelectorAll('.hero-dot');
     let currentHeroSlide = 0;
-    const heroSlideDuration = 4500; // Speed up auto slideshow slightly as requested
+    const heroSlideDuration = 4500;
 
     if (heroSlides.length > 0) {
         function switchHeroSlide(index) {
@@ -109,16 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
             heroSlides[currentHeroSlide].classList.add('active');
             heroSlides[currentHeroSlide].classList.remove('prev');
             if (heroDots[currentHeroSlide]) heroDots[currentHeroSlide].classList.add('active');
-            
+
             setTimeout(() => {
                 heroSlides[prevSlideIndex].classList.remove('prev');
-            }, 1500); 
+            }, 1500);
         }
 
         function nextHeroSlide() {
-            let nextIndex = currentHeroSlide + 1;
-            if (nextIndex >= heroSlides.length) nextIndex = 0;
-            switchHeroSlide(nextIndex);
+            switchHeroSlide((currentHeroSlide + 1) % heroSlides.length);
         }
 
         let heroSlideTimer = setInterval(nextHeroSlide, heroSlideDuration);
@@ -133,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
     // =========================================================================
     // 🎞️ HERO PARALLAX — Subtle depth shift on scroll
     // =========================================================================
@@ -140,8 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroBg = document.querySelector('.hero-slideshow');
     if (heroSection && heroBg) {
         window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY;
-            heroBg.style.transform = `translateY(${scrolled * 0.35}px)`;
+            heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
         }, { passive: true });
     }
 
@@ -161,80 +178,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+
     // =========================================================================
-    // 📸 GALLERY SLIDER — Arrow navigation (FIXED: runs after DOM ready)
+    // 🎠 INFINITE MARQUEE GALLERY — clone track for seamless loop
     // =========================================================================
-    const galleryGrid = document.querySelector('.gallery-slider-grid');
-    const leftArrow = document.querySelector('.left-arrow');
-    const rightArrow = document.querySelector('.right-arrow');
+    const galleryTrack = document.getElementById('galleryTrack');
 
-    if (galleryGrid && leftArrow && rightArrow) {
-        let isSliding = false;
+    // The main gallery track no longer needs cloning because it is manually scrolled
 
-        function slideGallery(direction) {
-            if (isSliding) return;
-            const firstCard = galleryGrid.querySelector('.gallery-slider-card');
-            if (!firstCard) return;
-
-            isSliding = true;
-            const cardWidth = firstCard.offsetWidth + 25;
-            const startScroll = galleryGrid.scrollLeft;
-            let targetScroll = startScroll + (direction === 'left' ? -cardWidth : cardWidth);
-            
-            const maxScroll = galleryGrid.scrollWidth - galleryGrid.clientWidth;
-            if (targetScroll > maxScroll + 10) {
-                targetScroll = 0;
-            } else if (targetScroll < -10) {
-                targetScroll = maxScroll;
-            }
-            
-            // Temporarily disable standard scroll behavior and scroll snap
-            galleryGrid.style.scrollSnapType = 'none';
-            galleryGrid.style.scrollBehavior = 'auto';
-
-            const duration = 1200; // Slowed down gallery transition time (1.2 seconds) as requested
-            const startTime = performance.now();
-
-            function easeInOutQuad(t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            }
-
-            function step(timestamp) {
-                const elapsed = timestamp - startTime;
-                const progress = Math.min(elapsed, duration);
-                galleryGrid.scrollLeft = easeInOutQuad(progress, startScroll, targetScroll - startScroll, duration);
-
-                if (elapsed < duration) {
-                    requestAnimationFrame(step);
-                } else {
-                    galleryGrid.scrollLeft = targetScroll;
-                    galleryGrid.style.scrollSnapType = 'x mandatory';
-                    isSliding = false;
-                }
-            }
-
-            requestAnimationFrame(step);
-        }
-
-        // Auto slide gallery every 4.5 seconds (sliding on its own)
-        let galleryAutoplay = setInterval(() => {
-            slideGallery('right');
-        }, 4500);
-
-        leftArrow.addEventListener('click', () => {
-            clearInterval(galleryAutoplay);
-            slideGallery('left');
-            galleryAutoplay = setInterval(() => slideGallery('right'), 4500);
-        });
-        
-        rightArrow.addEventListener('click', () => {
-            clearInterval(galleryAutoplay);
-            slideGallery('right');
-            galleryAutoplay = setInterval(() => slideGallery('right'), 4500);
+    // --- BrandiTPro Marquee ---
+    const branditTrack = document.getElementById('branditTrack');
+    if (branditTrack) {
+        const branditCards = Array.from(branditTrack.children);
+        branditCards.forEach(card => {
+            const clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            branditTrack.appendChild(clone);
         });
     }
 
+    // --- BrandiTPro Typing Text Effect ---
+    const dynamicText = document.querySelector('.dynamic-text');
+    if (dynamicText) {
+        const words = ['Businesses', 'Organizations', 'Entrepreneurs', 'Startups'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                dynamicText.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                dynamicText.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            dynamicText.classList.add('typing');
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && charIndex === currentWord.length) {
+                // Pause at end of word
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500;
+            }
+            
+            setTimeout(type, typeSpeed);
+        }
+        
+        // Start typing effect
+        setTimeout(type, 1000);
+    }
+
 }); // END DOMContentLoaded
+
+// Global function for manual gallery scrolling
+function scrollGallery(direction) {
+    const marquee = document.getElementById('galleryMarquee');
+    if (marquee) {
+        const scrollAmount = 350; // approximate width of one card + gap
+        marquee.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+}
+

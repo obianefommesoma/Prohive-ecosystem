@@ -14,7 +14,7 @@
     
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=1.5">
+    <link rel="stylesheet" href="style.css?v=2.3">
 </head>
 <body>
 <!-- Hero Background Image — Human Connected -->
@@ -71,7 +71,7 @@
         </div>
 
         <aside class="social-sidebar">
-            <a href="https://wa.me/2347049798549" target="_blank" rel="noopener" class="social-icon" aria-label="WhatsApp">
+            <a href="https://wa.me/2348141587132" target="_blank" rel="noopener" class="social-icon" aria-label="WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
             <a href="https://www.linkedin.com/company/prohive-global-solutions-ltd/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
@@ -278,7 +278,7 @@
                 <div class="pod-shimmer"></div>
                 <div class="pod-header">
                     <div class="pod-badge">Media And Brand Consuilting Agency</div>
-                    <h3>BrandiTPro™</h3>
+                    <h3>BrandiTPro</h3>
                     <span class="pod-tagline">Your Partner in Growth</span>
                 </div>
                 <p class="pod-desc">A results-driven brand consulting and digital creative agency focused on helping businesses turn ideas into structured, visible, and profitable brands by combining strategic branding and creative systems.</p>
@@ -288,8 +288,8 @@
                     <li><i class="fa-solid fa-circle-check"></i> Manage and Optimize Digital, Media & Web Presence</li>
                     <li><i class="fa-solid fa-circle-check"></i> Position their Brands for growth</li>
                 </ul>
-                <a href="#" class="eco-cta cta-attention">
-                    <span href="branditpro.html">Explore BrandiTPro™</span>
+                <a href="branditpro.html" class="eco-cta cta-attention">
+                    <span>Explore BrandiTPro</span>
                     <i class="fa-solid fa-arrow-right-long"></i>
                 </a>
             </div>
@@ -298,7 +298,7 @@
                 <div class="pod-shimmer"></div>
                 <div class="pod-header">
                     <div class="pod-badge">Education</div>
-                    <h3>ProHive Academy™</h3>
+                    <h3>ProHive Academy</h3>
                     <span class="pod-tagline">Your Hive for Growth</span>
                 </div>
                 <p class="pod-desc">A youth-focused empowerment initiative aimed at equipping teenagers and young adults with practical digital and entrepreneurial skills.</p>
@@ -318,7 +318,7 @@
                 <div class="pod-shimmer"></div>
                 <div class="pod-header">
                     <div class="pod-badge">Tech & AI</div>
-                    <h3>ProHive™ Digital Innovation</h3>
+                    <h3>ProHive Digital Innovation</h3>
                     <span class="pod-tagline">Engineering Digital Transformation</span>
                 </div>
                 <p class="pod-desc">Innovative AI-powered Brand Management System engineering absolute digital transformations for businesses, startups, organizations, and individuals.</p>
@@ -338,7 +338,7 @@
                 <div class="pod-shimmer"></div>
                 <div class="pod-header">
                     <div class="pod-badge">Sustainability</div>
-                    <h3>ProHive™ Agro-Real Estate</h3>
+                    <h3>ProHive Agro-Real Estate</h3>
                     <span class="pod-tagline">Wealth Creation System</span>
                 </div>
                 <p class="pod-desc">A scalable agro-real estate model converting 3,600 to 4,500 sqm of land in Irete, Owerri into a commercially viable plantain and pepper hub supported by solar-powered water grids.</p>
@@ -358,7 +358,7 @@
                 <div class="pod-shimmer"></div>
                 <div class="pod-header">
                     <div class="pod-badge">Foundation</div>
-                    <h3>ProHive™ Foundation</h3>
+                    <h3>ProHive Foundation</h3>
                     <span class="pod-tagline">Inclusive Human Capital Development</span>
                 </div>
                 <p class="pod-desc">Bringing structural transformation directly to communities through target education, open development blueprints, and foundational youth empowerment projects.</p>
@@ -479,53 +479,77 @@
     <div class="gallery-slider-container">
         
         <div class="gallery-slider-header">
-            <h2>Moments That <br><span class="red-accent">Define Excellence.</span></h2>
-            <p>Explore real-time visual touchpoints across our global branding assets, active community drives, <br>and sustainable infrastructure developments.</p>
+            <h2>Moments That <span class="red-accent">Define Excellence.</span></h2> 
+            <p>Explore real-time visual touchpoints across our global branding assets, active community drives, and sustainable infrastructure developments.</p>
         </div>
 
-        <div class="gallery-slider-wrapper">
-            <!-- Left Arrow (Visual) -->
-            <button class="slider-arrow left-arrow" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="gallery-controls-header">
+            <button class="gallery-scroll-btn" onclick="scrollGallery(-1)"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="gallery-scroll-btn" onclick="scrollGallery(1)"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        
+        <!-- Horizontally scrollable gallery -->
+        <div class="gallery-marquee-outer" id="galleryMarquee">
+            <div class="gallery-marquee-track" id="galleryTrack">
 
-            <!-- Gallery Slider Grid - 6 cards, shows 3 at a time, slides to reveal more -->
-            <div class="gallery-slider-grid">
-                
-                <div class="gallery-slider-card">
-                    <img src="images/hero-slide-3.png" alt="Technology" loading="lazy">
+                <!-- Card 1 -->
+                <div class="gallery-marquee-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600" alt="Black African tech professional at laptop" loading="lazy">
                     <div class="card-pill-tag">TECHNOLOGY</div>
+                    <div class="card-brand-label">ProHive Ecosystem</div>
                 </div>
 
-                <div class="gallery-slider-card">
-                    <img src="images/hero-slide-4.png" alt="Real Estate" loading="lazy">
-                    <div class="card-pill-tag">REAL ESTATE</div>
+                <!-- Card 2 -->
+                <div class="gallery-marquee-card">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600" alt="African team collaboration in modern office" loading="lazy">
+                    <div class="card-pill-tag">COLLABORATION</div>
+                    <div class="card-brand-label">ProHive Ecosystem</div>
                 </div>
 
-                <div class="gallery-slider-card">
-                    <img src="images/hero-slide-5.png" alt="Foundation" loading="lazy">
-                    <div class="card-pill-tag">FOUNDATION</div>
-                </div>
-
-                <div class="gallery-slider-card">
-                    <img src="images/hero-slide-6.png" alt="Community" loading="lazy">
-                    <div class="card-pill-tag">COMMUNITY</div>
-                </div>
-
-                <div class="gallery-slider-card">
-                    <img src="images/hero-slide-7.png" alt="Innovation" loading="lazy">
+                <!-- Card 3 -->
+                <div class="gallery-marquee-card">
+                    <img src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?w=600" alt="Young Black professional coding" loading="lazy">
                     <div class="card-pill-tag">INNOVATION</div>
+                    <div class="card-brand-label">ProHive Ecosystem</div>
                 </div>
 
-                <div class="gallery-slider-card">
-                    <img src="images/hero-slide-2.png" alt="Branding" loading="lazy">
+                <!-- Card 4 -->
+                <div class="gallery-marquee-card">
+                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600" alt="African business networking event" loading="lazy">
+                    <div class="card-pill-tag">NETWORKING</div>
+                    <div class="card-brand-label">ProHive Ecosystem</div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="gallery-marquee-card">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600" alt="African entrepreneurs in a boardroom" loading="lazy">
                     <div class="card-pill-tag">BRANDING</div>
+                    <div class="card-brand-label">ProHive Ecosystem</div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="gallery-marquee-card">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600" alt="Young African team working together on startup" loading="lazy">
+                    <div class="card-pill-tag">COMMUNITY</div>
+                    <div class="card-brand-label">ProHive Ecosystem</div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="gallery-marquee-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600" alt="African professional giving a presentation" loading="lazy">
+                    <div class="card-pill-tag">FOUNDATION</div>
+                    <div class="card-brand-label">ProHive Ecosystem</div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="gallery-marquee-card">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600" alt="African students learning digital skills" loading="lazy">
+                    <div class="card-pill-tag">ACADEMY</div>
+                    <div class="card-brand-label">ProHive Ecosystem</div>
                 </div>
 
             </div>
-
-            <!-- Right Arrow (Visual) -->
-            <button class="slider-arrow right-arrow" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
-
     </div>
 </section>
 
@@ -575,7 +599,7 @@
                         </div>
                         <div class="channel-details">
                             <span>Call Center</span>
-                            <p>+234 704 979 8549</p>
+                            <p>+234 814 158 7132</p>
                         </div>
                         <i class="fa-solid fa-chevron-right channel-arrow"></i>
                     </a>
@@ -589,7 +613,7 @@
                 </div>
 
                 <div class="social-matrix-grid">
-                    <a href="https://wa.me/2347049798549" target="_blank" rel="noopener" class="matrix-node whatsapp-node">
+                    <a href="https://wa.me/2348141587132" target="_blank" rel="noopener" class="matrix-node whatsapp-node">
                         <div class="node-inner">
                             <i class="fa-brands fa-whatsapp"></i>
                             <span>WhatsApp</span>
@@ -637,6 +661,6 @@
     </div>
 </footer>
     <!-- Essential Scripts for Animations -->
-<script src="script.js?v=1.5" defer></script>
+<script src="script.js?v=1.8" defer></script>
 </body>
 </html>
