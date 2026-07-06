@@ -14,7 +14,7 @@
     
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=2.3">
+    <link rel="stylesheet" href="style.css?v=2.4">
 </head>
 <body>
 <!-- Hero Background Image — Human Connected -->
@@ -483,13 +483,12 @@
             <p>Explore real-time visual touchpoints across our global branding assets, active community drives, and sustainable infrastructure developments.</p>
         </div>
 
-        <div class="gallery-controls-header">
-            <button class="gallery-scroll-btn" onclick="scrollGallery(-1)"><i class="fa-solid fa-arrow-left"></i></button>
-            <button class="gallery-scroll-btn" onclick="scrollGallery(1)"><i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-        
-        <!-- Horizontally scrollable gallery -->
-        <div class="gallery-marquee-outer" id="galleryMarquee">
+        <div class="gallery-slider-wrapper">
+            <button class="gallery-scroll-btn btn-left" onclick="scrollGallery(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="gallery-scroll-btn btn-right" onclick="scrollGallery(1)"><i class="fa-solid fa-chevron-right"></i></button>
+            
+            <!-- Horizontally scrollable gallery -->
+            <div class="gallery-marquee-outer" id="galleryMarquee">
             <div class="gallery-marquee-track" id="galleryTrack">
 
                 <!-- Card 1 -->
@@ -550,6 +549,7 @@
 
             </div>
         </div>
+        </div> <!-- .gallery-slider-wrapper -->
     </div>
 </section>
 
