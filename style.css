@@ -166,10 +166,21 @@ html {
 
 .logo {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.5px;
     color: #FFFFFF;
     transition: color 0.35s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-logo-icon {
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
 }
 
 nav ul {
@@ -361,9 +372,9 @@ nav a:hover {
 
 .hero-content h1 {
     font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -1px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
     color: var(--color-off-white);
     text-shadow: 0 2px 30px rgba(0,0,0,0.5);
 }
@@ -492,7 +503,7 @@ nav a:hover {
 .about-section {
     padding: 100px 0;
     position: relative;
-    background-color: var(--color-white);
+    background-color: #0d1a02; /* Dark green background restored */
     overflow: hidden;
     margin: 0; 
     width: 100%;
@@ -549,8 +560,8 @@ nav a:hover {
 
 /* --- Section Header --- */
 .section-header { text-align: center; max-width: 750px; margin: 0 auto 60px; }
-.section-header h2 { font-size: 2.5rem; font-weight: 700; color: var(--color-dark-green); margin-bottom: 20px; }
-.section-header p { font-size: 1.05rem; color: var(--color-gray-text); line-height: 1.6; }
+.section-header h2 { font-size: 2.2rem; font-weight: 500; color: #DEFAA5; margin-bottom: 20px; }
+.section-header p { font-size: 1.1rem; color: rgba(255,255,255,0.75); line-height: 1.7; }
 
 /* --- Safe Liquid Glass Grid System --- */
 .pillars-grid {
@@ -565,15 +576,12 @@ nav a:hover {
 }
 
 .liquid-card {
-    background: var(--color-white);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-top: 1.5px solid rgba(255, 255, 255, 0.8);
-    border-left: 1.5px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.04); /* Dark glass card */
+    border: 1px solid rgba(153, 204, 51, 0.12);
     border-radius: 24px;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05),
-                inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     position: relative;
     overflow: hidden;
     transform: translateZ(0); 
@@ -597,10 +605,23 @@ nav a:hover {
 .liquid-card:hover .water-shimmer { opacity: 1; }
 
 .liquid-card:hover {
-    border-color: rgba(153, 204, 51, 0.35);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08),
-                0 0 25px rgba(153, 204, 51, 0.1);
+    border-color: rgba(153, 204, 51, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 25px rgba(153, 204, 51, 0.15);
     transform: translateY(-2px);
+}
+
+/* Icon + heading on same row */
+.pillar-card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 16px;
+}
+
+.pillar-card-header .icon-box {
+    margin-bottom: 0;
+    flex-shrink: 0;
 }
 
 .icon-box {
@@ -619,8 +640,8 @@ nav a:hover {
 .liquid-card:hover .icon-box { background: #99CC33; }
 .liquid-card:hover .icon-box i { color: #111C01; }
 
-.pillar-card h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; color: var(--color-dark-green); line-height: 1.4; }
-.pillar-card p { font-size: 1rem; color: var(--color-gray-text); line-height: 1.5; opacity: 0.9; }
+.pillar-card h3 { font-size: 1.15rem; font-weight: 500; margin-bottom: 0; color: #DEFAA5; line-height: 1.4; }
+.pillar-card p { font-size: 1.05rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
 
 /* Evolution Info box mapping styling */
 .evolution-box {
@@ -632,11 +653,11 @@ nav a:hover {
     margin-bottom: 80px;
     box-sizing: border-box;
 }
-.story-text p { font-size: 1.15rem; line-height: 1.6; color: var(--color-gray-text); }
+.story-text p { font-size: 1.15rem; line-height: 1.6; color: rgba(255,255,255,0.8); }
 .metrics-container { display: flex; justify-content: space-between; gap: 20px; }
 .metric-item { text-align: center; flex: 1; }
 .metric-item .number { display: block; font-size: 2.2rem; font-weight: 700; color: #99CC33; }
-.metric-item .label { font-size: 0.85rem; color: var(--color-dark-green); font-weight: 600; text-transform: uppercase; margin-top: 5px; display:inline-block; }
+.metric-item .label { font-size: 0.85rem; color: #DEFAA5; font-weight: 600; text-transform: uppercase; margin-top: 5px; display: block; text-align: center; letter-spacing: 1px; }
 
 
 /* =========================================================================
@@ -654,16 +675,14 @@ nav a:hover {
     margin-right: -50vw;
     overflow: hidden;
     
-    /* Clean solid white background connected with top/bottom brand-green glowing glass lines */
+    /* Plain white — no border lines */
     background: #FFFFFF;
-    border-top: 4px solid #99CC33;
-    border-bottom: 4px solid #99CC33;
+    border-top: none;
+    border-bottom: none;
     
-    padding: 60px 0; 
+    padding: 50px 0; 
     box-sizing: border-box;
-    /* Soft green shadow bleeding inwards on the white bar for seamless contrast connection */
-    box-shadow: inset 0 0 30px rgba(153, 204, 51, 0.15), 
-                0 0 40px rgba(153, 204, 51, 0.1);
+    box-shadow: none;
 }
 
 .marquee-track { 
@@ -812,10 +831,10 @@ nav a:hover {
 }
 
 .ecosystem-header h2 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #FDFFEB; /* Reverted to light color */
-    letter-spacing: -1.5px;
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: #FDFFEB;
+    letter-spacing: -0.5px;
     text-align: center;
     margin-bottom: 45px;
 }
@@ -923,10 +942,10 @@ nav a:hover {
 }
 
 .eco-pod h3 {
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 1.4rem;
+    font-weight: 500;
     color: #FDFFEB;
-    letter-spacing: -0.5px;
+    letter-spacing: 0;
     margin-bottom: 4px;
 }
 
@@ -1061,7 +1080,7 @@ nav a:hover {
 .impact-section-unique {
     padding: 100px 0;
     position: relative;
-    background-color: var(--color-white); 
+    background-color: #0d1a02; /* Dark background as requested */
     overflow: hidden;
     isolation: isolate;
 }
@@ -1118,10 +1137,10 @@ nav a:hover {
 }
 
 .impact-header-unique h2 {
-    font-size: 2.6rem;
-    color: var(--color-dark-green); /* Radiant light contrast color for readability */
-    font-weight: 800;
-    letter-spacing: -1px;
+    font-size: 2.2rem;
+    color: #DEFAA5; /* Light text for dark background */
+    font-weight: 500;
+    letter-spacing: -0.3px;
 }
 
 /* Flexible Grid Dashboard Layout */
@@ -1143,8 +1162,8 @@ nav a:hover {
 
 .metric-pod-unique {
     /* Premium dark frosted-glass overlay */
-    background: var(--color-white); 
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.04); 
+    border: 1px solid rgba(153, 204, 51, 0.12);
     border-top: 3px solid #99CC33; /* Strong top lime border anchor */
     padding: 40px 30px;
     border-radius: 24px;
@@ -1181,7 +1200,7 @@ nav a:hover {
     display: block;
     font-size: 3.4rem;
     font-weight: 800;
-    color: var(--color-dark-green);
+    color: #99CC33;
     letter-spacing: -1.5px;
     line-height: 1;
     margin-bottom: 8px;
@@ -1189,7 +1208,7 @@ nav a:hover {
 
 .metric-info-unique .label-unique {
     font-size: 1rem;
-    color: var(--color-gray-text); 
+    color: rgba(255, 255, 255, 0.8); 
     font-weight: 500;
     line-height: 1.4;
 }
@@ -1371,7 +1390,7 @@ nav a:hover {
 
 .gallery-slider-section {
     padding: 100px 0;
-    background-color: var(--color-light-bg);
+    background-color: var(--color-light-bg); /* Light background as requested */
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -1390,11 +1409,11 @@ nav a:hover {
 }
 
 .gallery-slider-header h2 {
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 2.4rem;
+    font-weight: 500;
     color: var(--color-dark-green);
     line-height: 1.2;
-    letter-spacing: -1px;
+    letter-spacing: -0.3px;
     margin-bottom: 20px;
 }
 
@@ -1526,20 +1545,20 @@ nav a:hover {
     box-shadow: 0 24px 50px rgba(0, 0, 0, 0.14);
 }
 
-/* Category tag */
+/* Category tag — ProHive green brand color */
 .card-pill-tag {
     position: absolute;
     top: 20px;
     left: 20px;
-    background: #FFFFFF !important;
-    color: #E53935 !important;
+    background: #99CC33 !important;
+    color: #111C01 !important;
     font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     padding: 6px 16px;
     border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     z-index: 5;
 }
 
@@ -2069,8 +2088,8 @@ nav a:hover {
 }
 
 .hero-headline {
-    font-size: 3.5rem;
-    font-weight: 700;
+    font-size: 3.2rem;
+    font-weight: 500;
     color: #FFFFFF;
     line-height: 1.2;
     margin-bottom: 30px;
@@ -2110,72 +2129,122 @@ nav a:hover {
     align-items: center;
 }
 
-/* Contact Dropdown */
-.contact-dropdown-wrapper {
-    position: relative;
-    display: inline-block;
-}
-
-.contact-dropdown-content {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    top: calc(100% + 15px);
-    left: 50%;
-    transform: translateX(-50%) translateY(-10px);
-    background: rgba(17, 28, 1, 0.95);
-    border: 1px solid rgba(153, 204, 51, 0.3);
-    min-width: 250px;
-    border-radius: 16px;
-    padding: 15px 0;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 100;
-}
-
-/* Arrow for dropdown */
-.contact-dropdown-content::before {
-    content: '';
-    position: absolute;
-    top: -6px;
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
-    width: 12px;
-    height: 12px;
-    background: rgba(17, 28, 1, 0.95);
-    border-top: 1px solid rgba(153, 204, 51, 0.3);
-    border-left: 1px solid rgba(153, 204, 51, 0.3);
-}
-
-.contact-dropdown-wrapper:hover .contact-dropdown-content,
-.contact-dropdown-wrapper:focus-within .contact-dropdown-content {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-.contact-item {
+/* --- BrandiT Contact Modal --- */
+.contact-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.contact-modal-overlay.modal-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.contact-modal-content {
+    background: rgba(17, 28, 1, 0.98);
+    border: 1px solid rgba(153, 204, 51, 0.3);
+    border-radius: 20px;
+    padding: 60px 40px;
+    max-width: 900px;
+    width: 90%;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+}
+
+.contact-modal-overlay.modal-active .contact-modal-content {
+    transform: translateY(0);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.modal-header h2 {
+    font-size: 2.2rem;
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.modal-header p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.modal-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.modal-contact-card {
+    background: transparent;
+    border: 1px solid rgba(153, 204, 51, 0.3);
+    border-radius: 16px;
+    padding: 40px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 15px;
-    color: #DEFAA5;
-    padding: 12px 25px;
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
 }
 
-.contact-item:hover {
-    background: rgba(153, 204, 51, 0.1);
-    color: #FFF;
+.modal-contact-card:hover {
+    background: rgba(153, 204, 51, 0.05);
+    border-color: #99CC33;
+    transform: translateY(-5px);
 }
 
-.contact-item i {
+.modal-contact-card i {
+    font-size: 2.5rem;
     color: #99CC33;
-    font-size: 1.2rem;
-    width: 20px;
-    text-align: center;
+}
+
+.modal-contact-card h3 {
+    font-size: 1.4rem;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .modal-cards-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* --- BrandiT Marquee Section --- */
@@ -2226,6 +2295,14 @@ nav a:hover {
     padding: 120px 5%;
     max-width: 1400px;
     margin: 0 auto;
+}
+
+.brandit-services .section-header h2 {
+    color: var(--color-dark-green);
+}
+
+.brandit-services .section-header p {
+    color: var(--color-gray-text);
 }
 
 .bento-services-grid {
@@ -2510,31 +2587,30 @@ nav a:hover {
     font-weight: 400;
 }
 
-/* --- BrandiT Actual Logos --- */
+/* --- BrandiT Actual Logos — full color, no grayscale --- */
 .brandit-logo-card {
     height: 100px;
     width: auto !important;
-    min-width: 200px;
-    max-width: 280px;
-    padding: 10px 25px;
+    min-width: 180px;
+    max-width: 260px;
+    padding: 10px 20px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 15px;
-    filter: grayscale(100%) brightness(2) opacity(0.6);
-    transition: all 0.3s ease;
-    flex-shrink: 0 !important; /* Never let the browser compress the logo */
+    margin: 0 10px;
+    filter: none; /* Full natural colors */
+    transition: transform 0.3s ease;
+    flex-shrink: 0 !important;
 }
 
 .brandit-logo-card:hover {
-    filter: grayscale(0%) brightness(1) opacity(1);
-    transform: scale(1.05);
+    transform: scale(1.06);
     background: transparent;
 }
 
 .brandit-logo-card img {
-    max-height: 50px;
+    max-height: 55px;
     max-width: 100%;
     object-fit: contain;
     display: block;
@@ -2718,6 +2794,16 @@ nav a:hover {
     .expertise-detailed-card .card-content {
         flex-direction: column;
         gap: 20px;
+        align-items: flex-start; /* Spares the icon and header left alignment */
+    }
+    .expertise-detailed-card .bento-icon {
+        margin: 0 0 10px 0; /* Left align icon */
+    }
+    .card-text-body {
+        text-align: left; /* Left align card content */
+    }
+    .hero-subtext, .services-header p {
+        text-align: left; /* Left align paragraph text on mobile */
     }
     .bento-services-grid {
         grid-template-columns: 1fr;

@@ -12,7 +12,7 @@
     
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=2.4">
+    <link rel="stylesheet" href="style.css?v=2.9">
 </head>
 <body class="branditpro-page">
 
@@ -40,17 +40,14 @@
             </h1>
             <p class="hero-subtext">If you are looking for a results-driven and digital creative agency that will help turn your business ideas into a structured, visible, and profitable brand, then you have found the right partner.</p>
             
-            <div class="hero-actions-direct">
-                <a href="https://wa.me/2349064759285" target="_blank" class="btn-contact-direct whatsapp-direct">
-                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                </a>
-                <a href="tel:+2349064759285" class="btn-contact-direct call-direct">
-                    <i class="fa-solid fa-phone"></i> +234 906 475 9285
-                </a>
-                <a href="mailto:branditprohq@gmail.com" class="btn-contact-direct email-direct">
-                    <i class="fa-regular fa-envelope"></i> branditprohq@gmail.com
-                </a>
+            <div class="hero-actions">
+                <button class="btn-primary" id="branditContactBtn">
+                    Quick Contact
+                </button>
                 <a href="#services-grid" class="btn-secondary-direct">
+                    Learn More
+                </a>
+            </div>
                     Learn More
                 </a>
             </div>
@@ -221,6 +218,31 @@
 </footer>
 
 <!-- Essential Scripts for Animations -->
-<script src="script.js?v=2.0" defer></script>
+<!-- Contact Us Modal -->
+<div class="contact-modal-overlay" id="branditContactModal">
+    <div class="contact-modal-content">
+        <button class="modal-close-btn" id="closeContactModal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-header">
+            <h2>Contact Us</h2>
+            <p>Driving technology for leading brands</p>
+        </div>
+        <div class="modal-cards-container">
+            <a href="https://wa.me/2349064759285" target="_blank" class="modal-contact-card">
+                <i class="fa-brands fa-whatsapp"></i>
+                <h3>Contact Us</h3>
+            </a>
+            <a href="tel:+2349064759285" class="modal-contact-card">
+                <i class="fa-solid fa-phone"></i>
+                <h3>Call Us Now</h3>
+            </a>
+            <a href="mailto:branditprohq@gmail.com" class="modal-contact-card">
+                <i class="fa-regular fa-envelope"></i>
+                <h3>Send Us A Mail</h3>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

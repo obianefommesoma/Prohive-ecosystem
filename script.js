@@ -248,3 +248,30 @@ function scrollGallery(direction) {
     }
 }
 
+// BrandiTPro contact modal toggle
+(function() {
+    const btn = document.getElementById('branditContactBtn');
+    const modal = document.getElementById('branditContactModal');
+    const closeBtn = document.getElementById('closeContactModal');
+
+    if (btn && modal && closeBtn) {
+        // Open modal
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.add('modal-active');
+        });
+
+        // Close modal on X click
+        closeBtn.addEventListener('click', function() {
+            modal.classList.remove('modal-active');
+        });
+
+        // Close modal on background overlay click
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('modal-active');
+            }
+        });
+    }
+})();
+
