@@ -237,6 +237,56 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(type, 1000);
     }
 
+    // =========================================================================
+    // ✉️ MAILTO PROTOCOL FALLBACK & CLIPBOARD ENGINE
+    // =========================================================================
+    // Create Toast Container
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.innerHTML = '<i class="fa-solid fa-circle-check"></i> Email copied to clipboard!';
+    document.body.appendChild(toast);
+
+    let toastTimeout = null;
+
+    document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const email = link.getAttribute('href').replace('mailto:', '').split('?')[0];
+            
+            // Attempt to write to clipboard
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(email).then(() => {
+                    // Show custom toast notification
+                    toast.classList.add('toast-active');
+                    clearTimeout(toastTimeout);
+                    toastTimeout = setTimeout(() => {
+                        toast.classList.remove('toast-active');
+                    }, 3000);
+                }).catch(err => {
+                    console.error('Failed to copy email:', err);
+                });
+            } else {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = email;
+                textArea.style.position = 'fixed';
+                textArea.style.opacity = '0';
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    toast.classList.add('toast-active');
+                    clearTimeout(toastTimeout);
+                    toastTimeout = setTimeout(() => {
+                        toast.classList.remove('toast-active');
+                    }, 3000);
+                } catch (err) {
+                    console.error('Fallback failed:', err);
+                }
+                document.body.removeChild(textArea);
+            }
+        });
+    });
+
 }); // END DOMContentLoaded
 
 // Global function for manual gallery scrolling
