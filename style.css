@@ -1916,11 +1916,18 @@ nav a:hover {
    ========================================================================= */
 
 /* About / Pillar cards reveal */
-.about-section, .pillar-card, .evolution-box {
+.about-section, .pillar-card, .evolution-box, .svc-left-pane, .svc-row {
     opacity: 0;
     transform: translateY(35px);
     transition: opacity 0.75s cubic-bezier(0.25, 1, 0.5, 1), transform 0.75s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
+/* Staggered transition delays for vertical service rows */
+.svc-row:nth-child(1) { transition-delay: 0.1s; }
+.svc-row:nth-child(2) { transition-delay: 0.22s; }
+.svc-row:nth-child(3) { transition-delay: 0.34s; }
+.svc-row:nth-child(4) { transition-delay: 0.46s; }
+
 
 /* Eco pods reveal with slight scale */
 .eco-pod {
@@ -2619,8 +2626,8 @@ nav a:hover {
 
 /* --- Redesigned Bento Grid Expertise Section (Light White/Green Theme) --- */
 .svc-section {
-    padding: 100px 0;
-    background: #F9FBF7; /* Clean off-white background with a hint of green */
+    padding: 120px 0;
+    background: #FFFFFF; /* High-contrast white background */
     position: relative;
     border-bottom: 1px solid rgba(153, 204, 51, 0.1);
 }
@@ -2631,24 +2638,35 @@ nav a:hover {
     padding: 0 5%;
 }
 
-.svc-header {
-    text-align: center;
-    margin-bottom: 60px;
+.svc-split-wrapper {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 80px;
+    align-items: start;
 }
 
-.svc-header h2 {
-    font-size: 2.8rem;
+.svc-left-pane {
+    position: sticky;
+    top: 130px;
+}
+
+.svc-left-pane h2 {
+    font-size: 3.4rem;
     color: #111C01; /* High-contrast dark forest green */
-    font-weight: 600;
-    margin-top: 15px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 20px 0;
+    letter-spacing: -1.2px;
 }
 
-.svc-header p {
+.svc-highlight {
+    color: #4a7c00;
+}
+
+.svc-left-pane p {
     font-size: 1.1rem;
-    color: #3f4e35; /* Readable dark olive gray */
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.7;
+    color: #4b5563; /* Readable dark slate gray */
+    line-height: 1.75;
 }
 
 /* Global sub-tag badge styling */
@@ -2672,107 +2690,79 @@ nav a:hover {
     color: #4a7c00;
 }
 
-.svc-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-}
-
-.svc-card {
-    position: relative;
-    border-radius: 24px;
-    padding: 40px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+.svc-right-pane {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 320px;
-    background: #FFFFFF; /* High-contrast white cards */
-    border: 1px solid rgba(153, 204, 51, 0.12);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    gap: 40px;
 }
 
-/* Card Themes for Light/Green Contrast */
-.svc-card--dark {
-    background: #FFFFFF;
-    border-color: rgba(153, 204, 51, 0.15);
-}
-
-.svc-card--accent {
-    background: #FFFFFF;
-    border-color: rgba(153, 204, 51, 0.25);
-    box-shadow: 0 10px 30px rgba(153, 204, 51, 0.04);
-}
-
-.svc-card--light {
-    background: #FFFFFF;
-    border-color: rgba(153, 204, 51, 0.2);
-}
-
-/* Hover States for Light Cards */
-.svc-card:hover {
-    transform: translateY(-8px);
-    border-color: #4a7c00;
-    box-shadow: 0 20px 40px rgba(74, 124, 0, 0.08);
-}
-
-.svc-card-top {
+.svc-row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
+    gap: 30px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(74, 124, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
-.svc-num {
+.svc-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.svc-row-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.svc-row-num {
     font-size: 1.1rem;
     font-weight: 700;
     color: #4a7c00;
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
-.svc-icon-box {
-    width: 50px;
-    height: 50px;
-    border-radius: 12px;
+.svc-row-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
     background: rgba(74, 124, 0, 0.06);
-    border: 1px solid rgba(74, 124, 0, 0.15);
+    border: 1px solid rgba(74, 124, 0, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #4a7c00;
+    font-size: 1.4rem;
     transition: all 0.3s ease;
 }
 
-.svc-card:hover .svc-icon-box {
+.svc-row:hover .svc-row-icon {
     background: #4a7c00;
     border-color: #4a7c00;
-}
-
-.svc-icon-box i {
-    font-size: 1.3rem;
-    color: #4a7c00;
-    transition: all 0.3s ease;
-}
-
-.svc-card:hover .svc-icon-box i {
     color: #FFFFFF;
 }
 
-.svc-card h3 {
-    font-size: 1.6rem;
+.svc-row-content {
+    flex: 1;
+}
+
+.svc-row-content h3 {
+    font-size: 1.65rem;
     color: #111C01;
-    margin-bottom: 15px;
     font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
 }
 
-.svc-card p {
-    font-size: 1rem;
-    color: #4b5563; /* Readable dark gray text */
+.svc-row-content p {
+    font-size: 1.05rem;
+    color: #4b5563;
     line-height: 1.65;
-    margin-bottom: 30px;
-    flex-grow: 1;
+    margin-bottom: 20px;
 }
 
-.svc-link {
+.svc-row-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -2783,17 +2773,50 @@ nav a:hover {
     transition: all 0.3s ease;
 }
 
-.svc-link i {
+.svc-row-link i {
     font-size: 0.85rem;
     transition: transform 0.3s ease;
 }
 
-.svc-link:hover {
+.svc-row-link:hover {
     color: #2b4c00;
 }
 
-.svc-link:hover i {
+.svc-row-link:hover i {
     transform: translateX(5px);
+}
+
+/* Responsiveness for split layout */
+@media (max-width: 991px) {
+    .svc-split-wrapper {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    .svc-left-pane {
+        position: static;
+    }
+    .svc-left-pane h2 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .svc-section {
+        padding: 80px 0;
+    }
+    .svc-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .svc-row-meta {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .svc-left-pane h2 {
+        font-size: 2.4rem;
+    }
 }
 
 /* --- Toast Notification Style --- */
