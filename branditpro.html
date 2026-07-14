@@ -12,13 +12,18 @@
     
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=3.7">
+    <link rel="stylesheet" href="style.css?v=3.9">
 </head>
 <body class="branditpro-page">
 
 <!-- Simplified Header -->
 <header class="brandit-header">
-    <div class="logo">ProHive <span class="header-sub-brand">| BrandiTPro</span></div>
+    <div class="logo"><img src="logos/ProHive Global Solutions Ltd Logo DP 3_png 2.png" alt="ProHive" class="nav-logo-icon"> <span class="header-sub-brand">| BrandiTPro</span></div>
+    <nav class="nav-menu" style="display:flex; gap:28px;">
+        <a href="#services-grid" style="font-size:0.9rem; font-weight:600; color:rgba(255,255,255,0.85); transition:color 0.3s;">Expertise</a>
+        <a href="#why-choose-section" style="font-size:0.9rem; font-weight:600; color:rgba(255,255,255,0.85); transition:color 0.3s;">Why Us</a>
+        <a href="#terminal-footer" style="font-size:0.9rem; font-weight:600; color:rgba(255,255,255,0.85); transition:color 0.3s;">Contact</a>
+    </nav>
     <div class="header-contact">
         <a href="index.html" class="btn-solid-header"><i class="fa-solid fa-arrow-left"></i> Back to Ecosystem</a>
     </div>
@@ -68,87 +73,132 @@
         </div>
     </section>
 
-    <!-- SERVICES SECTION — Split Columns, Non-Card Layout (White & Green Contrast) -->
-    <section id="services-grid" class="svc-section">
-        <div class="svc-container">
-            <div class="svc-split-wrapper">
-                <!-- Left Sticky Block -->
-                <div class="svc-left-pane reveal-target">
-                    <span class="sub-tag">Our Expertise</span>
-                    <h2>How We Can<br><span class="svc-highlight">Help You</span></h2>
-                    <p>We partner with Founders, Startups, Organizations, and growing brands to design systems and strategies that turn ideas into visible, structured, and profitable businesses.</p>
+    <!-- SERVICES SECTION — Expertise Showcase with Human Imagery -->
+    <section id="services-grid" class="expertise-showcase">
+        <div class="expertise-container">
+            
+            <!-- Section Header -->
+            <div class="expertise-header reveal-target">
+                <span class="sub-tag">Our Expertise</span>
+                <h2>What We Do <em>Best</em></h2>
+                <p>We partner with Founders, Startups, Organizations, and growing brands to design systems and strategies that turn ideas into visible, structured, and profitable businesses.</p>
+            </div>
+
+            <!-- Expertise Card 1 — Brand Strategy -->
+            <div class="expertise-card">
+                <div class="expertise-card-image reveal-target">
+                    <img src="images/expertise-brand-strategy.png" alt="Brand Strategy & Consulting" loading="lazy">
+                    <div class="expertise-card-label">
+                        <span class="label-tag">Business Line</span>
+                        <span class="label-title">Brand Strategy & Consulting</span>
+                        <div class="label-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    </div>
                 </div>
-
-                <!-- Right Services List -->
-                <div class="svc-right-pane">
-                    <!-- Service Row 1 -->
-                    <div class="svc-row reveal-target">
-                        <div class="svc-row-meta">
-                            <span class="svc-row-num">01</span>
-                            <div class="svc-row-icon"><i class="fa-solid fa-lightbulb"></i></div>
-                        </div>
-                        <div class="svc-row-content">
-                            <h3>Brand Strategy & Consulting</h3>
-                            <p>Deep strategic advisory designed for long-term growth and market transformation. We audit your audience, clarify brand values, define unique value propositions, and outline operational roadmaps.</p>
-                            <a href="https://wa.me/2348141587132?text=Hello%20ProHive,%20I'm%20interested%20in%20Brand%20Consulting..." target="_blank" class="svc-row-link">
-                                Get Started <i class="fa-solid fa-arrow-right-long"></i>
-                            </a>
-                        </div>
+                <div class="expertise-card-content reveal-target">
+                    <span class="expertise-badge">Business Excellence</span>
+                    <h3>Brand Strategy & Consulting</h3>
+                    <p>Deep strategic advisory designed for long-term growth and market transformation. We audit your audience, clarify brand values, define unique value propositions, and outline operational roadmaps.</p>
+                    <span class="expertise-services-label">Key Services</span>
+                    <div class="expertise-services-grid">
+                        <div class="expertise-pill"><i class="fa-solid fa-bullseye"></i> Audience Auditing</div>
+                        <div class="expertise-pill"><i class="fa-solid fa-compass"></i> Brand Positioning</div>
+                        <div class="expertise-pill"><i class="fa-solid fa-route"></i> Growth Roadmaps</div>
+                        <div class="expertise-pill"><i class="fa-solid fa-handshake"></i> Market Strategy</div>
                     </div>
-
-                    <!-- Service Row 2 -->
-                    <div class="svc-row reveal-target">
-                        <div class="svc-row-meta">
-                            <span class="svc-row-num">02</span>
-                            <div class="svc-row-icon"><i class="fa-solid fa-pen-nib"></i></div>
-                        </div>
-                        <div class="svc-row-content">
-                            <h3>Graphic & Brand Design</h3>
-                            <p>Visual brand systems backed by research. We construct scalable logo marks, custom color profiles, design typography hierarchies, and define visual guidelines that stop the scroll.</p>
-                            <a href="https://wa.me/2348141587132?text=Hello%20ProHive,%20I'm%20interested%20in%20Graphic%20and%20Brand%20Design..." target="_blank" class="svc-row-link">
-                                Explore <i class="fa-solid fa-arrow-right-long"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Service Row 3 -->
-                    <div class="svc-row reveal-target">
-                        <div class="svc-row-meta">
-                            <span class="svc-row-num">03</span>
-                            <div class="svc-row-icon"><i class="fa-solid fa-pen-to-square"></i></div>
-                        </div>
-                        <div class="svc-row-content">
-                            <h3>Strategic Content Creation</h3>
-                            <p>High-conversion copywriting, messaging, and multi-channel campaign content designed to engage target audiences, tell stories, and generate customer action.</p>
-                            <a href="https://wa.me/2348141587132?text=Hello%20ProHive,%20I'm%20interested%20in%20Strategic%20Content%20Creation..." target="_blank" class="svc-row-link">
-                                Explore <i class="fa-solid fa-arrow-right-long"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Service Row 4 -->
-                    <div class="svc-row reveal-target">
-                        <div class="svc-row-meta">
-                            <span class="svc-row-num">04</span>
-                            <div class="svc-row-icon"><i class="fa-solid fa-laptop-code"></i></div>
-                        </div>
-                        <div class="svc-row-content">
-                            <h3>Digital & Web Presence</h3>
-                            <p>Web platforms, search engine optimization (SEO), and digital visibility pipelines that ensure your brand is accessible, responsive, and authoritative online.</p>
-                            <a href="https://wa.me/2348141587132?text=Hello%20ProHive,%20I'm%20interested%20in%20Digital%20and%20Web%20Presence..." target="_blank" class="svc-row-link">
-                                Explore <i class="fa-solid fa-arrow-right-long"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <a href="https://wa.me/2348141587132?text=Hello%20ProHive,%20I'm%20interested%20in%20Brand%20Consulting..." target="_blank" class="expertise-cta">
+                        Get Started <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
+
+            <!-- Expertise Card 2 — Graphic Design (Reversed) -->
+            <div class="expertise-card expertise-card-reverse">
+                <div class="expertise-card-image reveal-target">
+                    <img src="images/expertise-graphic-design.png" alt="Graphic & Brand Design" loading="lazy">
+                    <div class="expertise-card-label">
+                        <span class="label-tag">Creative Studio</span>
+                        <span class="label-title">Graphic & Brand Design</span>
+                        <div class="label-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                    </div>
+                </div>
+                <div class="expertise-card-content reveal-target">
+                    <span class="expertise-badge">Visual Identity</span>
+                    <h3>Graphic & Brand Design</h3>
+                    <p>Visual brand systems backed by research. We construct scalable logo marks, custom color profiles, design typography hierarchies, and define visual guidelines that stop the scroll.</p>
+                    <span class="expertise-services-label">Key Services</span>
+                    <div class="expertise-services-grid">
+                        <div class="expertise-pill"><i class="fa-solid fa-shapes"></i> Logo Design</div>
+                        <div class="expertise-pill"><i class="fa-solid fa-palette"></i> Color Systems</div>
+                        <div class="expertise-pill"><i class="fa-solid fa-font"></i> Typography</div>
+                        <div class="expertise-pill"><i class="fa-solid fa-book-open"></i> Brand Guidelines</div>
+                    </div>
+                    <a href="https://wa.me/2348141587132?text=Hello%20ProHive,%20I'm%20interested%20in%20Graphic%20and%20Brand%20Design..." target="_blank" class="expertise-cta">
+                        Explore <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Expertise Card 3 — Content Creation -->
+            <div class="expertise-card">
+                <div class="expertise-card-image reveal-target">
+                    <img src="images/expertise-content-creation.png" alt="Strategic Content Creation" loading="lazy">
+                    <div class="expertise-card-label">
+                        <span class="label-tag">Content Engine</span>
+                        <span class="label-title">Strategic Content Creation</span>
+                        <div class="label-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                    </div>
+                </div>
+                <div class="expertise-card-content reveal-target">
+                    <span class="expertise-badge">Content Strategy</span>
+                    <h3>Strategic Content Creation</h3>
+                    <p>High-conversion copywriting, messaging, and multi-channel campaign content designed to engage target audiences, tell stories, and generate customer action.</p>
+                    <span class="expertise-services-label">Key Services</span>
+                    <div class="expertise-services-grid">
+                        <div class="expertise-pill"><i class="fa-solid fa-feather-pointed"></i> Copywriting</div>
+                        <div class="expertise-pill"><i class="fa-solid fa-bullhorn"></i> Campaign Content</div>
+                        <div class="expertise-pill"><i class="fa-solid fa-hashtag"></i> Social Media</div>
+                        <div class="expertise-pill"><i class="fa-solid fa-video"></i> Visual Content</div>
+                    </div>
+                    <a href="https://wa.me/2348141587132?text=Hello%20ProHive,%20I'm%20interested%20in%20Strategic%20Content%20Creation..." target="_blank" class="expertise-cta">
+                        Explore <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Expertise Card 4 — Digital & Web (Reversed) -->
+            <div class="expertise-card expertise-card-reverse">
+                <div class="expertise-card-image reveal-target">
+                    <img src="images/expertise-web-digital.png" alt="Digital & Web Presence" loading="lazy">
+                    <div class="expertise-card-label">
+                        <span class="label-tag">Digital Studio</span>
+                        <span class="label-title">Digital & Web Presence</span>
+                        <div class="label-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    </div>
+                </div>
+                <div class="expertise-card-content reveal-target">
+                    <span class="expertise-badge">Digital Presence</span>
+                    <h3>Digital & Web Presence</h3>
+                    <p>Web platforms, search engine optimization (SEO), and digital visibility pipelines that ensure your brand is accessible, responsive, and authoritative online.</p>
+                    <span class="expertise-services-label">Key Services</span>
+                    <div class="expertise-services-grid">
+                        <div class="expertise-pill"><i class="fa-solid fa-globe"></i> Web Development</div>
+                        <div class="expertise-pill"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO Strategy</div>
+                        <div class="expertise-pill"><i class="fa-solid fa-chart-line"></i> Analytics</div>
+                        <div class="expertise-pill"><i class="fa-solid fa-mobile-screen"></i> Responsive Design</div>
+                    </div>
+                    <a href="https://wa.me/2348141587132?text=Hello%20ProHive,%20I'm%20interested%20in%20Digital%20and%20Web%20Presence..." target="_blank" class="expertise-cta">
+                        Explore <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
         </div>
     </section>
 
 
 
     <!-- WHY CHOOSE US SECTION -->
-    <section class="why-choose-section">
+    <section id="why-choose-section" class="why-choose-section">
         <div class="why-choose-container">
             <div class="why-choose-header reveal-target">
                 <span class="sub-tag">The ProHive Edge</span>
@@ -217,11 +267,11 @@
             <h2>Ready to Transform<br><span class="cta-headline-accent">Your Brand?</span></h2>
             <p>Partner with BrandiTPro to build a structured, visible, and unstoppable brand presence that dominates your market and attracts your ideal clients.</p>
             <div class="cta-action-group">
-                <a href="https://wa.me/2348141587132?text=Hello%20ProHive,%20I'm%20ready%20to%20transform%20my%20brand%20with%20BrandiTPro!" target="_blank" class="cta-btn-primary">
+                <a href="https://wa.me/2348141587132?text=Hello%20ProHive,%20I'm%20ready%20to%20transform%20my%20brand%20with%20BrandiTPro!" target="_blank" class="cta-btn-primary btn-bouncy">
                     <i class="fa-brands fa-whatsapp"></i>
                     Book a Free Consultation
                 </a>
-                <a href="mailto:brandit@prohivegsl.com" class="cta-btn-secondary">
+                <a href="mailto:brandit@prohivegsl.com" class="cta-btn-secondary btn-shake">
                     <i class="fa-solid fa-envelope"></i>
                     Send Us a Message
                 </a>

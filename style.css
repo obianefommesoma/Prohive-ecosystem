@@ -69,28 +69,28 @@ header, .nav-wrapper {
     background: transparent;
 }
 
-/* ── Scrolled state: white glass pill bar ── */
+/* ── Scrolled state: transparent glass pill bar ── */
 .navbar-scrolled {
     padding: 0.85rem 6%;
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
+    background: rgba(17, 28, 1, 0.55) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     border-bottom: 1px solid rgba(153, 204, 51, 0.15);
 }
 
-/* When scrolled, switch logo & links to dark green so they read on white */
+/* Scrolled links stay readable on transparent dark glass */
 .navbar-scrolled .logo {
-    color: var(--color-dark-green);
+    color: #FFFFFF !important;
 }
 
 .navbar-scrolled nav a {
-    color: var(--color-dark-green);
-    opacity: 0.85;
+    color: rgba(255, 255, 255, 0.9) !important;
+    opacity: 0.9;
 }
 
 .navbar-scrolled nav a:hover {
-    color: var(--color-green-leaf);
+    color: #99CC33 !important;
     opacity: 1;
 }
 
@@ -165,19 +165,30 @@ html {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-    color: #FFFFFF;
-    transition: color 0.35s ease;
-    display: flex;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    background: #FFFFFF !important; /* Sharp background */
+    border: 2px solid #99CC33 !important; /* Border */
+    padding: 6px 16px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    color: #111C01 !important; /* Dark green text color */
+    transition: all 0.3s ease;
+    height: 42px;
+}
+
+.logo .header-sub-brand {
+    color: #4a7c00;
+    font-weight: 600;
 }
 
 .nav-logo-icon {
-    height: 32px;
-    width: 32px;
+    height: 26px;
+    width: auto;
     object-fit: contain;
     display: block;
     flex-shrink: 0;
@@ -371,8 +382,8 @@ nav a:hover {
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
-    font-weight: 500;
+    font-size: 3rem;
+    font-weight: 600;
     line-height: 1.15;
     letter-spacing: -0.5px;
     color: var(--color-off-white);
@@ -462,14 +473,14 @@ nav a:hover {
 /* --- Responsive Media Viewport Breaks --- */
 @media (max-width: 1024px) {
     header { padding: 15px 25px; }
-    .hero-content h1 { font-size: 2.9rem; }
+    .hero-content h1 { font-size: 2.6rem; }
     .social-sidebar { right: 15px; }
 }
 
 @media (max-width: 768px) {
     header { flex-direction: column; gap: 15px; padding: 15px; position: absolute;}
     nav ul { gap: 15px; padding: 10px 15px; font-size: 0.8rem;}
-    .hero-content h1 { font-size: 2.2rem; }
+    .hero-content h1 { font-size: 2rem; }
     .hero-content p { font-size: 1.15rem; text-align: center; }
     .social-sidebar { flex-direction: row; position: static; transform: none; margin-top: 30px; justify-content: center; width: 100%; gap: 20px;}
     .hero { flex-direction: column; padding-bottom: 50px;}
@@ -560,7 +571,7 @@ nav a:hover {
 
 /* --- Section Header --- */
 .section-header { text-align: center; max-width: 750px; margin: 0 auto 60px; }
-.section-header h2 { font-size: 2.2rem; font-weight: 500; color: #DEFAA5; margin-bottom: 20px; }
+.section-header h2 { font-size: 2rem; font-weight: 600; color: #DEFAA5; margin-bottom: 20px; }
 .section-header p { font-size: 1.1rem; color: rgba(255,255,255,0.75); line-height: 1.7; }
 
 /* --- Safe Liquid Glass Grid System --- */
@@ -625,8 +636,8 @@ nav a:hover {
 }
 
 .icon-box {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     background: rgba(153, 204, 51, 0.08);
     border-radius: 14px;
     display: flex;
@@ -635,7 +646,7 @@ nav a:hover {
     margin-bottom: 25px;
     transition: all 0.3s ease;
 }
-.icon-box i { color: #99CC33; font-size: 1.4rem; }
+.icon-box i { color: #99CC33; font-size: 1.7rem; }
 
 .liquid-card:hover .icon-box { background: #99CC33; }
 .liquid-card:hover .icon-box i { color: #111C01; }
@@ -751,29 +762,7 @@ nav a:hover {
     .marquee-item { margin-right: 70px; }
 }
 
-/* =========================================================================
-   🌐 NAVBAR SCROLL STATE
-   ========================================================================= */
-.navbar-scrolled {
-    background: rgba(17, 28, 1, 0.45) !important; /* Dark green transparent glassmorphism */
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    border-bottom: 1px solid rgba(153, 204, 51, 0.2);
-    padding: 1rem 6% !important; /* Animates spacing smoothly on scroll */
-}
-
-.navbar-scrolled .logo {
-    color: #FFFFFF !important;
-}
-
-.navbar-scrolled nav a {
-    color: rgba(255, 255, 255, 0.9) !important;
-}
-
-.navbar-scrolled nav a:hover {
-    color: var(--accent-primary) !important;
-}
+/* Redundant scroll style removed, unified at line 73 */
 
 
 
@@ -867,17 +856,17 @@ nav a:hover {
 }
 
 .vm-icon {
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     background: rgba(153, 204, 51, 0.1);
-    border-radius: 12px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 }
 
-.vm-icon i { color: #99CC33; font-size: 1.2rem; }
+.vm-icon i { color: #99CC33; font-size: 1.5rem; }
 .vm-card h4 { font-size: 1.15rem; color: #FDFFEB; margin-bottom: 8px; font-weight: 600; }
 .vm-card p { font-size: 0.95rem; color: #DEFAA5; line-height: 1.5; opacity: 0.8; }
 
@@ -983,7 +972,7 @@ nav a:hover {
 .pod-features li i {
     color: #99CC33;
     margin-top: 3px;
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     flex-shrink: 0;
 }
 
@@ -1135,9 +1124,9 @@ nav a:hover {
 }
 
 .impact-header-unique h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     color: #DEFAA5; /* Light text for dark background */
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.3px;
 }
 
@@ -3316,4 +3305,1561 @@ nav a:hover {
         align-items: center;
     }
 }
+
+/* =========================================================================
+   💼 EXPERTISE SHOWCASE SECTION (MATCHING OIL & GAS CUSTOM SPEC)
+   ========================================================================= */
+.expertise-showcase {
+    background: #FFFFFF;
+    padding: 100px 0;
+    position: relative;
+    border-bottom: 1px solid rgba(153, 204, 51, 0.1);
+}
+
+.expertise-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.expertise-header {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 70px;
+}
+
+.expertise-header h2 {
+    font-size: 3rem;
+    color: #111C01;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 15px 0;
+    letter-spacing: -1px;
+}
+
+.expertise-header h2 em {
+    font-style: italic;
+    color: #4a7c00;
+    font-weight: 500;
+}
+
+.expertise-header p {
+    font-size: 1.1rem;
+    color: #4b5563;
+    line-height: 1.75;
+}
+
+/* Expertise Card Grid Layout */
+.expertise-card {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 90px;
+    background: rgba(74, 124, 0, 0.02);
+    border: 1px solid rgba(74, 124, 0, 0.06);
+    border-radius: 30px;
+    padding: 40px;
+    box-sizing: border-box;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.expertise-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(17, 28, 1, 0.05);
+    border-color: rgba(74, 124, 0, 0.15);
+}
+
+.expertise-card-reverse {
+    grid-template-columns: 0.95fr 1.05fr;
+}
+
+.expertise-card-reverse .expertise-card-image {
+    order: 2;
+}
+
+.expertise-card-reverse .expertise-card-content {
+    order: 1;
+}
+
+/* Card Image Box */
+.expertise-card-image {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    height: 380px;
+    width: 100%;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+}
+
+.expertise-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.expertise-card:hover .expertise-card-image img {
+    transform: scale(1.05);
+}
+
+/* Overlay Label */
+.expertise-card-label {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 20px 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.expertise-card-label .label-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #4b5563;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.expertise-card-label .label-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111C01;
+}
+
+.expertise-card-label .label-icon {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #4a7c00;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    box-shadow: 0 4px 12px rgba(74, 124, 0, 0.3);
+}
+
+/* Content Pane styling */
+.expertise-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.expertise-badge {
+    align-self: start;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #4a7c00;
+    background: rgba(74, 124, 0, 0.06);
+    padding: 6px 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.expertise-card-content h3 {
+    font-size: 2rem;
+    color: #111C01;
+    font-weight: 600;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.expertise-card-content p {
+    font-size: 1.05rem;
+    color: #4b5563;
+    line-height: 1.65;
+    margin-bottom: 25px;
+}
+
+/* Sub service grid separator */
+.expertise-services-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #9ca3af;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.expertise-services-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+/* Service Pills */
+.expertise-services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.expertise-pill {
+    background: #FFFFFF;
+    border: 1px solid rgba(74, 124, 0, 0.1);
+    color: #111C01;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.expertise-pill i {
+    color: #4a7c00;
+    font-size: 0.95rem;
+}
+
+.expertise-card:hover .expertise-pill {
+    border-color: rgba(74, 124, 0, 0.2);
+}
+
+.expertise-card:hover .expertise-pill:hover {
+    background: rgba(74, 124, 0, 0.04);
+}
+
+/* Call to Action Button */
+.expertise-cta {
+    align-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #111C01;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 12px 28px;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(17, 28, 1, 0.15);
+}
+
+.expertise-cta i {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.expertise-cta:hover {
+    background: #4a7c00;
+    transform: translateY(-2px);
+}
+
+.expertise-cta:hover i {
+    transform: translateX(4px);
+}
+
+/* Animations registration */
+.expertise-header {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Premium staggered slide-in from opposite sides transitions */
+.expertise-card .expertise-card-image {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.expertise-card .expertise-card-content {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.1s;
+}
+
+/* Reverse card animations: image from right, content from left */
+.expertise-card-reverse .expertise-card-image {
+    transform: translateX(100px);
+}
+
+.expertise-card-reverse .expertise-card-content {
+    transform: translateX(-100px);
+}
+
+/* Active states trigger movement to normal position */
+.expertise-card-image.reveal-active,
+.expertise-card-content.reveal-active {
+    opacity: 1 !important;
+    transform: translateX(0) translateY(0) !important;
+}
+
+
+/* Responsive break points for expertise */
+@media (max-width: 991px) {
+    .expertise-card {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px;
+    }
+    .expertise-card-reverse .expertise-card-image {
+        order: 0;
+    }
+    .expertise-card-reverse .expertise-card-content {
+        order: 0;
+    }
+    .expertise-card .expertise-card-image,
+    .expertise-card-reverse .expertise-card-image,
+    .expertise-card .expertise-card-content,
+    .expertise-card-reverse .expertise-card-content {
+        transform: translateY(30px) !important;
+    }
+    .expertise-card-image {
+        height: 300px;
+    }
+    .expertise-header h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .expertise-services-grid {
+        grid-template-columns: 1fr;
+    }
+    .expertise-card-image {
+        height: 250px;
+    }
+    .expertise-card-label .label-title {
+        font-size: 1.1rem;
+    }
+}
+
+/* =========================================================================
+   🎓 PROHIVE ACADEMY STYLES
+   ========================================================================= */
+.academy-page {
+    background-color: #111C01;
+    color: #FDFFEB;
+}
+
+/* Academy Hero */
+.academy-hero {
+    position: relative;
+    padding: 180px 0 140px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.academy-hero-content {
+    position: relative;
+    z-index: 5;
+    max-width: 850px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.academy-hero .hero-headline {
+    font-size: 3.6rem;
+    color: #FFFFFF;
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 25px;
+    letter-spacing: -1.5px;
+}
+
+.academy-hero .hero-headline em {
+    font-style: italic;
+    color: #99CC33;
+    font-weight: 500;
+}
+
+/* Academy Stats Section */
+.academy-stats-section {
+    background: #FDFFEB;
+    border-top: 1px solid rgba(74, 124, 0, 0.08);
+    border-bottom: 1px solid rgba(74, 124, 0, 0.08);
+    padding: 40px 0;
+}
+
+.stats-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.stat-box {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #4a7c00;
+    margin-bottom: 6px;
+    font-family: 'General Sans', sans-serif;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #4B5563;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Philosophy Section */
+.academy-philosophy {
+    padding: 100px 0;
+    background: #FFFFFF;
+}
+
+.academy-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.philosophy-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.philosophy-content h2 {
+    font-size: 2.8rem;
+    color: #111C01;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 15px 0 25px;
+    letter-spacing: -1px;
+}
+
+.philosophy-content h2 em {
+    font-style: italic;
+    color: #4a7c00;
+    font-weight: 500;
+}
+
+.philosophy-content p {
+    font-size: 1.1rem;
+    color: #4B5563;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+.philosophy-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.bullet-item {
+    display: flex;
+    gap: 20px;
+}
+
+.bullet-icon {
+    font-size: 1.4rem;
+    color: #4a7c00;
+    margin-top: 2px;
+}
+
+.bullet-item h4 {
+    font-size: 1.15rem;
+    color: #111C01;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.bullet-item p {
+    font-size: 0.95rem;
+    color: #4B5563;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* Philosophy Image Box */
+.philosophy-image-box {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    height: 480px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.philosophy-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.philosophy-img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(17, 28, 1, 0.95), transparent);
+    padding: 40px 30px;
+}
+
+.overlay-quote {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #DEFAA5;
+    font-weight: 500;
+}
+
+/* Academy Courses Section */
+.academy-courses {
+    padding: 100px 0;
+    background: rgba(153, 204, 51, 0.02);
+    border-top: 1px solid rgba(153, 204, 51, 0.05);
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.course-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(153, 204, 51, 0.1);
+    border-radius: 24px;
+    padding: 40px 30px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(153, 204, 51, 0.3);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.course-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 14px;
+    background: rgba(153, 204, 51, 0.1);
+    color: #99CC33;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.course-card h3 {
+    font-size: 1.35rem;
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.course-card p {
+    font-size: 0.95rem;
+    color: rgba(253, 255, 235, 0.75);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex: 1;
+}
+
+.course-card .course-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.course-card .course-features li {
+    font-size: 0.85rem;
+    color: #DEFAA5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.course-card .course-features li i {
+    font-size: 0.75rem;
+    color: #99CC33;
+}
+
+.course-card-soon {
+    border-style: dashed;
+    background: transparent;
+}
+
+.soon-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(153, 204, 51, 0.1);
+    color: #99CC33;
+    border: 1px solid rgba(153, 204, 51, 0.2);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+/* Academy CTA Section */
+.academy-cta-section {
+    padding: 100px 0;
+    background: #FFFFFF;
+}
+
+.academy-cta-box {
+    background: linear-gradient(135deg, rgba(74, 124, 0, 0.05), rgba(253, 255, 235, 0.5));
+    border: 1px solid rgba(74, 124, 0, 0.15);
+    border-radius: 35px;
+    padding: 80px 40px;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.academy-cta-box h2 {
+    font-size: 3rem;
+    color: #111C01;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 15px 0 20px;
+}
+
+.academy-cta-box h2 em {
+    font-style: italic;
+    color: #4a7c00;
+    font-weight: 500;
+}
+
+.academy-cta-box p {
+    font-size: 1.15rem;
+    color: #4B5563;
+    max-width: 600px;
+    margin: 0 auto 35px;
+    line-height: 1.6;
+}
+
+/* Animations for Academy elements */
+.course-card, .stat-box, .philosophy-content, .philosophy-image-box, .academy-cta-box {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.course-card:nth-child(1) { transition-delay: 0.05s; }
+.course-card:nth-child(2) { transition-delay: 0.15s; }
+.course-card:nth-child(3) { transition-delay: 0.25s; }
+.course-card:nth-child(4) { transition-delay: 0.35s; }
+
+.stat-box:nth-child(1) { transition-delay: 0.05s; }
+.stat-box:nth-child(2) { transition-delay: 0.15s; }
+.stat-box:nth-child(3) { transition-delay: 0.25s; }
+.stat-box:nth-child(4) { transition-delay: 0.35s; }
+
+/* Academy Media Breakpoints */
+@media (max-width: 991px) {
+    .philosophy-wrapper {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .philosophy-image-box {
+        height: 350px;
+        order: -1;
+    }
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    .academy-hero .hero-headline {
+        font-size: 2.8rem;
+    }
+    .philosophy-content h2 {
+        font-size: 2.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+    .stats-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .academy-hero .hero-headline {
+        font-size: 2.2rem;
+    }
+    .academy-cta-box h2 {
+        font-size: 2.2rem;
+    }
+    .academy-cta-box {
+        padding: 50px 20px;
+    }
+}
+
+/* =========================================================================
+   💫 BUTTON BOUNCE & SHAKE ANIMATIONS — Premium Micro-Interactions
+   ========================================================================= */
+
+/* === BOUNCY / WATER-BALL ANIMATION === */
+@keyframes bouncy-float {
+    0%   { transform: translateY(0px) scale(1); }
+    25%  { transform: translateY(-10px) scale(1.03); }
+    50%  { transform: translateY(-4px) scale(1.01); }
+    65%  { transform: translateY(-12px) scale(1.04); }
+    80%  { transform: translateY(-2px) scale(1.01); }
+    100% { transform: translateY(0px) scale(1); }
+}
+
+/* === SHAKE / VIBRATE ANIMATION === */
+@keyframes shake-wiggle {
+    0%, 100% { transform: rotate(0deg) translateX(0); }
+    10%       { transform: rotate(-4deg) translateX(-3px); }
+    20%       { transform: rotate(4deg) translateX(3px); }
+    30%       { transform: rotate(-3deg) translateX(-2px); }
+    40%       { transform: rotate(3deg) translateX(2px); }
+    50%       { transform: rotate(-2deg) translateX(-1px); }
+    60%       { transform: rotate(2deg) translateX(1px); }
+    70%       { transform: rotate(-1deg) translateX(0); }
+    80%       { transform: rotate(0deg) translateX(0); }
+}
+
+/* Apply bouncy animation to primary CTA buttons by default */
+.btn-primary,
+.btn-bouncy {
+    animation: bouncy-float 2.8s ease-in-out infinite !important;
+}
+
+.btn-primary:hover,
+.btn-bouncy:hover {
+    animation-play-state: paused !important;
+}
+
+/* Shake animation — applied to secondary/outline buttons by default */
+.btn-secondary-direct,
+.btn-solid-header,
+.btn-shake {
+    animation: shake-wiggle 3.5s ease-in-out infinite !important;
+    animation-delay: 1.2s !important;
+}
+
+.btn-secondary-direct:hover,
+.btn-solid-header:hover,
+.btn-shake:hover {
+    animation-play-state: paused !important;
+}
+
+/* =========================================================================
+   🏷️ LOGO BACKGROUND FIX — Sharp pill badge for sub-page headers
+   ========================================================================= */
+
+/* brandit-header & academy-header logo inherits global styles */
+.brandit-header .logo .header-sub-brand {
+    color: #4a7c00;
+    font-weight: 600;
+}
+
+/* =========================================================================
+   📌 BRANDIT-HEADER (Sub-page header) — Always visible, never hidden
+   ========================================================================= */
+.brandit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 6%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: rgba(17, 28, 1, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(153, 204, 51, 0.15);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.brandit-header.navbar-hidden {
+    transform: translateY(-110%) !important;
+}
+
+/* Scrolled state for brandit-header — transparent green glass */
+.brandit-header.scrolled {
+    background: rgba(17, 28, 1, 0.55) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(153, 204, 51, 0.15);
+}
+
+
+/* Nav links styling for subpage headers */
+.brandit-header nav a {
+    transition: color 0.3s ease;
+}
+
+.brandit-header nav a:hover {
+    color: #99CC33 !important;
+}
+
+/* Nav links on scrolled transparent header */
+.brandit-header.scrolled nav a {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.brandit-header.scrolled nav a:hover {
+    color: #99CC33 !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .brandit-header {
+        padding: 0.85rem 5%;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+    .brandit-header nav {
+        display: none !important;
+    }
+    .brandit-header .logo {
+        padding: 6px 12px;
+        font-size: 0.95rem;
+        height: 38px;
+    }
+    .brandit-header .logo img.nav-logo-icon {
+        height: 22px;
+    }
+    .brandit-header .btn-solid-header {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .brandit-header {
+        padding: 0.65rem 4%;
+    }
+    .brandit-header .logo {
+        padding: 4px 10px;
+        font-size: 0.85rem;
+        height: 34px;
+        gap: 4px;
+    }
+    .brandit-header .logo img.nav-logo-icon {
+        height: 18px;
+    }
+    .brandit-header .btn-solid-header {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
+}
+
+/* =========================================================================
+   🏫 ACADEMY MISSION SECTION — Redesigned Structure
+   ========================================================================= */
+.academy-mission {
+    padding: 110px 0;
+    background: linear-gradient(135deg, #111C01 0%, #1a2d02 50%, #111C01 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.academy-mission::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(153, 204, 51, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.academy-mission::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(153, 204, 51, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.mission-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 6%;
+    position: relative;
+    z-index: 2;
+}
+
+.mission-top-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(153, 204, 51, 0.08);
+    border: 1px solid rgba(153, 204, 51, 0.2);
+    border-radius: 50px;
+    padding: 8px 20px;
+    margin-bottom: 30px;
+    color: #99CC33;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.mission-top-label i {
+    font-size: 0.9rem;
+}
+
+.mission-headline {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #FDFFEB;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    max-width: 700px;
+}
+
+.mission-headline em {
+    font-style: italic;
+    color: #99CC33;
+    font-weight: 500;
+}
+
+.mission-subtext {
+    font-size: 1.15rem;
+    color: rgba(253, 255, 235, 0.65);
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 60px;
+}
+
+/* Three pillar cards */
+.mission-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 70px;
+}
+
+.mission-pillar {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(153, 204, 51, 0.1);
+    border-radius: 24px;
+    padding: 40px 30px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.mission-pillar.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mission-pillar:hover {
+    border-color: rgba(153, 204, 51, 0.3);
+    background: rgba(153, 204, 51, 0.04);
+    transform: translateY(-6px);
+}
+
+.mission-pillar-number {
+    font-size: 5rem;
+    font-weight: 700;
+    color: rgba(153, 204, 51, 0.06);
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    line-height: 1;
+    letter-spacing: -3px;
+}
+
+.mission-pillar-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(153, 204, 51, 0.1);
+    border: 1px solid rgba(153, 204, 51, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 1.3rem;
+    color: #99CC33;
+    transition: background 0.3s ease;
+}
+
+.mission-pillar:hover .mission-pillar-icon {
+    background: rgba(153, 204, 51, 0.18);
+}
+
+.mission-pillar h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #FDFFEB;
+    margin-bottom: 12px;
+    letter-spacing: -0.2px;
+}
+
+.mission-pillar p {
+    font-size: 0.93rem;
+    color: rgba(253, 255, 235, 0.6);
+    line-height: 1.7;
+}
+
+/* Mission Bottom Row — Quote + CTA */
+.mission-bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding-top: 50px;
+    border-top: 1px solid rgba(153, 204, 51, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s;
+}
+
+.mission-bottom-row.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mission-quote-block {
+    border-left: 3px solid #99CC33;
+    padding-left: 25px;
+}
+
+.mission-quote-block blockquote {
+    font-size: 1.35rem;
+    font-weight: 600;
+    font-style: italic;
+    color: #FDFFEB;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.mission-quote-block cite {
+    font-size: 0.88rem;
+    color: rgba(153, 204, 51, 0.7);
+    font-style: normal;
+    font-weight: 500;
+}
+
+.mission-cta-block {
+    text-align: right;
+}
+
+.mission-cta-block p {
+    font-size: 1rem;
+    color: rgba(253, 255, 235, 0.65);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* =========================================================================
+   📚 ACADEMY CATALOG — Redesigned Section
+   ========================================================================= */
+.academy-catalog {
+    padding: 110px 0;
+    background: #FFFFFF;
+    position: relative;
+}
+
+.catalog-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 6%;
+}
+
+.catalog-header {
+    text-align: center;
+    margin-bottom: 70px;
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.catalog-header.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.catalog-header .pre-tag {
+    display: inline-block;
+    background: rgba(74, 124, 0, 0.07);
+    border: 1px solid rgba(74, 124, 0, 0.18);
+    color: #4a7c00;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+
+.catalog-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #111C01;
+    line-height: 1.15;
+    margin-bottom: 18px;
+}
+
+.catalog-header h2 em {
+    font-style: italic;
+    color: #4a7c00;
+    font-weight: 500;
+}
+
+.catalog-header p {
+    font-size: 1.1rem;
+    color: #4B5563;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Catalog grid — 2 rows of 2 cards + 1 full-width coming soon */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-bottom: 28px;
+}
+
+.catalog-card {
+    background: #F9FAF5;
+    border: 1px solid rgba(17, 28, 1, 0.08);
+    border-radius: 28px;
+    padding: 44px 38px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.catalog-card.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.catalog-card:nth-child(1) { transition-delay: 0.05s; }
+.catalog-card:nth-child(2) { transition-delay: 0.15s; }
+.catalog-card:nth-child(3) { transition-delay: 0.25s; }
+.catalog-card:nth-child(4) { transition-delay: 0.35s; }
+
+.catalog-card:hover {
+    border-color: rgba(74, 124, 0, 0.3);
+    box-shadow: 0 20px 50px rgba(17, 28, 1, 0.08);
+    transform: translateY(-6px);
+}
+
+.catalog-card-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #4a7c00, #99CC33);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    border-radius: 28px 28px 0 0;
+}
+
+.catalog-card:hover .catalog-card-accent {
+    transform: scaleX(1);
+}
+
+.catalog-card-num {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: rgba(74, 124, 0, 0.05);
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    line-height: 1;
+    letter-spacing: -3px;
+}
+
+.catalog-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(74, 124, 0, 0.1), rgba(153, 204, 51, 0.15));
+    border: 1px solid rgba(74, 124, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 26px;
+    font-size: 1.5rem;
+    color: #4a7c00;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.catalog-card:hover .catalog-icon {
+    background: linear-gradient(135deg, rgba(74, 124, 0, 0.18), rgba(153, 204, 51, 0.25));
+    transform: scale(1.08);
+}
+
+.catalog-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #111C01;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+}
+
+.catalog-card > p {
+    font-size: 0.97rem;
+    color: #4B5563;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.catalog-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.catalog-skill-pill {
+    background: rgba(74, 124, 0, 0.07);
+    border: 1px solid rgba(74, 124, 0, 0.15);
+    color: #4a7c00;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 13px;
+    border-radius: 50px;
+    white-space: nowrap;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.catalog-card:hover .catalog-skill-pill {
+    background: rgba(74, 124, 0, 0.12);
+    border-color: rgba(74, 124, 0, 0.25);
+}
+
+/* Coming Soon card — full width */
+.catalog-card-coming {
+    background: linear-gradient(135deg, #111C01, #1a2d02);
+    border: 1.5px dashed rgba(153, 204, 51, 0.25);
+    border-radius: 28px;
+    padding: 50px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s;
+}
+
+.catalog-card-coming.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.coming-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.coming-icon {
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: rgba(153, 204, 51, 0.08);
+    border: 1px solid rgba(153, 204, 51, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: #99CC33;
+}
+
+.coming-text h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #FDFFEB;
+    margin-bottom: 8px;
+}
+
+.coming-text p {
+    font-size: 0.95rem;
+    color: rgba(253, 255, 235, 0.55);
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+.coming-badge {
+    background: rgba(153, 204, 51, 0.1);
+    border: 1px solid rgba(153, 204, 51, 0.25);
+    color: #99CC33;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 10px 22px;
+    border-radius: 50px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Responsive catalog */
+@media (max-width: 768px) {
+    .catalog-grid { grid-template-columns: 1fr; }
+    .catalog-header h2 { font-size: 2.2rem; }
+    .catalog-card-coming { flex-direction: column; text-align: center; }
+    .coming-left { flex-direction: column; text-align: center; }
+    .mission-pillars { grid-template-columns: 1fr; }
+    .mission-headline { font-size: 2.2rem; }
+    .mission-bottom-row { grid-template-columns: 1fr; }
+    .mission-cta-block { text-align: left; }
+}
+
+@media (max-width: 991px) {
+    .mission-pillars { grid-template-columns: 1fr; gap: 30px; }
+    .mission-headline { font-size: 2.6rem; }
+    .catalog-header h2 { font-size: 2.5rem; }
+}
+
+/* =========================================================================
+   🏛️ MAIN FOOTER CSS — For academy.html & other sub-pages
+   ========================================================================= */
+.main-footer {
+    background: linear-gradient(135deg, #111C01 0%, #0d1701 100%);
+    padding: 70px 0 0;
+    border-top: 1px solid rgba(153, 204, 51, 0.12);
+}
+
+.main-footer .footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 6%;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 50px;
+}
+
+.main-footer .footer-left .logo {
+    background: none;
+    border: none;
+    padding: 0;
+    backdrop-filter: none;
+    color: #FDFFEB;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.main-footer .footer-left .logo .header-sub-brand {
+    color: #99CC33;
+}
+
+.main-footer .footer-left > p {
+    font-size: 0.95rem;
+    color: rgba(253, 255, 235, 0.55);
+    line-height: 1.7;
+    max-width: 300px;
+    margin-bottom: 28px;
+}
+
+.main-footer .footer-socials {
+    display: flex;
+    gap: 12px;
+}
+
+.main-footer .footer-social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(153, 204, 51, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #99CC33;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.main-footer .footer-social-link:hover {
+    background: rgba(153, 204, 51, 0.12);
+    border-color: rgba(153, 204, 51, 0.4);
+    transform: translateY(-3px);
+}
+
+.main-footer .footer-col h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #99CC33;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+}
+
+.main-footer .footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.main-footer .footer-col ul li a {
+    font-size: 0.92rem;
+    color: rgba(253, 255, 235, 0.55);
+    transition: color 0.25s ease;
+}
+
+.main-footer .footer-col ul li a:hover {
+    color: #99CC33;
+}
+
+.main-footer .footer-col p {
+    font-size: 0.92rem;
+    color: rgba(253, 255, 235, 0.55);
+    line-height: 1.65;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.main-footer .footer-col p i {
+    color: #99CC33;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.main-footer .footer-col a {
+    color: rgba(253, 255, 235, 0.55);
+    transition: color 0.25s ease;
+}
+
+.main-footer .footer-col a:hover {
+    color: #99CC33;
+}
+
+.main-footer .footer-bottom {
+    border-top: 1px solid rgba(153, 204, 51, 0.08);
+    padding: 22px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: 100%;
+}
+
+.main-footer .footer-bottom p {
+    font-size: 0.87rem;
+    color: rgba(253, 255, 235, 0.35);
+}
+
+.main-footer .footer-bottom-links {
+    display: flex;
+    gap: 24px;
+}
+
+.main-footer .footer-bottom-links a {
+    font-size: 0.87rem;
+    color: rgba(253, 255, 235, 0.35);
+    transition: color 0.25s ease;
+}
+
+.main-footer .footer-bottom-links a:hover {
+    color: rgba(153, 204, 51, 0.7);
+}
+
+@media (max-width: 991px) {
+    .main-footer .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    .main-footer .footer-left {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-footer .footer-container {
+        grid-template-columns: 1fr;
+    }
+    .main-footer .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* =========================================================================
+   📈 BRANDITPRO LOGO CUSTOMIZATION — Increased Dimensions
+   ========================================================================= */
+.branditpro-page .logo {
+    height: 48px !important;
+    padding: 8px 20px !important;
+}
+
+.branditpro-page .logo img.nav-logo-icon {
+    height: 30px !important;
+}
+
+@media (max-width: 768px) {
+    .branditpro-page .logo {
+        height: 42px !important;
+        padding: 6px 14px !important;
+    }
+    .branditpro-page .logo img.nav-logo-icon {
+        height: 24px !important;
+    }
+}
+
 

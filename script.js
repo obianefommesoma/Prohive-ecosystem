@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
     const scrollTargets = document.querySelectorAll(
-        '.about-section, .pillar-card, .evolution-box, .eco-pod, .metric-pod-unique, .strategy-card-unique, .channel-card, .matrix-node, .hub-header-block, .impact-header-unique, .ecosystem-header, .gallery-meta-block, .section-header, .trusted-title, .marquee-wrapper, .svc-left-pane, .svc-row'
+        '.about-section, .pillar-card, .evolution-box, .eco-pod, .metric-pod-unique, .strategy-card-unique, .channel-card, .matrix-node, .hub-header-block, .impact-header-unique, .ecosystem-header, .gallery-meta-block, .section-header, .trusted-title, .marquee-wrapper, .svc-left-pane, .svc-row, .expertise-header, .expertise-card-image, .expertise-card-content, .philosophy-content, .philosophy-image-box, .course-card, .stat-box, .academy-cta-box, .mission-pillar, .mission-intro, .mission-bottom-row, .catalog-header, .catalog-card, .catalog-card-coming'
     );
     scrollTargets.forEach(el => revealObserver.observe(el));
 
@@ -72,40 +72,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 🧭 NAVBAR — Glass blur on scroll + HIDE on scroll-down / SHOW on scroll-up
+    // 🧭 UNIVERSAL NAVBAR — HIDE ON SCROLL DOWN, SHOW ON SCROLL UP
     // =========================================================================
-    const navbar = document.querySelector('.navbar-header');
-    let lastScrollY = window.scrollY;
-    let ticking = false;
+    const activeHeader = document.querySelector('.navbar-header') || document.querySelector('.brandit-header');
+    if (activeHeader) {
+        let lastScrollY = window.scrollY;
+        let ticking = false;
 
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                const currentY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const currentY = window.scrollY;
 
-                // Apply / remove scrolled glass style
-                if (currentY > 60) {
-                    navbar?.classList.add('navbar-scrolled');
-                } else {
-                    navbar?.classList.remove('navbar-scrolled');
-                    navbar?.classList.remove('navbar-hidden'); // always show at top
-                }
-
-                // Hide on scroll-down, show on scroll-up (only past 150px)
-                if (currentY > 150) {
-                    if (currentY > lastScrollY) {
-                        navbar?.classList.add('navbar-hidden');
+                    // Add scrolled class when page is scrolled
+                    if (currentY > 60) {
+                        if (activeHeader.classList.contains('navbar-header')) {
+                            activeHeader.classList.add('navbar-scrolled');
+                        } else {
+                            activeHeader.classList.add('scrolled');
+                        }
                     } else {
-                        navbar?.classList.remove('navbar-hidden');
+                        activeHeader.classList.remove('navbar-scrolled');
+                        activeHeader.classList.remove('scrolled');
+                        activeHeader.classList.remove('navbar-hidden'); // Always show at top
                     }
-                }
 
-                lastScrollY = currentY;
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }, { passive: true });
+                    // Hide on scroll-down, show on scroll-up (only if scrolled past header height)
+                    if (currentY > 100) {
+                        if (currentY > lastScrollY) {
+                            activeHeader.classList.add('navbar-hidden');
+                        } else {
+                            activeHeader.classList.remove('navbar-hidden');
+                        }
+                    } else if (currentY <= 60) {
+                        activeHeader.classList.remove('navbar-hidden');
+                    }
+
+                    lastScrollY = currentY;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    }
 
 
     // =========================================================================
